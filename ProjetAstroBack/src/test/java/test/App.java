@@ -1,5 +1,5 @@
 package test;
-import org.math.plot.*;
+import org.math.plot.*; 
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,8 +33,8 @@ public class App {
 	static DAOSystemeInit daoSI = new DAOSystemeInit();
 	static DAOSysteme daoS = new DAOSysteme();
 	static DAOPositions daoP = new DAOPositions();
-	static List<CorpsCeleste> systeme=new ArrayList<>();
-	static List<CorpsCeleste> systeme2= new ArrayList<>();
+	static List<CorpsCeleste> systeme=new ArrayList();
+	static List<CorpsCeleste> systeme2= new ArrayList();
 	static boolean calculSimple;
 	static JFrame tpt = new JFrame("Canard TPT");
 	static JFrame avancement = new JFrame("Avancement");
@@ -513,7 +513,7 @@ public class App {
 	public static void avancerTimeStepCorps(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
 		for (int i=0;i<systeme.size();i++) {
 			if (c.getId() != systeme2.get(i).getId()) {
-				List<double[]> forces = new ArrayList<>();
+				List<double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
 				for (double[] f: forces) {	
 				}
@@ -530,7 +530,7 @@ public class App {
 		for (int i=0;i<systeme.size();i++) {
 
 			if (c.getIdParent() == systeme2.get(i).getId()) {
-				List<double[]> forces = new ArrayList<>();
+				List<double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
 				for (double[] f: forces) {
 				}
@@ -595,8 +595,8 @@ public class App {
 	public static void affichageTrajectoire() { //affiche la trajectoire des corps celestes 
 		double [] x;
 		double[] y;
-		List<double []> lx= new ArrayList<>();
-		List<double []> ly= new ArrayList<>();
+		List<double []> lx= new ArrayList();
+		List<double []> ly= new ArrayList();
 		List<CorpsCeleste> systeme = daoS.findAll();
 		List<Position> positions;
 		for (CorpsCeleste c : systeme) { //parcours les corps du systemes et recuperes les listes de positions x et y
