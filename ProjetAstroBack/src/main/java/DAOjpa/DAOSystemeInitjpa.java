@@ -6,27 +6,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import metier.Compte;
+import metier.CorpsCeleste;
 import util.Context;
 
 public class DAOSystemeInitjpa {
 	
-	public Compte findById(Integer id) {
+	public CorpsCeleste findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Compte c = em.find(Compte.class,id);
+		CorpsCeleste c = em.find(CorpsCeleste.class,id);
 		em.close();
 		return c;
 	}
 
 	
-	public List<Compte> findAll() {
+	public List<CorpsCeleste> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<Compte> comptes = em.createQuery("from Compte",Compte.class).getResultList();
+		List<CorpsCeleste> corpsCelestes = em.createQuery("from SystemeInit",CorpsCeleste.class).getResultList();
 		em.close();
-		return comptes;
+		return corpsCelestes;
 	}
 
 	
-	public Compte insert(Compte c) {
+	public CorpsCeleste insert(CorpsCeleste c) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
 		em.getTransaction().begin();
@@ -37,7 +38,7 @@ public class DAOSystemeInitjpa {
 	}
 
 	
-	public Compte update(Compte c) {
+	public CorpsCeleste update(CorpsCeleste c) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		c=em.merge(c);
@@ -49,35 +50,10 @@ public class DAOSystemeInitjpa {
 	
 	public void delete(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Compte c = em.find(Compte.class,id);
+		CorpsCeleste c = em.find(CorpsCeleste.class,id);
 		em.getTransaction().begin();
 		em.remove(c);
 		em.getTransaction().commit();
 		em.close();
-	}
-
-	
-	public List<Compte> filterCompte(String mot) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query query= em.createQuery("from Compte c where c.login like :lib or c.password like :lib",Compte.class);
-		query.setParameter("lib", "%"+mot+"%");
-		List<Compte> comptes = query.getResultList();
-		em.close();
-		return comptes;
-	}
-
-	
-	public Compte seConnecter(String login, String password) {
-		Compte c = null;
-		try{
-			EntityManager em = Context.getInstance().getEmf().createEntityManager();
-			Query query= em.createQuery("from Compte c where c.login = :login and c.password=:password",Compte.class);
-			query.setParameter("login", login);
-			query.setParameter("password", password);
-			c = (Compte) query.getSingleResult();
-			em.close();
-		}
-		catch(Exception e) {}
-		return c;
 	}
 }
