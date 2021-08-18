@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import DAO.IDAOPositions;
 import DAO.IDAOSysteme;
 import metier.CorpsCeleste;
-import metier.Departement;
 import metier.Position;
 import util.Context;
 
@@ -84,14 +83,13 @@ public class DAOPositionsjpa implements IDAOPositions{
 
 	@Override
 	public List<Position> findByTimestep(Integer t) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		Query query= em.createQuery("from Positions where id_timestep=:t",Position.class);
+		query.setParameter("t", t);
+		List<Position> positions =(List<Position>) query.getResultList();
+		em.close();
+		return positions;
 	}
 
 
-	@Override
-	public List<Position> findByIdCorps(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
