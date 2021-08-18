@@ -58,9 +58,7 @@ public class DOASystemejpa {
 	public void deleteAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		Query q=em.createQuery("DELETE FROM systemeinit");
-		em.getTransaction().begin();
 		q.executeUpdate();
-		em.getTransaction().commit();
 		em.close();
 	}
 }
