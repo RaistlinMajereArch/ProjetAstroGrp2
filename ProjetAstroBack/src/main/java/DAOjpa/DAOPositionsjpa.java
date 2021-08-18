@@ -5,11 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import DAO.IDAOPositions;
+import DAO.IDAOSysteme;
 import metier.CorpsCeleste;
 import metier.Position;
 import util.Context;
 
-public class DAOPositionsjpa {
+public class DAOPositionsjpa implements IDAOPositions{
 	
 	public Position findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -62,5 +64,19 @@ public class DAOPositionsjpa {
 		Query q=em.createQuery("DELETE FROM positions");
 		q.executeUpdate();
 		em.close();
+	}
+
+
+	@Override
+	public List<Position> findByTimestep(Integer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Position> findByIdCorps(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
