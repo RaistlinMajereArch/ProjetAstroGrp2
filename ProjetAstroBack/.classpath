@@ -43,7 +43,11 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="C:/Users/Yannis/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1.jar" sourcepath="C:/Users/Yannis/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1-sources.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/Spart/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1.jar" sourcepath="C:/Users/Spart/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1-sources.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="com.github.yannrichet"/>

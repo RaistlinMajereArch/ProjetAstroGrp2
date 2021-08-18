@@ -22,17 +22,17 @@ import metier.Rectangle;
 import metier.Etoile;
 import metier.Satellite;
 import metier.Utilisateur;
-import DAO.DAOCompte;
-import DAO.DAOPositions;
-import DAO.DAOSystemeInit;
-import DAO.DAOSysteme;
+import DAO.IDAOCompte;
+import DAO.IDAOPositions;
+import DAO.IDAOSystemeInit;
+import DAO.IDAOSysteme;
 
 public class App {
 	static Compte connected;
-	static DAOCompte daoC = new DAOCompte();
-	static DAOSystemeInit daoSI = new DAOSystemeInit();
-	static DAOSysteme daoS = new DAOSysteme();
-	static DAOPositions daoP = new DAOPositions();
+	static IDAOCompte daoC = new IDAOCompte();
+	static IDAOSystemeInit daoSI = new IDAOSystemeInit();
+	static IDAOSysteme daoS = new IDAOSysteme();
+	static IDAOPositions daoP = new IDAOPositions();
 	static List<CorpsCeleste> systeme=new ArrayList();
 	static List<CorpsCeleste> systeme2= new ArrayList();
 	static boolean calculSimple;
@@ -80,7 +80,7 @@ public class App {
 		int choix = saisieInt("Choisir un menu");
 		switch(choix) 
 		{
-		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=DAOCompte.seConnecter(login, password);break;
+		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=IDAOCompte.seConnecter(login, password);break;
 		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);daoC.insert(user);System.out.println("Compte cr��.");menuPrincipal();break;
 		case 3 : System.exit(0);break;
 		}		
