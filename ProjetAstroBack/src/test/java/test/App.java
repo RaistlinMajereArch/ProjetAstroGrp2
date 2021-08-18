@@ -25,14 +25,17 @@ import metier.Utilisateur;
 import DAO.IDAOCompte;
 import DAO.IDAOPositions;
 import DAO.IDAOSystemeInit;
+import DAOjpa.DAOComptejpa;
+import DAOjpa.DAOPositionsjpa;
+import DAOjpa.DAOSystemeInitjpa;
 import DAO.IDAOSysteme;
 
 public class App {
 	static Compte connected;
-	static IDAOCompte daoC = new IDAOCompte();
-	static IDAOSystemeInit daoSI = new IDAOSystemeInit();
-	static IDAOSysteme daoS = new IDAOSysteme();
-	static IDAOPositions daoP = new IDAOPositions();
+	static DAOComptejpa daoC = new DAOComptejpa();
+	static DAOSystemeInitjpa daoSI = new DAOSystemeInitjpa();
+	static DAOSystemejpa daoS = new DAOSystemejpa();
+	static DAOPositionsjpa daoP = new DAOPositionsjpa();
 	static List<CorpsCeleste> systeme=new ArrayList();
 	static List<CorpsCeleste> systeme2= new ArrayList();
 	static boolean calculSimple;

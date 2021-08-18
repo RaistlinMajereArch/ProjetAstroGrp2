@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import metier.CorpsCeleste;
 import util.Context;
 
-public class DOASystemejpa {
+public class DAOSystemejpa {
 	public CorpsCeleste findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		CorpsCeleste c = em.find(CorpsCeleste.class,id);
