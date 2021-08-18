@@ -5,10 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import DAO.IDAOSysteme;
 import metier.CorpsCeleste;
 import util.Context;
 
-public class DAOSystemejpa {
+public class DAOSystemejpa implements IDAOSysteme{
 	public CorpsCeleste findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		CorpsCeleste c = em.find(CorpsCeleste.class,id);
