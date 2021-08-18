@@ -1,14 +1,14 @@
 package DAOjpa;
 
 
-	import java.util.List;
+import java.util.List;
 
-	import javax.persistence.EntityManager;
-	import javax.persistence.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
-	import DAO.IDAOCompte;
-	import metier.Compte;
-	import util.Context;
+import DAO.IDAOCompte;
+import metier.Compte;
+import util.Context;
 
 
 
@@ -16,17 +16,14 @@ public class DAOComptejpa implements IDAOCompte{
 		
 
 		public Compte findById(Integer id) {
-			// TODO Auto-generated method stub
 			EntityManager em = Context.getInstance().getEmf().createEntityManager();
 			Compte c = em.find(Compte.class,id);
 			em.close();
 			return c;
-			return null;
 		}
 
 
 		public List<Compte> findAll() {
-			// TODO Auto-generated method stub
 			EntityManager em = Context.getInstance().getEmf().createEntityManager();
 			List<Compte> comptes = em.createQuery("from Compte",Compte.class).getResultList();
 			em.close();
@@ -82,7 +79,6 @@ public class DAOComptejpa implements IDAOCompte{
 
 		@Override
 		public Compte update(Compte o) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 		
