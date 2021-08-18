@@ -7,18 +7,16 @@ import DAO.IDAOCompte;
 import DAO.IDAOPositions;
 import DAO.IDAOSysteme;
 import DAO.IDAOSystemeInit;
-
-
-import DAO.jpa.DAOCompteJPA;
-import DAO.jpa.*;
+import DAOjpa.DAOComptejpa;
+import DAOjpa.DAOPositionsjpa;
 import metier.Compte;
 
 public class Context {
 	private Compte connected=null;
 	private IDAOCompte daoC = new DAOComptejpa();
 	private IDAOPositions daoP = new DAOPositionsjpa();
-	private IDAOSysteme daoS = new DAOSsystemejpa();
-	private IDAOSystemeInit daoSI = new DAOSsystemeInitjpa();
+	private IDAOSysteme daoS = new DAOSystemejpa();
+	private IDAOSystemeInit daoSI = new DAOSystemeInitjpa();
 
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("astro-persistence");
 	

@@ -5,11 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import DAO.IDAOSysteme;
+import DAO.IDAOSystemeInit;
 import metier.Compte;
 import metier.CorpsCeleste;
 import util.Context;
 
-public class DAOSystemeInitjpa {
+public class DAOSystemeInitjpa implements IDAOSystemeInit {
 	
 	public CorpsCeleste findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
