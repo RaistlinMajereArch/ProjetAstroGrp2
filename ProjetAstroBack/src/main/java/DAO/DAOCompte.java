@@ -14,19 +14,19 @@ public class DAOCompte implements IDAO<Compte,Integer>{
 	
 	
 
-	@Override
+
 	public Compte findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public List<Compte> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Compte insert(Compte o) {
 		try 
 		{
@@ -58,13 +58,13 @@ public class DAOCompte implements IDAO<Compte,Integer>{
 		return o;
 	}
 
-	@Override
+	
 	public Compte update(Compte o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
