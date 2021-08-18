@@ -28,6 +28,7 @@ import DAO.IDAOSystemeInit;
 import DAOjpa.DAOComptejpa;
 import DAOjpa.DAOPositionsjpa;
 import DAOjpa.DAOSystemeInitjpa;
+import DAOjpa.DAOSystemejpa;
 import DAO.IDAOSysteme;
 
 public class App {
@@ -83,7 +84,7 @@ public class App {
 		int choix = saisieInt("Choisir un menu");
 		switch(choix) 
 		{
-		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=IDAOCompte.seConnecter(login, password);break;
+		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=daoC.seConnecter(login, password);break;
 		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);daoC.insert(user);System.out.println("Compte cr��.");menuPrincipal();break;
 		case 3 : System.exit(0);break;
 		}		
