@@ -58,7 +58,7 @@
                               <td>
                                 <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.type}','${corpsceleste.id_parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
-                                    <c:if test = "${corpsceleste.type =="planete"}">
+                                    <c:if test = "${corpsceleste.type='planete'}">
                                       <input onclick="addSat(${corpsceleste.id})" type="button" class ="btn btn-success btnAddSat" value="Ajouter Satellite">
                                       </c:if>
                                     </td>
