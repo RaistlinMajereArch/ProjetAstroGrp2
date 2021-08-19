@@ -9,50 +9,53 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="system")
-@SecondaryTable(name="systeminit")
+@Table(name="systeminit")
+@SecondaryTable(name="system")
 public abstract class CorpsCeleste {
 	
 	
-	protected double G=6.6743E-20;
+	protected Double G=6.6743E-20;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
-	protected double masse;
-	protected double diametre;
-	protected double x;
-	protected double y;
-	protected double vx;
-	protected double vy;
-	protected boolean etat=true;
+	protected Double masse;
+	protected Double diametre;
+	protected Double x;
+	protected Double y;
+	protected Double vx;
+	protected Double vy;
+	protected Boolean etat=true;
 	protected String nom;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	protected CorpsCeleste parent;
+	//@OneToMany(mappedBy="parent",cascade = {CascadeType.ALL})
+	///protected List<CorpsCeleste> enfants;
 	
-	@Column(table="systeminit",name="masse")
-	protected double masseInit;
-	@Column(table="systeminit",name="diametre")
-	protected double diametreInit;
-	@Column(table="systeminit",name="x")
-	protected double xInit;
-	@Column(table="systeminit",name="y")
-	protected double yInit;
-	@Column(table="systeminit",name="vx")
-	protected double vxInit;
-	@Column(table="systeminit",name="vy")
-	protected double vyInit;
-	@Column(table="systeminit",name="etat")
-	protected boolean etatInit=true;
-	@Column(table="systeminit",name="nom")
+	@Column(table="system",name="masse")
+	protected Double masseInit;
+	@Column(table="system",name="diametre")
+	protected Double diametreInit;
+	@Column(table="system",name="x")
+	protected Double xInit;
+	@Column(table="system",name="y")
+	protected Double yInit;
+	@Column(table="system",name="vx")
+	protected Double vxInit;
+	@Column(table="system",name="vy")
+	protected Double vyInit;
+	@Column(table="system",name="etat")
+	protected Boolean etatInit=true;
+	@Column(table="system",name="nom")
 	protected String nomInit;
 	
 	public CorpsCeleste() {}
 
-	public CorpsCeleste(int id, double masse, double diametre, double x, double y, double vx, double vy, boolean etat,
+	public CorpsCeleste(int id, Double masse, Double diametre, Double x, Double y, Double vx, Double vy, Boolean etat,
 			String nom,CorpsCeleste parent) {
 		this.id = id;
 		this.masse = masse;
@@ -66,7 +69,7 @@ public abstract class CorpsCeleste {
 		this.parent = parent;
 	}
 	
-	public CorpsCeleste(double masse, double diametre, double x, double y, double vx, double vy, String nom,CorpsCeleste parent) {
+	public CorpsCeleste(Double masse, Double diametre, Double x, Double y, Double vx, Double vy, String nom,CorpsCeleste parent) {
 		this.masse = masse;
 		this.diametre = diametre;
 		this.x = x;
@@ -84,24 +87,24 @@ public abstract class CorpsCeleste {
 		this.nomInit = nom;
 	}
 
-	public double[] calculForce(CorpsCeleste c) {
-		double [] force= {0,0};
-		double distance=Math.sqrt(Math.pow((this.x-c.x),2)+Math.pow((this.y-c.y),2));
+	public Double[] calculForce(CorpsCeleste c) {
+		Double [] force= {(double) 0,(double) 0};
+		Double distance=Math.sqrt(Math.pow((this.x-c.x),2)+Math.pow((this.y-c.y),2));
 		force[0]=G*(this.masse*c.masse)*((c.x-this.x)/Math.pow(distance,3));
 		force[1]=G*(this.masse*c.masse)*((c.y-this.y)/Math.pow(distance,3));
-		/*double distance=Math.sqrt(Math.pow((this.x-c.x),2)+Math.pow((this.y-c.y),2));
-		double forceVector=G*(this.masse*c.masse)/Math.pow(distance,2);
-		double angle=Math.atan2((c.y-this.y),(c.x-this.x));
+		/*Double distance=Math.sqrt(Math.pow((this.x-c.x),2)+Math.pow((this.y-c.y),2));
+		Double forceVector=G*(this.masse*c.masse)/Math.pow(distance,2);
+		Double angle=Math.atan2((c.y-this.y),(c.x-this.x));
 		force[0]=Math.cos(angle)*forceVector;
 		force[1]=Math.sin(angle)*forceVector;*/
 		
 		return force;
 	}
 	
-	public double[] calculAcceleration(List<double[]> forces) {
-		double [] accelerations= {0,0};
-		double [] sommeForces= {0,0};
-		double [] force= {0,0};
+	public Double[] calculAcceleration(List<Double[]> forces) {
+		Double [] accelerations= {(double) 0,(double) 0};
+		Double [] sommeForces= {(double) 0,(double) 0};
+		Double [] force= {(double) 0,(double) 0};
 		
 		for (int i=0; i<forces.size();i++) {
 			force=forces.get(i);
@@ -113,7 +116,7 @@ public abstract class CorpsCeleste {
 		return accelerations;
 	}
 	
-	public void calculVitesse(double[] accelerations) {
+	public void calculVitesse(Double[] accelerations) {
 		vx+=accelerations[0]*86400;
 		vy+=accelerations[1]*86400;
 	}
@@ -155,11 +158,11 @@ public abstract class CorpsCeleste {
 	public void setParent(CorpsCeleste parent) {
 		this.parent = parent;
 	}
-	public void setDiametre(double diametre) {
+	public void setDiametre(Double diametre) {
 		this.diametre = diametre;
 	}
 
-	public void setEtat(boolean etat) {
+	public void setEtat(Boolean etat) {
 		this.etat = etat;
 	}
 
@@ -167,111 +170,111 @@ public abstract class CorpsCeleste {
 		this.nom = nom;
 	}
 
-	public double getG() {
+	public Double getG() {
 		return G;
 	}
 
-	public double getMasse() {
+	public Double getMasse() {
 		return masse;
 	}
 
-	public double getDiametre() {
+	public Double getDiametre() {
 		return diametre;
 	}
 
-	public double getX() {
+	public Double getX() {
 		return x;
 	}
 
-	public double getY() {
+	public Double getY() {
 		return y;
 	}
 
-	public double getVx() {
+	public Double getVx() {
 		return vx;
 	}
 
-	public double getVy() {
+	public Double getVy() {
 		return vy;
 	}
 
-	public boolean isEtat() {
+	public Boolean isEtat() {
 		return etat;
 	}
 
-	public void setMasse(double masse) {
+	public void setMasse(Double masse) {
 		this.masse = masse;
 	}
 
-	public void setX(double x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
 
-	public void setY(double y) {
+	public void setY(Double y) {
 		this.y = y;
 	}
 
-	public void setVx(double vx) {
+	public void setVx(Double vx) {
 		this.vx = vx;
 	}
 
-	public void setVy(double vy) {
+	public void setVy(Double vy) {
 		this.vy = vy;
 	}
 	
-	public double getMasseInit() {
+	public Double getMasseInit() {
 		return masseInit;
 	}
 
-	public void setMasseInit(double masseInit) {
+	public void setMasseInit(Double masseInit) {
 		this.masseInit = masseInit;
 	}
 
-	public double getDiametreInit() {
+	public Double getDiametreInit() {
 		return diametreInit;
 	}
 
-	public void setDiametreInit(double diametreInit) {
+	public void setDiametreInit(Double diametreInit) {
 		this.diametreInit = diametreInit;
 	}
 
-	public double getxInit() {
+	public Double getxInit() {
 		return xInit;
 	}
 
-	public void setxInit(double xInit) {
+	public void setxInit(Double xInit) {
 		this.xInit = xInit;
 	}
 
-	public double getyInit() {
+	public Double getyInit() {
 		return yInit;
 	}
 
-	public void setyInit(double yInit) {
+	public void setyInit(Double yInit) {
 		this.yInit = yInit;
 	}
 
-	public double getVxInit() {
+	public Double getVxInit() {
 		return vxInit;
 	}
 
-	public void setVxInit(double vxInit) {
+	public void setVxInit(Double vxInit) {
 		this.vxInit = vxInit;
 	}
 
-	public double getVyInit() {
+	public Double getVyInit() {
 		return vyInit;
 	}
 
-	public void setVyInit(double vyInit) {
+	public void setVyInit(Double vyInit) {
 		this.vyInit = vyInit;
 	}
 
-	public boolean isEtatInit() {
+	public Boolean isEtatInit() {
 		return etatInit;
 	}
 
-	public void setEtatInit(boolean etatInit) {
+	public void setEtatInit(Boolean etatInit) {
 		this.etatInit = etatInit;
 	}
 

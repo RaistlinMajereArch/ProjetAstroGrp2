@@ -20,14 +20,14 @@ public class DAOPositionsjpa implements IDAOPositions{
 	
 	public List<Position> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<Position> positions = em.createQuery("from Positions",Position.class).getResultList();
+		List<Position> positions = em.createQuery("from Position",Position.class).getResultList();
 		em.close();
 		return positions;
 	}
 	
 	public List<Position> findByIdCorps(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query query= em.createQuery("from Positions where id_corpsCeleste=:id",Position.class);
+		Query query= em.createQuery("from Position where id_corpsCeleste=:id",Position.class);
 		query.setParameter("id", id);
 		List<Position> positions =(List<Position>) query.getResultList();
 		em.close();

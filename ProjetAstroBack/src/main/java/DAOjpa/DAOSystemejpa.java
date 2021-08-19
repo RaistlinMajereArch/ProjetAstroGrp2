@@ -19,7 +19,7 @@ public class DAOSystemejpa implements IDAOSysteme{
 
 	public List<CorpsCeleste> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<CorpsCeleste> corpsCelestes = em.createNativeQuery("SELECT * FROM system",CorpsCeleste.class).getResultList();
+		List<CorpsCeleste> corpsCelestes = em.createNativeQuery("SELECT * FROM systeminit",CorpsCeleste.class).getResultList();
 		em.close();
 		return corpsCelestes;
 	}
@@ -28,7 +28,7 @@ public class DAOSystemejpa implements IDAOSysteme{
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
 		em.getTransaction().begin();
-		em.persist(c);
+		c=em.merge(c);
 		em.getTransaction().commit();
 		em.close();
 		return c;
@@ -54,7 +54,12 @@ public class DAOSystemejpa implements IDAOSysteme{
 	
 	public void deleteAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		//List<CorpsCeleste> cc = findAll();
 		em.getTransaction().begin();
+		//for(CorpsCeleste c: cc) {
+		//	c=em.merge(c);
+		//	em.remove(c);
+		//}
 		Query q=em.createNativeQuery("DELETE FROM system");
 		q.executeUpdate();
 		em.getTransaction().commit();
