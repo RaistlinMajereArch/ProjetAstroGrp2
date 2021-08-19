@@ -513,6 +513,20 @@ public class App {
 				avancerTimeStepCorps(systeme.get(i));
 			}
 		}
+		for (int i=0;i<systeme.size();i++) {
+			for (int j=0;j<systeme.size();j++) {
+				if (i!=j) {
+					double xa=systeme.get(i).getX();
+					double xb=systeme.get(i).getX();
+					double ya=systeme.get(i).getY();
+					double yb=systeme.get(i).getY();
+					double distance=Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2));
+					if(distance < systeme.get(i).getDiametre()) {
+						systeme.get(i).fusionne(systeme.get(j));
+					}
+				}
+			}
+		}
 	}
 	public static void avancerTimeStepCorps(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
 		for (int i=0;i<systeme.size();i++) {
@@ -528,6 +542,7 @@ public class App {
 				c.calculPosition();
 			}
 		}
+		
 	}
 	
 	public static void avancerTimeStepCorpsSimplifie(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
