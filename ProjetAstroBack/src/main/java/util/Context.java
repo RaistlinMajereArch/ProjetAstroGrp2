@@ -20,7 +20,7 @@ public class Context {
 	private IDAOSysteme daoS = new DAOSystemejpa();
 	private IDAOSystemeInit daoSI = new DAOSystemeInitjpa();
 
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("astro-persistence");
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("projet_astro");
 	
 	private static Context _instance=null;
 
