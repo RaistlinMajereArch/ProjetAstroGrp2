@@ -20,9 +20,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>SoprAjc</groupId>
-			<artifactId>ProjetAstroBack</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>SoprAJC</groupId>
+  			<artifactId>ProjetAstroBack</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
