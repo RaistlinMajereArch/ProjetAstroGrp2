@@ -2,6 +2,9 @@ package metier;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+
 public abstract class CorpsCeleste {
 	protected final double G=6.6743E-20;
 	protected int id;
