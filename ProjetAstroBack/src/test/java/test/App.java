@@ -116,13 +116,14 @@ public class App {
 	}
 
 	
+
 	public static void menuModifier() {
 		System.out.println("\nModifier un corps");
 		System.out.println("1- Modifier une etoile");
 		System.out.println("2- Modifier une planete");
 		System.out.println("3- Ajout d'une planete");
 		System.out.println("4- Modifier un satellite");
-		System.out.println("(WIP) 5- Ajout d'un satellite (WIP)");
+		System.out.println("5- Ajout d'un satellite (WIP)");
 		System.out.println("6- Revenir en arriere");
 		int choix = saisieInt("Choisir un menu");
 		switch(choix) 
@@ -131,7 +132,7 @@ public class App {
 		case 2 : modifPlanete();break;
 		case 3 : creerPlanete((Etoile) daoSI.findById(1));break;
 		case 4 : modifSatellite();break;
-		//case 5 : creerSatellite((Planete) daoSI.findById());break;
+		case 5 : creerSatellite();break;	
 		case 6: menuUtilisateur();break;
 		}
 		menuUtilisateur();	
@@ -198,9 +199,9 @@ public class App {
 		boolean diametrePlaneteOk = false;
 		Double diametrePlanete= 0d;
 		while (!diametrePlaneteOk) {
-			diametrePlanete= saisieDouble("Saisir le diametre de la planet (en km)");
+			diametrePlanete= saisieDouble("Saisir le diametre de la planete (en km)");
 			if (diametrePlanete <= 0d) {
-				System.out.println("Le diametre de l'etoile est incorrect");
+				System.out.println("Le diametre de la planete est incorrect");
 			} else {
 				diametrePlaneteOk=true;		
 			}
@@ -264,8 +265,52 @@ public class App {
 
 	}
 
+	
+	public static void creerSatellite(){ // cree un satellite
+		for (int i=0;i<systeme.size();i++)
+		{
+			if(systeme.get(i) instanceof Planete) 
+			{
+				System.out.println(systeme.get(i));
+			}
+		}
+	    int selectIdPlanet = saisieInt("A quelle planete voulez vous ajouter un satellite (id)?");
+	    
+	    Planete p = (Planete) daoSI.findById(selectIdPlanet);
+
+		String nomSatellite=saisieString("Saisir le nom du satellite");
+		boolean masseSatelliteOk = false;
+		Double masseSatellite = p.getMasse();
+		while (!masseSatelliteOk) {
+			masseSatellite = saisieDouble("Saisir la masse du satellite (en kg)");
+			if (masseSatellite >= p.getMasse() || masseSatellite <= 0d) {
+				System.out.println("La masse du satellite est incorrecte");
+			} else {
+				masseSatelliteOk=true;		
+			}
+		}
+		boolean diametreSatelliteOk = false;
+		Double diametreSatellite= 0d;
+		while (!diametreSatelliteOk) {
+			diametreSatellite= saisieDouble("Saisir le diametre du satellite (en km)");
+			if (diametreSatellite <= 0d) {
+				System.out.println("Le diametre du satellite est incorrect");
+			} else {
+				diametreSatelliteOk=true;		
+			}
+		}
+		Double x0Satellite=saisieDouble("Saisir la position x0 du satellite (en km par rapport a la planete)");
+		Double y0Satellite=saisieDouble("Saisir la position y0 du satellite (en km par rapport a la planete)");
+		Double vitX0Satellite=saisieDouble("Saisir la vitesse selon l'axe x du satellite (en km/s par rapport a la planete)");
+		Double vitY0Satellite=saisieDouble("Saisir la vitesse selon l'axe y du satellite (en km/s par rapport a la planete)");
+
+		Satellite s = new Satellite(masseSatellite,diametreSatellite,x0Satellite,y0Satellite,vitX0Satellite,vitY0Satellite,nomSatellite,selectIdPlanet);
+		systeme.add(s);
+		daoSI.insert(s);
+	}
 
 	public static void modifEtoile(CorpsCeleste e) {
+		
 		System.out.println(e);
 		String choixModif = saisieString("que voulez vous modifier ? (nom/masse/diametre)");
 		if (choixModif.equalsIgnoreCase("nom")) {
@@ -318,7 +363,7 @@ public class App {
 	    
 	    Planete p = (Planete) daoSI.findById(selectId);
 	    
-		String choixModif = saisieString("que voulez vous modifier ? attribut(nom/masse/diametre/positionx/positiony/vitessex/vitessey) ou (suppression)");
+		String choixModif = saisieString("que voulez vous modifier ? attribut(nom/masse/diametre/positionx/positiony/vitessex/vitessey/satellite) ou (suppression)");
 		if (choixModif.equalsIgnoreCase("nom"))
 		{
 			p.setNom(saisieString("Saisissez un nouveau nom"));
@@ -490,6 +535,7 @@ public class App {
 		
 	
 	
+	
 	public static void chargerSysteme(){
 		retourT0();
 		systeme=daoSI.findAll();
@@ -513,6 +559,20 @@ public class App {
 				avancerTimeStepCorps(systeme.get(i));
 			}
 		}
+		for (int i=0;i<systeme.size();i++) {
+			for (int j=0;j<systeme.size();j++) {
+				if (i!=j) {
+					double xa=systeme.get(i).getX();
+					double xb=systeme.get(i).getX();
+					double ya=systeme.get(i).getY();
+					double yb=systeme.get(i).getY();
+					double distance=Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2));
+					if(distance < systeme.get(i).getDiametre()) {
+						systeme.get(i).fusionne(systeme.get(j));
+					}
+				}
+			}
+		}
 	}
 	public static void avancerTimeStepCorps(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
 		for (int i=0;i<systeme.size();i++) {
@@ -528,6 +588,7 @@ public class App {
 				c.calculPosition();
 			}
 		}
+		
 	}
 	
 	public static void avancerTimeStepCorpsSimplifie(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
