@@ -54,9 +54,9 @@
                               <td>${corpsceleste.vx}</td>
                               <td>${corpsceleste.vy}</td>
                               <td>${corpsceleste.type}</td>
-                              <td>${corpsceleste.id_parent}</td>
+                              <td>${corpsceleste.parent}</td>
                               <td>
-                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.type}','${corpsceleste.id_parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.type}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
                                     <c:if test = "${corpsceleste.type='planete'}">
                                       <input onclick="addSat(${corpsceleste.id})" type="button" class ="btn btn-success btnAddSat" value="Ajouter Satellite">
@@ -73,11 +73,11 @@
                               <form action="systeminit" method="get">
                                 <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
                                 <label for="add_masse">Masse :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse (kg)"><br>
-                                <label for="add_taille">Taille :</label> <input required id="add_taille" name="taille" type="number" placeholder="Saisir la taille (km)"><br>
-                                <label for="add_x0">x :</label> <input required id="add_x0" name="x0" type="number" placeholder="Saisir la coordonnee x (km)"><br>
-                                <label for="add_y0">y :</label> <input required id="add_y0" name="y0" type="number" placeholder="Saisir la coordonnee y (km)"><br>
-                                <label for="add_vx0">vx :</label> <input required id="add_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx (km/s)"><br>
-                                <label for="add_vy0">vy :</label> <input required id="add_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy (km/s)"><br>
+                                <label for="add_taille">Diametre :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
+                                <label for="add_x0">x0 :</label> <input required id="add_x0" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                <label for="add_y0">y0 :</label> <input required id="add_y0" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                <label for="add_vx0">vx0 :</label> <input required id="add_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                <label for="add_vy0">vy0 :</label> <input required id="add_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
                                 <label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="planete"><br>
                                 <label for="add_id_parent"></label> <input id="add_id_parent" type="hidden" name="id_parent" value="1">
 
@@ -96,11 +96,11 @@
 
                                       <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" value="nom" type="text" placeholder="Saisir le nom"><br>
                                       <label for="update_masse">Masse :</label> <input required id="update_masse" name="masse" type="number" placeholder="Saisir la masse (km)"><br>
-                                      <label for="update_taille">Taille :</label> <input required id="update_taille" name="taille" type="number" placeholder="Saisir la taille (km)"><br>
-                                      <label for="update_x">x :</label> <input required id="update_x" name="x" type="number" placeholder="Saisir la coordonnee x (km)"><br>
-                                      <label for="update_y">y :</label> <input required id="update_y" name="y" type="number" placeholder="Saisir la coordonnee y (km)"><br>
-                                      <label for="update_vx">vx :</label> <input required id="update_vx" name="vx" type="number" placeholder="Saisir la vitesse vx (km/s)"><br>
-                                      <label for="update_vy">vy :</label> <input required id="update_vy" name="vy" type="number" placeholder="Saisir la vitesse vy (km/s)"><br>
+                                      <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
+                                      <label for="update_x">x0 :</label> <input required id="update_x0" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                      <label for="update_y">y0 :</label> <input required id="update_y0" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                      <label for="update_vx">vx0 :</label> <input required id="update_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                      <label for="update_vy">vy0 :</label> <input required id="update_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
                                       <input class ="btn btn-warning" type="submit" name="modifier" value="Modifier">
                                       </form>
                                     </div>
@@ -128,11 +128,11 @@
 
                                 update_nom.value=nom;
                                 update_masse.value=masse;
-                                update_taille.value=region;
-                                update_x.value=x;
-                                update_y.value=y;
-                                update_vx.value=vx;
-                                update_vy.value=vy;
+                                update_diametre.value=region;
+                                update_x0.value=x0;
+                                update_y0.value=y0;
+                                update_vx0.value=vx0;
+                                update_vy0.value=vy0;
                                 update_id.value=id;
 
                               }

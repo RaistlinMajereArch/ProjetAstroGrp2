@@ -18,12 +18,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>SoprAJC</groupId>
-  			<artifactId>ProjetAstroBack</artifactId>
-  			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+<dependency>
+  <groupId>SoprAJC</groupId>
+  <artifactId>ProjetAstroBack</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  </dependency>
 	</dependencies>
 
 
