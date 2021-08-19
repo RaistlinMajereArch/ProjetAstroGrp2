@@ -307,9 +307,9 @@ public class App {
 		Double vitX0Satellite=saisieDouble("Saisir la vitesse selon l'axe x du satellite (en km/s par rapport a la planete)");
 		Double vitY0Satellite=saisieDouble("Saisir la vitesse selon l'axe y du satellite (en km/s par rapport a la planete)");
 
-		Satellite s = new Satellite(masseSatellite,diametreSatellite,x0Satellite,y0Satellite,vitX0Satellite,vitY0Satellite,nomSatellite,selectIdPlanet);
-		systeme.add(s);
-		daoSI.insert(s);
+		//Satellite s = new Satellite(masseSatellite,diametreSatellite,x0Satellite,y0Satellite,vitX0Satellite,vitY0Satellite,nomSatellite,selectIdPlanet);
+		//systeme.add(s);
+		//daoSI.insert(s);
 	}
 
 	public static void modifEtoile(CorpsCeleste e) {
@@ -571,7 +571,7 @@ public class App {
 					double yb=systeme.get(i).getY();
 					double distance=Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2));
 					if(distance < systeme.get(i).getDiametre()) {
-						systeme.get(i).fusionne(systeme.get(j));
+						//systeme.get(i).fusionne(systeme.get(j));
 					}
 				}
 			}
@@ -580,12 +580,12 @@ public class App {
 	public static void avancerTimeStepCorps(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
 		for (int i=0;i<systeme.size();i++) {
 			if (c.getId() != systeme2.get(i).getId()) {
-				List<double[]> forces = new ArrayList();
+				List<Double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
-				for (double[] f: forces) {	
+				for (Double[] f: forces) {	
 				}
 				//System.out.println(forces.toString());
-				double[] accelerations =c.calculAcceleration(forces);
+				Double[] accelerations =c.calculAcceleration(forces);
 
 				c.calculVitesse(accelerations);
 				c.calculPosition();
@@ -598,12 +598,12 @@ public class App {
 		for (int i=0;i<systeme.size();i++) {
 
 			if (c.getParent().getId() == systeme2.get(i).getId()) {
-				List<double[]> forces = new ArrayList();
+				List<Double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
-				for (double[] f: forces) {
+				for (Double[] f: forces) {
 				}
 				//System.out.println(forces.toString());
-				double[] accelerations =c.calculAcceleration(forces);
+				Double[] accelerations =c.calculAcceleration(forces);
 				c.calculVitesse(accelerations);
 				c.calculPosition();
 			}
