@@ -1,18 +1,11 @@
 package DAOjpa;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import DAO.IDAOPositions;
-import DAO.IDAOSysteme;
-import metier.CorpsCeleste;
 import metier.Position;
 import util.Context;
 
@@ -24,7 +17,6 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return p;
 	}
-
 	
 	public List<Position> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -41,7 +33,6 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return positions;
 	}
-
 	
 	public Position insert(Position p) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -52,7 +43,6 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return p;
 	}
-
 	
 	public Position update(Position p) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -62,7 +52,6 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return p;
 	}
-
 	
 	public void delete(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -75,11 +64,12 @@ public class DAOPositionsjpa implements IDAOPositions{
 	
 	public void deleteAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query q=em.createQuery("DELETE FROM positions");
+		em.getTransaction().begin();
+		Query q=em.createQuery("DELETE FROM Position");
 		q.executeUpdate();
+		em.getTransaction().commit();
 		em.close();
 	}
-
 
 	@Override
 	public List<Position> findByTimestep(Integer t) {
@@ -90,6 +80,4 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return positions;
 	}
-
-
 }

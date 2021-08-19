@@ -1,10 +1,24 @@
 package metier;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="positions")
 public class Position {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int id;
 	int id_timeStep;
 	int id_corpsCeleste;
 	double x;
 	double y;
+	
+	public Position() {}
 	
 	public Position(int id_timeStep, int id_corpsCeleste, double x, double y) {
 		this.id_timeStep = id_timeStep;

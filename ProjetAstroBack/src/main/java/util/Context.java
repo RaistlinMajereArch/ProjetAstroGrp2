@@ -12,6 +12,7 @@ import DAOjpa.DAOPositionsjpa;
 import DAOjpa.DAOSystemeInitjpa;
 import DAOjpa.DAOSystemejpa;
 import metier.Compte;
+import metier.Etoile;
 
 public class Context {
 	private Compte connected=null;
@@ -19,6 +20,7 @@ public class Context {
 	private IDAOPositions daoP = new DAOPositionsjpa();
 	private IDAOSysteme daoS = new DAOSystemejpa();
 	private IDAOSystemeInit daoSI = new DAOSystemeInitjpa();
+	private Etoile etoile;
 
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("projet_astro");
 	
@@ -76,6 +78,15 @@ public class Context {
 
 	public EntityManagerFactory getEmf() {
 		return emf;
+	}
+
+	
+	public Etoile getEtoile() {
+		return etoile;
+	}
+
+	public void setEtoile(Etoile etoile) {
+		this.etoile = etoile;
 	}
 
 	public void closeEmf() {

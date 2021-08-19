@@ -5,9 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import DAO.IDAOSysteme;
 import DAO.IDAOSystemeInit;
-import metier.Compte;
 import metier.CorpsCeleste;
 import util.Context;
 
@@ -23,22 +21,20 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 	
 	public List<CorpsCeleste> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<CorpsCeleste> corpsCelestes = em.createQuery("from SystemeInit",CorpsCeleste.class).getResultList();
+		List<CorpsCeleste> corpsCelestes = em.createNativeQuery("SELECT * FROM systeminit",CorpsCeleste.class).getResultList();
 		em.close();
 		return corpsCelestes;
 	}
 
-	
 	public CorpsCeleste insert(CorpsCeleste c) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
 		em.getTransaction().begin();
-		em.persist(c);
+		c=em.merge(c);
 		em.getTransaction().commit();
 		em.close();
 		return c;
 	}
-
 	
 	public CorpsCeleste update(CorpsCeleste c) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -48,7 +44,6 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 		em.close();
 		return c;
 	}
-
 	
 	public void delete(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
@@ -61,8 +56,10 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 	
 	public void deleteAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query q=em.createQuery("DELETE FROM systemeinit");
+		em.getTransaction().begin();
+		Query q=em.createNativeQuery("DELETE FROM systeminit");
 		q.executeUpdate();
+		em.getTransaction().commit();
 		em.close();
 	}
 }

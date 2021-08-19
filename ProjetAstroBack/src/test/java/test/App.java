@@ -22,6 +22,7 @@ import metier.Rectangle;
 import metier.Etoile;
 import metier.Satellite;
 import metier.Utilisateur;
+import util.Context;
 import DAO.IDAOCompte;
 import DAO.IDAOPositions;
 import DAO.IDAOSystemeInit;
@@ -164,7 +165,8 @@ public class App {
 		}
 		Etoile e = new Etoile(masseEtoile, diametreEtoile, nomEtoile);
 		systeme.add(e);
-		daoSI.insert(e);
+		e = (Etoile) daoSI.insert(e);
+		Context.getInstance().setEtoile(e);
 		boolean userHasFinished = false;
 		boolean userIsCreating = true;
 		while (userIsCreating) {
@@ -211,7 +213,7 @@ public class App {
 		Double vitX0Planete=saisieDouble("Saisir la vitesse selon l'axe x de la planete (en km/s par rapport � l'etoile)");
 		Double vitY0Planete=saisieDouble("Saisir la vitesse selon l'axe y de la planete (en km/s par rapport � l'etoile)");
 
-		Planete p = new Planete(massePlanete,diametrePlanete,x0Planete,y0Planete,vitX0Planete,vitY0Planete,nomPlanete,1);
+		Planete p = new Planete(massePlanete,diametrePlanete,x0Planete,y0Planete,vitX0Planete,vitY0Planete,nomPlanete,Context.getInstance().getEtoile());
 		systeme.add(p);
 		daoSI.insert(p);
 
@@ -257,7 +259,8 @@ public class App {
 				Double vitX0Satellite=saisieDouble("Saisir la vitesse selon l'axe x du satellite (en km/s par rapport � l'etoile)");
 				Double vitY0Satellite=saisieDouble("Saisir la vitesse selon l'axe y du satellite (en km/s par rapport � l'etoile)");
 
-				Satellite s = new Satellite(masseSatellite, diametreSatellite, x0Satellite, y0Satellite, vitX0Satellite, vitY0Satellite, nomSatellite, idPlaneteMere);
+				CorpsCeleste pSelect = daoSI.findById(idPlaneteMere);
+				Satellite s = new Satellite(masseSatellite, diametreSatellite, x0Satellite, y0Satellite, vitX0Satellite, vitY0Satellite, nomSatellite, pSelect);
 				systeme.add(s);
 				daoSI.insert(s);		
 			}
@@ -594,7 +597,7 @@ public class App {
 	public static void avancerTimeStepCorpsSimplifie(CorpsCeleste c) {// fait avancer un corps celeste d'un timestep
 		for (int i=0;i<systeme.size();i++) {
 
-			if (c.getIdParent() == systeme2.get(i).getId()) {
+			if (c.getParent().getId() == systeme2.get(i).getId()) {
 				List<double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
 				for (double[] f: forces) {

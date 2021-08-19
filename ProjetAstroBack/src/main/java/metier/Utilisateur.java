@@ -1,7 +1,11 @@
 package metier;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Utilisateur extends Compte {
 	
+	public Utilisateur() {}
 	
 	public Utilisateur(String login, String password) {
 		super(login, password);

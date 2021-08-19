@@ -2,11 +2,25 @@ package metier;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="system")
+@SecondaryTable(name="systeminit")
 public abstract class CorpsCeleste {
-	protected final double G=6.6743E-20;
+	
+	
+	protected double G=6.6743E-20;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
 	protected double masse;
 	protected double diametre;
@@ -16,13 +30,30 @@ public abstract class CorpsCeleste {
 	protected double vy;
 	protected boolean etat=true;
 	protected String nom;
-	protected int id_parent;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	protected CorpsCeleste parent;
 	
+	@Column(table="systeminit",name="masse")
+	protected double masseInit;
+	@Column(table="systeminit",name="diametre")
+	protected double diametreInit;
+	@Column(table="systeminit",name="x")
+	protected double xInit;
+	@Column(table="systeminit",name="y")
+	protected double yInit;
+	@Column(table="systeminit",name="vx")
+	protected double vxInit;
+	@Column(table="systeminit",name="vy")
+	protected double vyInit;
+	@Column(table="systeminit",name="etat")
+	protected boolean etatInit=true;
+	@Column(table="systeminit",name="nom")
+	protected String nomInit;
 	
+	public CorpsCeleste() {}
 
 	public CorpsCeleste(int id, double masse, double diametre, double x, double y, double vx, double vy, boolean etat,
-			String nom,int id_parent) {
-		super();
+			String nom,CorpsCeleste parent) {
 		this.id = id;
 		this.masse = masse;
 		this.diametre = diametre;
@@ -32,10 +63,10 @@ public abstract class CorpsCeleste {
 		this.vy = vy;
 		this.etat = etat;
 		this.nom = nom;
-		this.id_parent = id_parent;
+		this.parent = parent;
 	}
-		public CorpsCeleste(double masse, double diametre, double x, double y, double vx, double vy, String nom,int id_parent) {
-		super();
+	
+	public CorpsCeleste(double masse, double diametre, double x, double y, double vx, double vy, String nom,CorpsCeleste parent) {
 		this.masse = masse;
 		this.diametre = diametre;
 		this.x = x;
@@ -43,7 +74,14 @@ public abstract class CorpsCeleste {
 		this.vx = vx;
 		this.vy = vy;
 		this.nom = nom;
-		this.id_parent = id_parent;
+		this.parent = parent;
+		this.masseInit = masse;
+		this.diametreInit = diametre;
+		this.xInit = x;
+		this.yInit = y;
+		this.vxInit = vx;
+		this.vyInit = vy;
+		this.nomInit = nom;
 	}
 
 	public double[] calculForce(CorpsCeleste c) {
@@ -106,16 +144,16 @@ public abstract class CorpsCeleste {
 		return nom;
 	}
 
-	public int getIdParent() {
-		return id_parent;
+	public CorpsCeleste getParent() {
+		return parent;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public void setIdParent(int id_parent) {
-		this.id = id_parent;
+	public void setParent(CorpsCeleste parent) {
+		this.parent = parent;
 	}
 	public void setDiametre(double diametre) {
 		this.diametre = diametre;
@@ -180,11 +218,75 @@ public abstract class CorpsCeleste {
 	public void setVy(double vy) {
 		this.vy = vy;
 	}
+	
+	public double getMasseInit() {
+		return masseInit;
+	}
+
+	public void setMasseInit(double masseInit) {
+		this.masseInit = masseInit;
+	}
+
+	public double getDiametreInit() {
+		return diametreInit;
+	}
+
+	public void setDiametreInit(double diametreInit) {
+		this.diametreInit = diametreInit;
+	}
+
+	public double getxInit() {
+		return xInit;
+	}
+
+	public void setxInit(double xInit) {
+		this.xInit = xInit;
+	}
+
+	public double getyInit() {
+		return yInit;
+	}
+
+	public void setyInit(double yInit) {
+		this.yInit = yInit;
+	}
+
+	public double getVxInit() {
+		return vxInit;
+	}
+
+	public void setVxInit(double vxInit) {
+		this.vxInit = vxInit;
+	}
+
+	public double getVyInit() {
+		return vyInit;
+	}
+
+	public void setVyInit(double vyInit) {
+		this.vyInit = vyInit;
+	}
+
+	public boolean isEtatInit() {
+		return etatInit;
+	}
+
+	public void setEtatInit(boolean etatInit) {
+		this.etatInit = etatInit;
+	}
+
+	public String getNomInit() {
+		return nomInit;
+	}
+
+	public void setNomInit(String nomInit) {
+		this.nomInit = nomInit;
+	}
 
 	@Override
 	public String toString() {
 		return "CorpsCeleste [G=" + G + ", id=" + id + ", masse=" + masse + ", diametre=" + diametre + ", x=" + x
-				+ ", y=" + y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat + ", nom=" + nom + ", id_parent=" + id_parent +"]";
+				+ ", y=" + y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat + ", nom=" + nom + ", parent=" + parent +"]";
 	}
 	
 }
