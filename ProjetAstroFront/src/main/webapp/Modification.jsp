@@ -47,13 +47,14 @@
                             <tr>
                               <td>${corpsceleste.id}</td>
                               <td>${corpsceleste.nom}</td>
+                              <%--<td>${corpsceleste.DTYPE}</td>--%>
                               <td>${corpsceleste.masse}</td>
                               <td>${corpsceleste.diametre}</td>
                               <td>${corpsceleste.x}</td>
                               <td>${corpsceleste.y}</td>
                               <td>${corpsceleste.vx}</td>
                               <td>${corpsceleste.vy}</td>
-                              <%--<td>${corpsceleste.DTYPE}</td>--%>
+                              
                               <td>${corpsceleste.parent}</td>
                               <td>
                                 <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
@@ -70,18 +71,33 @@
                             </table>
 
                             <div id="addFormPlan">
-                              <h3>Ajouter nouvelle planete</h3>
-                              <form action="systeminit" method="get">
+                               <h3>Ajouter nouvelle planete</h3>
+                              <form action="systeminit" method="post">
+                              <input type="hidden" name="type_form" value="POST">
                                 <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
                                 <label for="add_masse">Masse :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse (kg)"><br>
                                 <label for="add_taille">Diametre :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
-                                <label for="add_x0">x0 :</label> <input required id="add_x0" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
-                                <label for="add_y0">y0 :</label> <input required id="add_y0" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
-                                <label for="add_vx0">vx0 :</label> <input required id="add_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
-                                <label for="add_vy0">vy0 :</label> <input required id="add_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
-                                <%--<label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="planete"><br>--%>
+                                <label for="add_x">x0 :</label> <input required id="add_x" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                <label for="add_y">y0 :</label> <input required id="add_y" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                <label for="add_vx">vx0 :</label> <input required id="add_vx" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                <label for="add_vy">vy0 :</label> <input required id="add_vy" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                <label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="Planete"><br>
                                 <label for="add_id_parent"></label> <input id="add_id_parent" type="hidden" name="id_parent" value="1">
 
+<%--<h3>Creez votre etoile</h3>
+        <form action="systeminit" method="post">
+        <input type="hidden" name="type_form" value="POST">
+        <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
+        <label for="add_type"></label> <input type="hidden" name="type" value="etoile">
+        <label for="add_masse">Masse (en kg) :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse"><br>
+        <label for="add_diametre">Diametre (en km) :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre"><br>
+        <label for="add_x0"></label> <input type="hidden" name="x0" value="0">
+        <label for="add_y0"></label> <input type="hidden" name="y0" value="0">
+        <label for="add_vx0"></label> <input type="hidden" name="vx0" value="0">
+        <label for="add_vy0"></label> <input type="hidden" name="vy0" value="0">
+        <label for="add_id_parent"></label> <input type="hidden" name="id_parent" value="0">
+
+--%>
 
                                 <input class ="btn btn-success" type="submit" name="ajouter" value="Ajouter">
                                 </form>
@@ -91,17 +107,19 @@
                               <div id="updateFormPlan">
                                 <h3>Modifier la planete</h3>
 
-                                <form action="systeminit" method="post">
-                                  <input type="hidden" id="update_id_plan" name="id">
+                                <form action="systeminit" method="put">              
                                     <input type="hidden" name="type_form" value="PUT">
-
+									<input type="hidden" id="update_id_plan" name="id">
+									<input type="hidden" id="update_type" value="Planete" name="type">
+									<input type="hidden" id="update_parent_id" name="parent_id" value="1">
                                       <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" value="nom" type="text" placeholder="Saisir le nom"><br>
                                       <label for="update_masse">Masse :</label> <input required id="update_masse" name="masse" type="number" placeholder="Saisir la masse (km)"><br>
                                       <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
-                                      <label for="update_x">x0 :</label> <input required id="update_x" name="x" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
-                                      <label for="update_y">y0 :</label> <input required id="update_y" name="y" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
-                                      <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vx" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
-                                      <label for="update_vy">vy0 :</label> <input required id="update_vy" name="vy" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                      <label for="update_x">x0 :</label> <input required id="update_x" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                      <label for="update_y">y0 :</label> <input required id="update_y" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                      <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                      <label for="update_vy">vy0 :</label> <input required id="update_vy" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                      
                                       <input class ="btn btn-warning" type="submit" name="modifier" value="Modifier">
                                       </form>
                                     </div>
@@ -115,7 +133,6 @@
                             </body>
                           </html>
 							<script>
-							alert()
                               filterPlan.onkeyup=filtreAjax;
 
                               btnAddPlan.onclick=function()
@@ -126,7 +143,7 @@
                                 
                               }
 
-                              function updatePlan(id,nom,masse,diametre,x,y,vx,vy)
+                              function updatePlan(id,nom,masse,diametre,x,y,vx,vy, parent_id)
                               {
                                 addFormPlan.style.display="none";
                                 updateFormPlan.style.display="block";
@@ -134,11 +151,12 @@
                                 update_nom.value=nom;
                                 update_masse.value=masse;
                                 update_diametre.value=diametre;
-                                update_x.value=x;
-                                update_y.value=y;
-                                update_vx.value=vx;
-                                update_vy.value=vy;
+                                update_x.value=x0;
+                                update_y.value=y0;
+                                update_vx.value=vx0;
+                                update_vy.value=vy0;
                                 update_id_plan.value=id;
+                                update_parent_id=parent_id;
 
                               }
 
