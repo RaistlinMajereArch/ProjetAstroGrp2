@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.Simulation;
+
 
 //Controleur pour lancer la simulation, il faut creer une classe simulation dans le front (creee mais pas finie) qui sera appelee ici
 //iil faudra creer des requetes quii demandent le timestep et le type de calcul a l'utilisateur une fois qu'il a valide son syeteme
