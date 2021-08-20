@@ -80,4 +80,10 @@ public class DAOPositionsjpa implements IDAOPositions{
 		em.close();
 		return positions;
 	}
+
+	@Override
+	public List<Position> filter(String mot) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
