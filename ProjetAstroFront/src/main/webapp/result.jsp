@@ -118,13 +118,23 @@ a {
 </footer>
 
 <script>
+  var couleurs = ['black','red','blue','green','gray','blueviolet','aqua','brown', 'chartreuse', 'chocolate', 'coral','crimson','cyan'];
+  var cpt=0;
   DAOPositionjpa daoP = new DAOPositionjpa();
   List<List<Position>> positions = new ArrayList();
   for (var corps in systeme ="${Systeme}"){
-    positions.add(daoP.findByIdCorps(corps.id))
+    positions.add(daoP.findByIdCorps(corps.id));
   }
 
-  function orbite(List<Position> pos){
+  for (List<Position> pos in positions){
+    if (cpt=couleurs.length()){
+      cpt=0;
+    }
+    orbite(pos,couleurs[cpt]);
+    cpt++;
+  }
+
+  function orbite(List<Position> pos,String couleur){
     var objet = document.getElementById('orbite');
     var dessin = objet.getContext('2d');
     dessin.beginPath();
@@ -132,33 +142,10 @@ a {
     for (var p in pos){
       dessin.lineTo(p.x, p.y);
     }
-    dessin.strokeStyle ='red';
+    dessin.strokeStyle =couleur;
     dessin.lineWidth = 1;
     dessin.stroke();
     dessin.closePath();
   }
 
-
-  function traitvertical() {
-              var objet = document.getElementById('trait');
-              var dessin = objet.getContext('2d');
-
-              dessin.beginPath();
-              dessin.moveTo(10, 10);
-              dessin.lineTo(10, 10);
-              dessin.lineTo(50, 10);
-              dessin.lineTo(50, 50);
-              dessin.lineTo(10, 50);
-              dessin.lineTo(10, 10);
-              dessin.lineWidth = 2;
-              dessin.strokeStyle ='black';
-              dessin.stroke();
-              dessin.moveTo(150, 50);
-              dessin.lineTo(150, 200);
-              dessin.strokeStyle ='red';
-              dessin.lineWidth = 1;
-              dessin.stroke();
-              dessin.closePath();
-      }
-      window.addEventListener("load", traitvertical, false);
 </script>
