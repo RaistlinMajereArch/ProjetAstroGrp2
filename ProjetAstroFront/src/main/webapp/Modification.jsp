@@ -32,7 +32,7 @@
                           <tr>
                             <th>Id</th>
                             <th>Nom</th>
-                            <th>Type</th>
+                            <%--<th>Type</th>--%>
                             <th>Masse</th>
                             <th>Diametre</th>
                             <th>Position x</th>
@@ -53,14 +53,14 @@
                               <td>${corpsceleste.y}</td>
                               <td>${corpsceleste.vx}</td>
                               <td>${corpsceleste.vy}</td>
-                              <td>${corpsceleste.dtype}</td>
+                              <%--<td>${corpsceleste.DTYPE}</td>--%>
                               <td>${corpsceleste.parent}</td>
                               <td>
-                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.type}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}'<%--,'${corpsceleste.type}'--%>,'${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
-                                    <c:if test = "${corpsceleste.dtype='planete'}">
+                                    <%--<c:if test = "${corpsceleste.DTYPE='planete'}">
                                       <input onclick="addSat(${corpsceleste.id})" type="button" class ="btn btn-success btnAddSat" value="Ajouter Satellite">
-                                      </c:if>
+                                      </c:if>--%>
                                     </td>
                                   </tr>
                                 </c:forEach>
