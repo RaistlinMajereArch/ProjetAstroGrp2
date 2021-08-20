@@ -81,6 +81,13 @@ public class DAOComptejpa implements IDAOCompte{
 		public Compte update(Compte o) {
 			return null;
 		}
+
+
+		@Override
+		public List<Compte> filter(String mot) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 }
 
