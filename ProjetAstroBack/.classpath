@@ -18,6 +18,12 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -27,19 +33,6 @@
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
-<<<<<<< Updated upstream
-	<classpathentry kind="lib" path="/Users/vanzuijlen/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1.jar" sourcepath="/Users/vanzuijlen/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1-sources.jar">
-=======
-	<classpathentry kind="lib" path="C:/Users/Spart/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1.jar" sourcepath="C:/Users/Spart/.m2/repository/com/github/yannrichet/JMathPlot/1.0.1/JMathPlot-1.0.1-sources.jar">
->>>>>>> Stashed changes
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.github.yannrichet"/>
-			<attribute name="maven.artifactId" value="JMathPlot"/>
-			<attribute name="maven.version" value="1.0.1"/>
-			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
