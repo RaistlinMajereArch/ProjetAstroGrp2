@@ -14,7 +14,7 @@
 
           <meta charset="utf-8">
             <title>Corps Celestes</title>
-          </head>
+     </head>
           <body>
 
 
@@ -98,10 +98,10 @@
                                       <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" value="nom" type="text" placeholder="Saisir le nom"><br>
                                       <label for="update_masse">Masse :</label> <input required id="update_masse" name="masse" type="number" placeholder="Saisir la masse (km)"><br>
                                       <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
-                                      <label for="update_x">x0 :</label> <input required id="update_x0" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
-                                      <label for="update_y">y0 :</label> <input required id="update_y0" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
-                                      <label for="update_vx">vx0 :</label> <input required id="update_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
-                                      <label for="update_vy">vy0 :</label> <input required id="update_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                      <label for="update_x">x0 :</label> <input required id="update_x" name="x" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                      <label for="update_y">y0 :</label> <input required id="update_y" name="y" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                      <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vx" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                      <label for="update_vy">vy0 :</label> <input required id="update_vy" name="vy" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
                                       <input class ="btn btn-warning" type="submit" name="modifier" value="Modifier">
                                       </form>
                                     </div>
@@ -111,37 +111,41 @@
                               </div>
 
 
-                              <script>
-
+                              
+                            </body>
+                          </html>
+							<script>
+							alert()
                               filterPlan.onkeyup=filtreAjax;
 
                               btnAddPlan.onclick=function()
                               {
+                            	console.log("test1");
+                            	addFormPlan.style.display="block";
                                 updateFormPlan.style.display="none";
-                                addFormPlan.style.display="";
+                                
                               }
 
-                              function updatePlan(id,nom,masse,taille,x,y,vx,vy)
+                              function updatePlan(id,nom,masse,diametre,x,y,vx,vy)
                               {
-
                                 addFormPlan.style.display="none";
-                                updateFormPlan.style.display="";
+                                updateFormPlan.style.display="block";
 
                                 update_nom.value=nom;
                                 update_masse.value=masse;
-                                update_diametre.value=region;
-                                update_x0.value=x0;
-                                update_y0.value=y0;
-                                update_vx0.value=vx0;
-                                update_vy0.value=vy0;
-                                update_id.value=id;
+                                update_diametre.value=diametre;
+                                update_x.value=x;
+                                update_y.value=y;
+                                update_vx.value=vx;
+                                update_vy.value=vy;
+                                update_id_plan.value=id;
 
                               }
 
-                              funtion AddSat(id, type)
+                              function AddSat(id, type)
                               {
                                 updateFormPlan.style.display="none";
-                                addFormPlan.style.display="";
+                                addFormPlan.style.display="block";
                                 add_id_parent.value=id;
                                 add_type.value=type;
 
@@ -183,5 +187,3 @@
 
 
                               </script>
-                            </body>
-                          </html>
