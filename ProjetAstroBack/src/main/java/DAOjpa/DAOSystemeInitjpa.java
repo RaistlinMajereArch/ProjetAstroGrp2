@@ -56,9 +56,14 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 	
 	public void deleteAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		List<CorpsCeleste> cc = findAll();
 		em.getTransaction().begin();
-		Query q=em.createNativeQuery("DELETE FROM systeminit");
-		q.executeUpdate();
+		for(CorpsCeleste c: cc) {
+			c=em.merge(c);
+			em.remove(c);
+		}
+		//Query q=em.createNativeQuery("DELETE FROM systeminit");
+		//q.executeUpdate();
 		em.getTransaction().commit();
 		em.close();
 	}
