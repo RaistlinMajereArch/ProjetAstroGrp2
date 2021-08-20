@@ -20,10 +20,10 @@ import metier.Satellite;
 @WebServlet("/systeminit")
 public class ControlSystemeInit extends HttpServlet {
 	
-	private IDAOSystemeInit daoSI = Context.getInstance().getDaoSI();
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		IDAOSystemeInit daoSI = Context.getInstance().getDaoSI();
 		List<CorpsCeleste> corps = daoSI.findAll();
 
 		request.setAttribute("systeminit", corps);
@@ -31,6 +31,16 @@ public class ControlSystemeInit extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("test");
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		IDAOSystemeInit daoSI = Context.getInstance().getDaoSI();
 		if(request.getParameter("type_form").equals("PUT"))
 		{
 			CorpsCeleste e= null;
@@ -69,7 +79,7 @@ public class ControlSystemeInit extends HttpServlet {
 		else if(request.getParameter("type_form").equals("POST"))
 		{
 			CorpsCeleste e= null;
-			int id=Integer.valueOf(request.getParameter("id"));
+			//int id=Integer.valueOf(request.getParameter("id"));
 			String nom=request.getParameter("nom");
 			double masse=Double.valueOf(request.getParameter("masse"));
 			double diametre=Double.valueOf(request.getParameter("diametre"));
@@ -77,16 +87,19 @@ public class ControlSystemeInit extends HttpServlet {
 			double y0=Double.valueOf(request.getParameter("y0"));
 			double vx0=Double.valueOf(request.getParameter("vx0"));
 			double vy0=Double.valueOf(request.getParameter("vy0"));
-			CorpsCeleste id_parent=(CorpsCeleste) request.getAttribute("parent");
+			
+					//(CorpsCeleste) request.getAttribute("parent");
 			Boolean etat = Boolean.valueOf(request.getParameter("etat"));
 			if (request.getParameter("type").equals("etoile")) {
-				e = new Etoile(id,masse,diametre,etat,nom);
+				e = new Etoile(masse,diametre,nom);
 			}
 			else if (request.getParameter("type").equals("planete")) {
-				e = new Planete(id,masse,diametre,x0,y0,vx0,vy0,etat,nom,id_parent);
+				CorpsCeleste id_parent=daoSI.findById(Integer.valueOf(request.getParameter("parent_id")));
+				e = new Planete(masse,diametre,x0,y0,vx0,vy0,nom,id_parent);
 			}
 			else if (request.getParameter("type").equals("satellite")) {
-				e = new Satellite(id,masse,diametre,x0,y0,vx0,vy0,etat,nom,id_parent);
+				CorpsCeleste id_parent=daoSI.findById(Integer.valueOf(request.getParameter("parent_id")));
+				e = new Satellite(masse,diametre,x0,y0,vx0,vy0,nom,id_parent);
 			}
 			
 			
