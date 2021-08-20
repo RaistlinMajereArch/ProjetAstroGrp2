@@ -9,17 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.IDAOSystemInit;
+import DAO.IDAOSystemeInit;
 import metier.CorpsCeleste;
-import metier.Departement;
 import util.Context;
 
 @WebServlet("/filter")
 
 public class ControlFilter extends HttpServlet {
 
-public class ControlFilter {
-	private IDAOSystemInit daoSI = Context.getInstance().getDaoSI();
+
+	private IDAOSystemeInit daoSI = Context.getInstance().getDaoSI();
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +31,7 @@ public class ControlFilter {
 	
 	private void filterCorps(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String mot = request.getParameter("search");
-		List<CorpsCeleste> corpsCeleste = daoSI.filterCorps(mot);
+		List<CorpsCeleste> corpsCeleste = daoSI.filter(mot);
 		for(CorpsCeleste corps : corpsCeleste) 
 		{
 		
