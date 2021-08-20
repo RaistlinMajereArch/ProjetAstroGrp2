@@ -101,7 +101,7 @@ public class ControlSystemeInit extends HttpServlet {
 				CorpsCeleste id_parent=daoSI.findById(Integer.valueOf(request.getParameter("parent_id")));
 				e = new Satellite(masse,diametre,x0,y0,vx0,vy0,nom,id_parent);
 			}
-			
+			daoSI.insert(e);
 			
 		}
 		doGet(request, response);
