@@ -23,68 +23,78 @@ public abstract class CorpsCeleste {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
-	protected Double masse;
-	protected Double diametre;
-	protected Double x;
-	protected Double y;
-	protected Double vx;
-	protected Double vy;
-	protected Boolean etat=true;
-	protected String nom;
+	@Column(name="masse")
+	protected Double masseInit;
+	@Column(name="diametre")
+	protected Double diametreInit;
+	@Column(name="x")
+	protected Double xInit;
+	@Column(name="y")
+	protected Double yInit;
+	@Column(name="vx")
+	protected Double vxInit;
+	@Column(name="vy")
+	protected Double vyInit;
+	@Column(name="etat")
+	protected Boolean etatInit=true;
+	@Column(name="nom")
+	protected String nomInit;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	protected CorpsCeleste parent;
 	//@OneToMany(mappedBy="parent",cascade = {CascadeType.ALL})
 	///protected List<CorpsCeleste> enfants;
 	
+	@Column(table="system",name="G")
+	protected Double GInit=6.6743E-20;
 	@Column(table="system",name="masse")
-	protected Double masseInit;
+	protected Double masse;
 	@Column(table="system",name="diametre")
-	protected Double diametreInit;
+	protected Double diametre;
 	@Column(table="system",name="x")
-	protected Double xInit;
+	protected Double x;
 	@Column(table="system",name="y")
-	protected Double yInit;
+	protected Double y;
 	@Column(table="system",name="vx")
-	protected Double vxInit;
+	protected Double vx;
 	@Column(table="system",name="vy")
-	protected Double vyInit;
+	protected Double vy;
 	@Column(table="system",name="etat")
-	protected Boolean etatInit=true;
+	protected Boolean etat=true;
 	@Column(table="system",name="nom")
-	protected String nomInit;
+	protected String nom;
 	
 	public CorpsCeleste() {}
 
-	public CorpsCeleste(int id, Double masse, Double diametre, Double x, Double y, Double vx, Double vy, Boolean etat,
-			String nom,CorpsCeleste parent) {
+	public CorpsCeleste(int id, Double masseInit, Double diametreInit, Double xInit, Double yInit, Double vxInit, Double vyInit, Boolean etatInit,
+			String nomInit,CorpsCeleste parent) {
 		this.id = id;
-		this.masse = masse;
-		this.diametre = diametre;
-		this.x = x;
-		this.y = y;
-		this.vx = vx;
-		this.vy = vy;
-		this.etat = etat;
-		this.nom = nom;
+		this.masseInit = masseInit;
+		this.diametreInit = diametreInit;
+		this.xInit = xInit;
+		this.yInit = yInit;
+		this.vxInit = vxInit;
+		this.vyInit = vyInit;
+		this.etatInit = etatInit;
+		this.nomInit = nomInit;
 		this.parent = parent;
 	}
 	
-	public CorpsCeleste(Double masse, Double diametre, Double x, Double y, Double vx, Double vy, String nom,CorpsCeleste parent) {
-		this.masse = masse;
-		this.diametre = diametre;
-		this.x = x;
-		this.y = y;
-		this.vx = vx;
-		this.vy = vy;
-		this.nom = nom;
+	public CorpsCeleste(Double masseInit, Double diametreInit, Double xInit, Double yInit, Double vxInit, Double vyInit, String nomInit,CorpsCeleste parent) {
+		this.masseInit = masseInit;
+		this.diametreInit = diametreInit;
+		this.xInit = xInit;
+		this.yInit = yInit;
+		this.vxInit = vxInit;
+		this.vyInit = vyInit;
+		this.nomInit = nomInit;
 		this.parent = parent;
-		this.masseInit = masse;
-		this.diametreInit = diametre;
-		this.xInit = x;
-		this.yInit = y;
-		this.vxInit = vx;
-		this.vyInit = vy;
-		this.nomInit = nom;
+		this.masse = masseInit;
+		this.diametre = diametreInit;
+		this.x = xInit;
+		this.y = yInit;
+		this.vx = vxInit;
+		this.vy = vyInit;
+		this.nom = nomInit;
 	}
 
 	public Double[] calculForce(CorpsCeleste c) {
