@@ -40,15 +40,14 @@ public class ControlFilter extends HttpServlet {
 			response.getWriter().println("<td>"+corps.getNom()+"</td>");
 			response.getWriter().println("<td>"+corps.getMasse()+"</td>");
 			response.getWriter().println("<td>"+corps.getDiametre()+"</td>");
-			response.getWriter().println("<td>"+corps.getx()+"</td>");
-			response.getWriter().println("<td>"+corps.gety()+"</td>");
+			response.getWriter().println("<td>"+corps.getX()+"</td>");
+			response.getWriter().println("<td>"+corps.getY()+"</td>");
 			response.getWriter().println("<td>"+corps.getVx()+"</td>");
 			response.getWriter().println("<td>"+corps.getVy()+"</td>");
-			response.getWriter().println("<td>"+corps.getType()+"</td>");
 			response.getWriter().println("<td>"+corps.getParent()+"</td>");
 			response.getWriter().println("<td>");
-			response.getWriter().println("<input onclick=\"updatePlan(${corps.id},'${corps.nom}','${corps.masse}','${corps.diametre}','${corps.x}','${corps.y}','${corps.vx}','${corps.vy}','${corps.type}','${corps.parent}')\" type=\"button\" class =\"btn btn-warning\" value=\"Modifier\">\n");
-			response.getWriter().println("<input onclick=\"deleteDepartement("+d.getId()+")\" type=\"button\" class =\"btn btn-danger\" value=\"Supprimer\">");
+			response.getWriter().println("<input onclick=\"updatePlan(${corps.id},'${corps.nom}','${corps.masse}','${corps.diametre}','${corps.x}','${corps.y}','${corps.vx}','${corps.vy}','${corps.parent}')\" type=\"button\" class =\"btn btn-warning\" value=\"Modifier\">\n");
+			response.getWriter().println("<input onclick=\"deletePlan("+corps.getId()+")\" type=\"button\" class =\"btn btn-danger\" value=\"Supprimer\">");
 			response.getWriter().println("</td>");
 			response.getWriter().println("</tr>");
 		}
@@ -57,4 +56,4 @@ public class ControlFilter extends HttpServlet {
 
 }
 
-}
+

@@ -56,7 +56,8 @@
                               <%--<td>${corpsceleste.DTYPE}</td>--%>
                               <td>${corpsceleste.parent}</td>
                               <td>
-                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}'<%--,'${corpsceleste.type}'--%>,'${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                  <%--,'${corpsceleste.type}'--%>
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
                                     <%--<c:if test = "${corpsceleste.DTYPE='planete'}">
                                       <input onclick="addSat(${corpsceleste.id})" type="button" class ="btn btn-success btnAddSat" value="Ajouter Satellite">
@@ -78,7 +79,7 @@
                                 <label for="add_y0">y0 :</label> <input required id="add_y0" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
                                 <label for="add_vx0">vx0 :</label> <input required id="add_vx0" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
                                 <label for="add_vy0">vy0 :</label> <input required id="add_vy0" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
-                                <label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="planete"><br>
+                                <%--<label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="planete"><br>--%>
                                 <label for="add_id_parent"></label> <input id="add_id_parent" type="hidden" name="id_parent" value="1">
 
 
@@ -112,19 +113,19 @@
 
                               <script>
 
-                              filterDep.onkeyup=filtreAjax;
+                              filterPlan.onkeyup=filtreAjax;
 
                               btnAddPlan.onclick=function()
                               {
                                 updateFormPlan.style.display="none";
-                                addFormPlan.style.display="block";
+                                addFormPlan.style.display="";
                               }
 
                               function updatePlan(id,nom,masse,taille,x,y,vx,vy)
                               {
 
-                                addFormDep.style.display="none";
-                                updateFormDep.style.display="block";
+                                addFormPlan.style.display="none";
+                                updateFormPlan.style.display="";
 
                                 update_nom.value=nom;
                                 update_masse.value=masse;
@@ -140,7 +141,7 @@
                               funtion AddSat(id, type)
                               {
                                 updateFormPlan.style.display="none";
-                                addFormPlan.style.display="block";
+                                addFormPlan.style.display="";
                                 add_id_parent.value=id;
                                 add_type.value=type;
 
@@ -171,7 +172,7 @@
                                   type: "POST",
                                   data:
                                   {
-                                    search : filterDep.value,
+                                    search : filterPlan.value,
                                     page:"systeminit"
                                   },
                                   success: function (resp) {
