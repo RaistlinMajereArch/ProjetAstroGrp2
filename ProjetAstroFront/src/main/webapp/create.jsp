@@ -26,7 +26,7 @@
         <form action="systeminit" method="post">
         <input type="hidden" name="type_form" value="POST">
         <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
-        <label for="add_type"></label> <input type="hidden" name="type" value="etoile">
+        <label for="add_type"></label> <input type="hidden" name="type" value="Etoile">
         <label for="add_masse">Masse (en kg) :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse"><br>
         <label for="add_diametre">Diametre (en km) :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre"><br>
         <label for="add_x0"></label> <input type="hidden" name="x0" value="0">
