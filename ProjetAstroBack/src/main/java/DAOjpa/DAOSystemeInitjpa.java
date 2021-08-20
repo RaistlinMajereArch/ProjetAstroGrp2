@@ -54,6 +54,7 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		CorpsCeleste c = em.find(CorpsCeleste.class,id);
 		em.getTransaction().begin();
+		c=em.merge(c);
 		em.remove(c);
 		em.getTransaction().commit();
 		em.close();
