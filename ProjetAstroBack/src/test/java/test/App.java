@@ -21,6 +21,7 @@ import metier.Position;
 import metier.Rectangle;
 import metier.Etoile;
 import metier.Satellite;
+import metier.Simulation;
 import metier.Utilisateur;
 import util.Context;
 import DAO.IDAOCompte;
@@ -537,14 +538,26 @@ public class App {
 	}
 		
 	
-	
+	public static void simulation2() {
+		timestep=saisieInt("Saisissez le nombre de timestep pour votre simulation (1 timestep=1jour) :");
+		String Calcul=saisieString("Voulez vous des calculs simplifies ? (y/n)");
+		int ctpt=0;
+		if (Calcul.equals("n")) {
+			calculSimple = false;
+		}
+		else {
+			calculSimple = true;
+		}
+		Simulation sim = new Simulation(timestep,calculSimple);
+		sim.run();
+	}
 	
 	public static void chargerSysteme(){
 		retourT0();
 		systeme=daoSI.findAll();
 		String modifChoix = saisieString("Voulez vous modifier votre systeme (y/n)?");
 		if (modifChoix.equalsIgnoreCase("n")) {
-			simulation();
+			simulation2();
 		} else {
 			menuModifier();
 		}
@@ -552,7 +565,7 @@ public class App {
 
 		
 	}
-	public static void avancerTimeStepSysteme() {// fait avancer l'ensemble du systeme d'un timestep
+	/*public static void avancerTimeStepSysteme() {// fait avancer l'ensemble du systeme d'un timestep
 		systeme2= systeme;
 		for (int i=1;i<systeme.size();i++) {
 			if (calculSimple) {
@@ -649,7 +662,7 @@ public class App {
 			Position p=new Position(0,systeme.get(i).getId(),systeme.get(i).getX(),systeme.get(i).getY());
 			daoP.insert(p);
 		}
-	}
+	}*/
 	public static void retourT0() {//supprime les bdd de systeme et positions et r�initialise � t0
 		daoS.deleteAll();
 		daoP.deleteAll();
@@ -660,7 +673,7 @@ public class App {
 		daoP.deleteAll();
 	}
 	
-	public static void affichageTrajectoire() { //affiche la trajectoire des corps celestes 
+	/*public static void affichageTrajectoire() { //affiche la trajectoire des corps celestes 
 		double [] x;
 		double[] y;
 		List<double []> lx= new ArrayList();
@@ -684,12 +697,7 @@ public class App {
 		
 		JFrame frame = new JFrame("Draw a line");
 		frame.setBackground(Color.BLACK);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		/*Courbe panel = new Courbe(lx,ly);
-		panel.setPreferredSize(new Dimension(2500,2500));
-		JScrollPane jsp = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		frame.add(jsp);*/
 		Plot2DPanel plot = new Plot2DPanel();
 		for (int i=0;i<lx.size();i++) {
 			 plot.addLinePlot(systeme.get(i).getNom(), lx.get(i), ly.get(i));
@@ -725,7 +733,7 @@ public class App {
 		tpt.getContentPane().add(jlabel);
 		tpt.validate();
 		avancement.setVisible(true);
-	}
+	}*/
 }		
 	
 
