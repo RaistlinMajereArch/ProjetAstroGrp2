@@ -23,4 +23,6 @@ public interface IDAO<T,K>{
 	public T update(T o);
 	
 	public void delete(K id);
+	
+	public List<T> filter(String mot);
 }

@@ -1,5 +1,10 @@
 package DAOjpa;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -62,4 +67,31 @@ public class DAOSystemeInitjpa implements IDAOSystemeInit {
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	public List<CorpsCeleste> filter(String mot) {
+		List<CorpsCeleste> corpsCeleste=new ArrayList();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
+ 
+			PreparedStatement ps = conn.prepareStatement("SELECT id from systeminit where nom like ? or id like ? or type like ?");
+			ps.setString(1, "%"+mot+"%");
+			ps.setString(2, "%"+mot+"%");
+			ps.setString(3, "%"+mot+"%");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) 
+			{
+				corpsCeleste.add(findById(rs.getInt("id")));
+			}
+			
+			conn.close();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return corpsCeleste;
+	}
+	
 }
