@@ -11,11 +11,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
 	integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
 	crossorigin="anonymous"></script>
-
-<%@ page import="metier.Position"%>
-<%@ page import="DAOjpa.DAOPositionsjpa"%>
-<%@ page import="java.util.List"%>
-
+  <%@ page import="metier.Position"%>
+  <%@ page import="DAOjpa.DAOPositionsjpa"%>
+  <%@ page import="java.util.List"%>
 <style>
 body {
 	margin: 10px;
@@ -31,10 +29,10 @@ body {
 }
 
 #center {
-	display: flex;
-	flex-wrap: wrap;
-	height: 74.5%;
-	text-align: center;
+	display : flex;
+	flex-wrap:wrap;
+	height:74.5%;
+	text-align:center;
 }
 
 .row {
@@ -82,11 +80,11 @@ a {
 	left: 65%;;
 }
 
-#trait {
-	height: 100%;
-	width: 100%;
+#orbite {
+	height: 16384px;
+	width: 16384px;
 	background-color: white;
-	display: block;
+	display: none;
 }
 </style>
 
@@ -108,7 +106,7 @@ a {
 		</div>
 	</div>
 	<div id="center">
-		<canvas id="trait"></canvas>
+		<canvas id="orbite"></canvas>
 	</div>
 </body>
 <footer>
@@ -124,27 +122,34 @@ a {
 <script>
   var couleurs = ['black','red','blue','green','gray','blueviolet','aqua','brown', 'chartreuse', 'chocolate', 'coral','crimson','cyan'];
   var cpt=0;
-  DAOPositionjpa daoP = new DAOPositionjpa();
-  List<List<Position>> positions = new ArrayList();
-  for (var corps in systeme ="${Systeme}"){
-    positions.add(daoP.findByIdCorps(corps.id));
-  }
+  //DAOPositionjpa daoP = new DAOPositionjpa();
+var positions = [
+                  [{"x":0,"y":0},{"x":2000,"y":2000}],
+                  [{"x":0,"y":20},{"x":0,"y":19},{"x":0,"y":18},{"x":0,"y":17},{"x":0,"y":16},{"x":0,"y":15},{"x":0,"y":14},{"x":0,"y":13},{"x":0,"y":12},{"x":0,"y":11}]
+                ];
 
-  for (List<Position> pos in positions){
-    if (cpt=couleurs.length()){
-      cpt=0;
-    }
-    orbite(pos,couleurs[cpt]);
+ //for (var corps in systeme ="${Systeme}"){
+//   positions.add(daoP.findByIdCorps(corps.id));
+//  }
+
+  for (var pos in positions){
+    traj(positions[pos],couleurs[cpt]);
+    console.log(couleurs[cpt]);
     cpt++;
   }
+	//orbite.style.transform="scale(0.1)"
+	orbite.style.width=window.innerWidth;
+	orbite.style.height=window.innerHeight*0.7;
+	orbite.style.display="block";
 
-  function orbite(List<Position> pos,String couleur){
+  function traj(pos,couleur){
     var objet = document.getElementById('orbite');
     var dessin = objet.getContext('2d');
     dessin.beginPath();
     dessin.moveTo(pos[0].x, pos[0].y);
+    console.log(pos[0]);
     for (var p in pos){
-      dessin.lineTo(p.x, p.y);
+      dessin.lineTo(pos[p].x, pos[p].y);
     }
     dessin.strokeStyle =couleur;
     dessin.lineWidth = 1;
