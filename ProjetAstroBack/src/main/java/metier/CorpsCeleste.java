@@ -4,17 +4,22 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
+
 @Table(name="systeminit")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type")
 @SecondaryTable(name="system")
 public abstract class CorpsCeleste {
 	
@@ -23,6 +28,8 @@ public abstract class CorpsCeleste {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
+	@Column(insertable = false, updatable = false) 
+	private String type; 
 	@Column(name="masse")
 	protected Double masseInit;
 	@Column(name="diametre")

@@ -25,7 +25,7 @@ public class Simulation {
 	DAOPositionsjpa daoP = new DAOPositionsjpa();
     DAOSystemeInitjpa daoSI = new DAOSystemeInitjpa();
 	DAOSystemejpa daoS = new DAOSystemejpa();
-	List<CorpsCeleste> systeme=new ArrayList();
+	private List<CorpsCeleste> systeme=new ArrayList();
 	List<CorpsCeleste> systeme2= new ArrayList();
 	JFrame tpt = new JFrame("Canard TPT");
 	JFrame avancement = new JFrame("Avancement");
@@ -52,11 +52,11 @@ public class Simulation {
 			ctpt++;
 			cpt++;
 			avancerTimeStepSysteme();
-			for(int i=0;i<systeme.size();i++) {
-				daoS.update(systeme.get(i));
+			for(int i=0;i<getSysteme().size();i++) {
+				daoS.update(getSysteme().get(i));
 			}
-			for(int i=0;i<systeme.size();i++) {
-				Position p=new Position(t,systeme.get(i).getId(),systeme.get(i).getX(),systeme.get(i).getY());
+			for(int i=0;i<getSysteme().size();i++) {
+				Position p=new Position(t,getSysteme().get(i).getId(),getSysteme().get(i).getX(),getSysteme().get(i).getY());
 				daoP.insert(p);
 			}
 		}
@@ -69,9 +69,9 @@ public class Simulation {
 		for(int i=0;i<systeme2.size();i++) {
 			daoS.insert(systeme2.get(i));
 		}
-		systeme=daoS.findAll();
-		for(int i=0;i<systeme.size();i++) {
-			Position p=new Position(0,systeme.get(i).getId(),systeme.get(i).getX(),systeme.get(i).getY());
+		setSysteme(daoS.findAll());
+		for(int i=0;i<getSysteme().size();i++) {
+			Position p=new Position(0,getSysteme().get(i).getId(),getSysteme().get(i).getX(),getSysteme().get(i).getY());
 			daoP.insert(p);
 		}
 	}
@@ -120,24 +120,24 @@ public class Simulation {
 	
 	public void avancerTimeStepSysteme()
 	{
-		systeme2= systeme;
-		for (int i=1;i<systeme.size();i++) {
+		systeme2= getSysteme();
+		for (int i=1;i<getSysteme().size();i++) {
 			if (calculSimple) {
-				avancerTimeStepCorpsSimplifie(systeme.get(i));
+				avancerTimeStepCorpsSimplifie(getSysteme().get(i));
 			}
 			else {
-				avancerTimeStepCorps(systeme.get(i));
+				avancerTimeStepCorps(getSysteme().get(i));
 			}
 		}
-		for (int i=0;i<systeme.size();i++) {
-			for (int j=0;j<systeme.size();j++) {
+		for (int i=0;i<getSysteme().size();i++) {
+			for (int j=0;j<getSysteme().size();j++) {
 				if (i!=j) {
-					double xa=systeme.get(i).getX();
-					double xb=systeme.get(i).getX();
-					double ya=systeme.get(i).getY();
-					double yb=systeme.get(i).getY();
+					double xa=getSysteme().get(i).getX();
+					double xb=getSysteme().get(i).getX();
+					double ya=getSysteme().get(i).getY();
+					double yb=getSysteme().get(i).getY();
 					double distance=Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2));
-					if(distance < systeme.get(i).getDiametre()) {
+					if(distance < getSysteme().get(i).getDiametre()) {
 						//systeme.get(i).fusionne(systeme.get(j));
 					}
 				}
@@ -147,7 +147,7 @@ public class Simulation {
 	
 	public void avancerTimeStepCorpsSimplifie(CorpsCeleste c) 
 	{
-		for (int i=0;i<systeme.size();i++) {
+		for (int i=0;i<getSysteme().size();i++) {
 
 			if (c.getParent().getId() == systeme2.get(i).getId()) {
 				List<Double[]> forces = new ArrayList();
@@ -164,7 +164,7 @@ public class Simulation {
 	
 	public void avancerTimeStepCorps(CorpsCeleste c) 
 	{
-		for (int i=0;i<systeme.size();i++) {
+		for (int i=0;i<getSysteme().size();i++) {
 			if (c.getId() != systeme2.get(i).getId()) {
 				List<Double[]> forces = new ArrayList();
 				forces.add(c.calculForce(systeme2.get(i)));
@@ -204,6 +204,14 @@ public class Simulation {
 		tpt.getContentPane().add(jlabel);
 		tpt.validate();
 		avancement.setVisible(true);
+	}
+
+	public List<CorpsCeleste> getSysteme() {
+		return systeme;
+	}
+
+	public void setSysteme(List<CorpsCeleste> systeme) {
+		this.systeme = systeme;
 	}
 	
 }
