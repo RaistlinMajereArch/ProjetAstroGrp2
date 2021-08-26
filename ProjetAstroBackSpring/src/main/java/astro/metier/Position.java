@@ -12,25 +12,25 @@ public class Position {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	int id_timeStep;
-	int id_corpsCeleste;
+	Integer id;
+	Integer idTimeStep;
+	Integer idCorpsCeleste;
 	double x;
 	double y;
 	
 	public Position() {}
 	
-	public Position(int id_timeStep, int id_corpsCeleste, double x, double y) {
-		this.id_timeStep = id_timeStep;
-		this.id_corpsCeleste = id_corpsCeleste;
+	public Position(Integer id_timeStep, Integer id_corpsCeleste, double x, double y) {
+		this.idTimeStep = id_timeStep;
+		this.idCorpsCeleste = id_corpsCeleste;
 		this.x = x;
 		this.y = y;
 	}
-	public int getId_timeStep() {
-		return id_timeStep;
+	public Integer getIdTimeStep() {
+		return idTimeStep;
 	}
-	public int getId_corpsCeleste() {
-		return id_corpsCeleste;
+	public Integer getIdCorpsCeleste() {
+		return idCorpsCeleste;
 	}
 	public double getX() {
 		return x;
@@ -38,11 +38,11 @@ public class Position {
 	public double getY() {
 		return y;
 	}
-	public void setId_timeStep(int id_timeStep) {
-		this.id_timeStep = id_timeStep;
+	public void setIdTimeStep(Integer id_timeStep) {
+		this.idTimeStep = id_timeStep;
 	}
-	public void setId_corpsCeleste(int id_corpsCeleste) {
-		this.id_corpsCeleste = id_corpsCeleste;
+	public void setIdCorpsCeleste(Integer id_corpsCeleste) {
+		this.idCorpsCeleste = id_corpsCeleste;
 	}
 	public void setX(double x) {
 		this.x = x;
@@ -52,7 +52,7 @@ public class Position {
 	}
 	@Override
 	public String toString() {
-		return "Position [id_timeStep=" + id_timeStep + ", id_corpsCeleste=" + id_corpsCeleste + ", x=" + x + ", y=" + y
+		return "Position [id_timeStep=" + idTimeStep + ", id_corpsCeleste=" + idCorpsCeleste + ", x=" + x + ", y=" + y
 				+ "]";
 	}
 	
