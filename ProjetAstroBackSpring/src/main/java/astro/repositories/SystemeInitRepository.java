@@ -17,6 +17,6 @@ public interface SystemeInitRepository extends JpaRepository<CorpsCeleste, Integ
 	@Query("update CorpsCeleste c set c.parent=NULL WHERE c.id =:id")
 	public void updateIdParent(@Param("id") Integer id);
 	
-	@Query("select distinct c from CorpsCeleste c where c.idParent=:id")
-	public List<CorpsCeleste> selectEnfants(@Param("id") Integer id);
+	@Query("select distinct c from CorpsCeleste c where c.Parent=:parent")
+	public List<CorpsCeleste> selectEnfants(@Param("parent") CorpsCeleste c);
 }

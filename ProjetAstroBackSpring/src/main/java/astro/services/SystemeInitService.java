@@ -20,7 +20,7 @@ public class SystemeInitService {
 			sysInitRepo.deleteAll();
 		}
 		else if (c instanceof Planete) {
-			List<CorpsCeleste> enfants=sysInitRepo.selectEnfants(c.getId());
+			List<CorpsCeleste> enfants=sysInitRepo.selectEnfants(c);
 			for (CorpsCeleste corps :enfants) {
 				sysInitRepo.updateIdParent(corps.getId());
 				sysInitRepo.delete(corps);
