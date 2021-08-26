@@ -1,6 +1,6 @@
 package astro.metier;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,10 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import org.math.plot.Plot2DPanel;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import DAOjpa.DAOPositionsjpa;
-import DAOjpa.DAOSystemeInitjpa;
-import DAOjpa.DAOSystemejpa;
+import astro.repositories.CompteRepository;
+import astro.repositories.PositionsRepository;
+import astro.repositories.SystemeInitRepository;
+import astro.repositories.SystemeRepository;
 
 public class Simulation {
 	
@@ -22,9 +24,19 @@ public class Simulation {
 	private boolean calculSimple;
 	private int ctpt=0;
 	private int cpt;
-	DAOPositionsjpa daoP = new DAOPositionsjpa();
-    DAOSystemeInitjpa daoSI = new DAOSystemeInitjpa();
-	DAOSystemejpa daoS = new DAOSystemejpa();
+	//DAOPositionsjpa daoP = new DAOPositionsjpa();
+    //DAOSystemeInitjpa daoSI = new DAOSystemeInitjpa();
+	//DAOSystemejpa daoS = new DAOSystemejpa();
+	
+	@Autowired
+	CompteRepository cptRepo;
+	@Autowired
+	SystemeInitRepository sysIRepo;
+	@Autowired
+	SystemeRepository sysRepo;
+	@Autowired
+	PositionsRepository posRepo;
+	
 	private List<CorpsCeleste> systeme=new ArrayList();
 	List<CorpsCeleste> systeme2= new ArrayList();
 	JFrame tpt = new JFrame("Canard TPT");
@@ -53,11 +65,11 @@ public class Simulation {
 			cpt++;
 			avancerTimeStepSysteme();
 			for(int i=0;i<getSysteme().size();i++) {
-				daoS.update(getSysteme().get(i));
+				sysRepo.save(getSysteme().get(i));
 			}
 			for(int i=0;i<getSysteme().size();i++) {
 				Position p=new Position(t,getSysteme().get(i).getId(),getSysteme().get(i).getX(),getSysteme().get(i).getY());
-				daoP.insert(p);
+				posRepo.save(p);
 			}
 		}
 		affichageTrajectoire();
@@ -65,14 +77,14 @@ public class Simulation {
 	
 	public void initSimu()
 	{
-		systeme2=daoSI.findAll();
+		systeme2=sysIRepo.findAll();
 		for(int i=0;i<systeme2.size();i++) {
-			daoS.insert(systeme2.get(i));
+			sysRepo.save(systeme2.get(i));
 		}
-		setSysteme(daoS.findAll());
+		setSysteme(sysRepo.findAll());
 		for(int i=0;i<getSysteme().size();i++) {
 			Position p=new Position(0,getSysteme().get(i).getId(),getSysteme().get(i).getX(),getSysteme().get(i).getY());
-			daoP.insert(p);
+			posRepo.save(p);
 		}
 	}
 
@@ -82,10 +94,10 @@ public class Simulation {
 		double[] y;
 		List<double []> lx= new ArrayList();
 		List<double []> ly= new ArrayList();
-		List<CorpsCeleste> systeme = daoS.findAll();
+		List<CorpsCeleste> systeme = sysRepo.findAll();
 		List<Position> positions;
 		for (CorpsCeleste c : systeme) { //parcours les corps du systemes et recuperes les listes de positions x et y
-			positions = daoP.findByIdCorps(c.getId());
+			positions = posRepo.findByIdCorpsCeleste(c.getId());
 			x = new double[positions.size()];
 			y = new double[positions.size()];
 			for (int p=0;p<positions.size();p++) {
