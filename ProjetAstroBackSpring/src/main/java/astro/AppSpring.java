@@ -84,7 +84,7 @@ public class AppSpring {
 		int choix = saisieInt("Choisir un menu");
 		switch(choix) 
 		{
-		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=cptRepo.findByLoginAndPassword(login, password);break;
+		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); Optional<Compte> compteConnex = cptRepo.findByLoginAndPassword(login, password);connected=compteConnex.get();break;
 		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);cptRepo.save(user);System.out.println("Compte cree");menuPrincipal();break;
 		case 3 : System.exit(0);break;
 		}		
