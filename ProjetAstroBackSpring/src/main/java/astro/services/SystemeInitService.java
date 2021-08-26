@@ -18,26 +18,13 @@ public class SystemeInitService {
 	
 	public void delete(CorpsCeleste c) {
 		if (c instanceof Etoile) {
-			System.out.println("delete etoile");
 			sysInitRepo.deleteAll();
 		}
 		else if (c instanceof Planete) {
-			System.out.println("delete planete");
-			List<CorpsCeleste> enfants=sysInitRepo.selectEnfants(c);
-			for (CorpsCeleste corps :enfants) {
-				System.out.println(corps);
-				sysInitRepo.updateIdParent(corps.getId());
-				Optional<CorpsCeleste> opt = sysInitRepo.findById(corps.getId());
-				corps =  opt.get();
-				System.out.println(corps);
-				sysInitRepo.delete(corps);
-			}
-			sysInitRepo.updateIdParent(c.getId());
+			sysInitRepo.deleteEnfants(c);
 			sysInitRepo.delete(c);
 		}
 		else {
-			System.out.println("delete satellite");
-			sysInitRepo.updateIdParent(c.getId());
 			sysInitRepo.delete(c);
 		}
 	}
