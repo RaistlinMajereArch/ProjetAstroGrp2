@@ -1,6 +1,6 @@
 package astro.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals; 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -24,7 +24,6 @@ import astro.metier.Etoile;
 import astro.metier.Planete;
 import astro.metier.Satellite;
 import astro.repositories.SystemeRepository;
-import util.Context;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
