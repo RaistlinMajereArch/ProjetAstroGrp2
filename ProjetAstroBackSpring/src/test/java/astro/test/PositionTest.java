@@ -41,6 +41,22 @@ public class PositionTest {
 		posRepo.delete(posIns);
 		assertFalse(posRepo.findById(posIns.getId()).isPresent());
 	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void testDeleteAll() {
+		Position posIns = new Position(0,1,0.0,0.0);
+		Position posIns2 = new Position(0,1,0.0,0.0);
+
+		posIns = posRepo.save(posIns);
+		posIns2 = posRepo.save(posIns2);
+
+		posRepo.deleteAll();
+		assertFalse(posRepo.findById(posIns.getId()).isPresent());
+		assertFalse(posRepo.findById(posIns2.getId()).isPresent());
+
+	}
 
 	@Test
 	@Rollback(true)
