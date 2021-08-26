@@ -1,5 +1,7 @@
 package astro.metier;
 
+import java.util.Objects;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,6 +60,23 @@ public abstract class Compte {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, login, password);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Compte other = (Compte) obj;
+		return id == other.id && Objects.equals(login, other.login) && Objects.equals(password, other.password);
 	}
 	
 	

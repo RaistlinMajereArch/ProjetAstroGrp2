@@ -41,7 +41,7 @@ public class AppConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(BasicDataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource);
-		emf.setPackagesToScan("eshop.model");
+		emf.setPackagesToScan("astro.metier");
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		Properties properties=new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "validate");

@@ -2,12 +2,13 @@ package astro.repositories;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import astro.metier.Compte;
 
-public interface CompteRepository {
+public interface CompteRepository extends JpaRepository<Compte, Integer> {
 
 	Optional<Compte> findByLoginAndPassword(String login, String password);
 	
