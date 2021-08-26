@@ -29,13 +29,13 @@ import util.Context;
 public class AppSpring {
 	static Compte connected;
 	@Autowired
-	static CompteRepository cptRepo;
+	CompteRepository cptRepo;
 	@Autowired
-	static SystemeInitRepository sysIRepo;
+	SystemeInitRepository sysIRepo;
 	@Autowired
-	static SystemeRepository sysRepo;
+	SystemeRepository sysRepo;
 	@Autowired
-	static PositionsRepository posRepo;
+	PositionsRepository posRepo;
 	
 	
 	static List<CorpsCeleste> systeme=new ArrayList();
