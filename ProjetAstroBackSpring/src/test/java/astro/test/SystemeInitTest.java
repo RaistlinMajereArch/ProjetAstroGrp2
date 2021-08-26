@@ -21,6 +21,7 @@ import astro.metier.Etoile;
 import astro.metier.Planete;
 import astro.metier.Satellite;
 import astro.repositories.SystemeInitRepository;
+import astro.services.SystemeInitService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -28,6 +29,9 @@ public class SystemeInitTest {
 
 	@Autowired
 	private SystemeInitRepository sysInitRepo;
+	
+	@Autowired
+	private SystemeInitService sysInitService;
 	
 	@Test
 	public void sysInitRepoExist() {
@@ -78,10 +82,10 @@ public class SystemeInitTest {
 	@Rollback(true)
 	@Transactional
 	public void delete() {
-		Optional<CorpsCeleste> opt = sysInitRepo.findById(1);
+		Optional<CorpsCeleste> opt = sysInitRepo.findById(2);
 		CorpsCeleste c = opt.get();
-		sysInitRepo.delete(c);
-		opt = sysInitRepo.findById(1);
+		sysInitService.delete(c);
+		opt = sysInitRepo.findById(2);
 		assertTrue(opt.isEmpty());
 	}
 	
@@ -94,5 +98,4 @@ public class SystemeInitTest {
 		assertTrue(opt.isEmpty());
 	}
 	
-
 }

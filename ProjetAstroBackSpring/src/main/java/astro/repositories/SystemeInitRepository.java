@@ -3,6 +3,7 @@ package astro.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
@@ -17,20 +18,14 @@ public interface SystemeInitRepository extends JpaRepository<CorpsCeleste, Integ
 	@Query("select distinct c from CorpsCeleste c where c.nom like :lib or c.id like :lib or c.type like :lib")
 	public List<CorpsCeleste> filterCorps(@Param("lib") String texte);
 	
-//<<<<<<< Updated upstream
-	//@Query("update CorpsCeleste c set c.parent=NULL WHERE c.id =:id")
-	//public void updateIdParent(@Param("id") Integer id);
+//	@Modifying
+//	@Query("update CorpsCeleste c set c.parent=null WHERE c.parent =:corps")
+//	public void updateIdParent(@Param("corps") CorpsCeleste c);
 	
-	//@Query("select distinct c from CorpsCeleste c where c.Parent=:parent")
-	//public List<CorpsCeleste> selectEnfants(@Param("parent") CorpsCeleste c);
+	@Modifying
+	@Query("delete CorpsCeleste c WHERE c.parent =:corps")
+	public void deleteEnfants(@Param("corps") CorpsCeleste c);
 	
-	//@Query("select distinct c from CorpsCeleste c where c.idParent=:id")
-	//public List<CorpsCeleste> selectEnfants(@Param("id") Integer id);
-//=======
-	//@Query("UPDATE CorpsCeleste SET parent_id= NULL WHERE systeminit.id =:id")
-	//public void updateParent(@Param("id") Integer id);
-	
-	//@Query(" DELETE FROM CorpsCeleste WHERE systeminit.id_parent =:id")
-	//public void deleteEnfants(@Param("id") Integer id);
-//>>>>>>> Stashed changes
+	@Query("select distinct c from CorpsCeleste c where c.parent=:parent")
+	public List<CorpsCeleste> selectEnfants(@Param("parent") CorpsCeleste c);
 }

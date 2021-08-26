@@ -1,6 +1,7 @@
 package astro.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,21 +16,15 @@ public class SystemeInitService {
 	@Autowired
 	private SystemeInitRepository sysInitRepo;
 	
-	private void delete(CorpsCeleste c) {
+	public void delete(CorpsCeleste c) {
 		if (c instanceof Etoile) {
 			sysInitRepo.deleteAll();
 		}
 		else if (c instanceof Planete) {
-			List<CorpsCeleste> enfants=sysInitRepo.selectEnfants(c);
-			for (CorpsCeleste corps :enfants) {
-				sysInitRepo.updateIdParent(corps.getId());
-				sysInitRepo.delete(corps);
-			}
-			sysInitRepo.updateIdParent(c.getId());
+			sysInitRepo.deleteEnfants(c);
 			sysInitRepo.delete(c);
 		}
 		else {
-			sysInitRepo.updateIdParent(c.getId());
 			sysInitRepo.delete(c);
 		}
 	}
