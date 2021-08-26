@@ -11,7 +11,7 @@ import astro.metier.CorpsCeleste;
 public interface SystemeInitRepository extends JpaRepository<CorpsCeleste, Integer>{
 
 
-	@Query("select distinct c from SystemeInit s where c.nom like :lib or c.id like :lib or c.DTYPE like :lib")
-	List<CorpsCeleste> filterCorps(@Param("lib") String texte);
+//	@Query("select distinct c from SystemeInit s where c.nom like :lib or c.id like :lib or c.DTYPE like :lib")
+//	List<CorpsCeleste> filterCorps(@Param("lib") String texte);
 	
 }

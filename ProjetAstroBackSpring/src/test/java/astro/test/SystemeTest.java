@@ -31,14 +31,28 @@ public class SystemeTest {
 	public void sysRepoExist() {
 		assertNotNull(sysRepo);
 	}
-
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void insert() {
+		Etoile e = new Etoile(1000,1000,"Soleil");
+		e = sysRepo.save(e);
+		assertEquals(e,sysRepo.findById(e.getId()).get());
+		Planete p = new Planete(10, 10, 10, 10, 10, 10, "Terre", e);
+		p= sysRepo.save(p);
+		assertEquals(p,sysRepo.findById(p.getId()).get());
+		Satellite s = new Satellite(1, 1, 1, 1, 1, 1, "Lune", p);
+		s= sysRepo.save(s);
+		assertEquals(s,sysRepo.findById(s.getId()).get());
+	}
+	
 	@Test
 	public void findById() {
 		Optional<CorpsCeleste> opt=sysRepo.findById(1);
 		CorpsCeleste c=opt.get();
-		assertEquals(10,c.getG(),0);
+		assertEquals(6.6743E-20,c.getG(),0);
 		assertEquals(1000,c.getDiametre(),0);
-		assertEquals(1,c.isEtat());
+		assertEquals(true,c.isEtat());
 		assertEquals(1000,c.getMasse(),0);
 		assertEquals("Soleil",c.getNom());
 		assertEquals(0,c.getVx(),0);
@@ -50,21 +64,8 @@ public class SystemeTest {
 	
 	@Test
 	public void findAll() {
-		assertEquals(2,sysRepo.count(),0);
+		assertEquals(3,sysRepo.count(),0);
 	}
 	
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void insert() {
-		CorpsCeleste e = new Etoile(1000,1000,"Soleil");
-		CorpsCeleste p = new Planete(10, 10, 10, 10, 10, 10, "Terre", e);
-		CorpsCeleste s = new Satellite(1, 1, 1, 1, 1, 1, "Lune", p);
-		sysRepo.save(e);
-		sysRepo.save(p);
-		sysRepo.save(s);
-		assertEquals(e,sysRepo.findById(e.getId()).get());
-		assertEquals(p,sysRepo.findById(e.getId()).get());
-		assertEquals(s,sysRepo.findById(e.getId()).get());
-	}
+
 }
