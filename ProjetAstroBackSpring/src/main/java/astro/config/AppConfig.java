@@ -44,7 +44,7 @@ public class AppConfig {
 		emf.setPackagesToScan("astro.metier");
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		Properties properties=new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.dialect", env.getProperty("jpaProperty.dialect"));
 		properties.setProperty("hibernate.show_sql",  env.getProperty("jpaProperty.showSql"));
 		properties.setProperty("hibernate.format_sql", "true");
