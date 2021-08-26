@@ -68,7 +68,7 @@ public class AppSpring {
 		return sc.nextLine();
 	}
 
-	public void main(String[] args) 
+	public void run(String[] args) 
 	{
 
 		menuPrincipal();
