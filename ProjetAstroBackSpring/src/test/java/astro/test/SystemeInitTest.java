@@ -83,9 +83,7 @@ public class SystemeInitTest {
 	@Transactional
 	public void delete() {
 		Optional<CorpsCeleste> opt = sysInitRepo.findById(2);
-		Planete c = (Planete) opt.get();
-		System.out.println("-----------------------------------------------------------------------------------------------------------");
-		System.out.println(c instanceof Planete);
+		CorpsCeleste c = opt.get();
 		sysInitService.delete(c);
 		opt = sysInitRepo.findById(2);
 		assertTrue(opt.isEmpty());
@@ -100,5 +98,4 @@ public class SystemeInitTest {
 		assertTrue(opt.isEmpty());
 	}
 	
-
 }
