@@ -2,6 +2,7 @@ package astro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -83,8 +84,8 @@ public class AppSpring {
 		int choix = saisieInt("Choisir un menu");
 		switch(choix) 
 		{
-		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=cptRepo.seConnecter(login, password);break;
-		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);cptRepo.insert(user);System.out.println("Compte cr��.");menuPrincipal();break;
+		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); connected=cptRepo.findByLoginAndPassword(login, password);break;
+		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);cptRepo.save(user);System.out.println("Compte cree");menuPrincipal();break;
 		case 3 : System.exit(0);break;
 		}		
 		if(connected instanceof Utilisateur)
@@ -131,7 +132,7 @@ public class AppSpring {
 		{
 		case 1 : for (int i=0;i<systeme.size();i++){if(systeme.get(i) instanceof Etoile) {modifEtoile(systeme.get(i));}} ;break;
 		case 2 : modifPlanete();break;
-		case 3 : creerPlanete((Etoile) sysIRepo.findById(1));break;
+		case 3 : Optional<CorpsCeleste> opt = (Optional<CorpsCeleste>) sysIRepo.findById(1);Etoile e=(Etoile) opt.get();creerPlanete(e);break;
 		case 4 : modifSatellite();break;
 		case 5 : creerSatellite();break;	
 		case 6: menuUtilisateur();break;
@@ -292,8 +293,10 @@ public class AppSpring {
 				Double y0Satellite=saisieDouble("Saisir la position y0 du satellite (en km par rapport � l'etoile)");
 				Double vitX0Satellite=saisieDouble("Saisir la vitesse selon l'axe x du satellite (en km/s par rapport � l'etoile)");
 				Double vitY0Satellite=saisieDouble("Saisir la vitesse selon l'axe y du satellite (en km/s par rapport � l'etoile)");
-
-				CorpsCeleste pSelect = sysIRepo.findById(idPlaneteMere);
+				
+				Optional<CorpsCeleste> opt = (Optional<CorpsCeleste>) sysIRepo.findById(idPlaneteMere);
+			    CorpsCeleste pSelect= opt.get();
+			    
 				Satellite s = new Satellite(masseSatellite, diametreSatellite, x0Satellite, y0Satellite, vitX0Satellite, vitY0Satellite, nomSatellite, pSelect);
 				systeme.add(s);
 				sysIRepo.save(s);		
@@ -312,7 +315,8 @@ public class AppSpring {
 		}
 	    int selectIdPlanet = saisieInt("A quelle planete voulez vous ajouter un satellite (id)?");
 	    
-	    Planete p = (Planete) sysIRepo.findById(selectIdPlanet);
+	    Optional<CorpsCeleste> opt = (Optional<CorpsCeleste>) sysIRepo.findById(selectIdPlanet);
+	    Planete p=(Planete) opt.get();
 
 		String nomSatellite=saisieString("Saisir le nom du satellite");
 		boolean masseSatelliteOk = false;
@@ -416,7 +420,8 @@ public class AppSpring {
 		}
 	    int selectId = saisieInt("Quelle planete voulez-vous modifier (id)?");
 	    
-	    Planete p = (Planete) sysIRepo.findById(selectId);
+	    Optional<CorpsCeleste> opt = (Optional<CorpsCeleste>) sysIRepo.findById(selectId);
+	    Planete p=(Planete) opt.get();
 	    
 		String choixModif = saisieString("que voulez vous modifier ? attribut(nom/masse/diametre/positionx/positiony/vitessex/vitessey/satellite) ou (suppression)");
 		if (choixModif.equalsIgnoreCase("nom"))
@@ -442,7 +447,7 @@ public class AppSpring {
 				}
 			}
 			p.setMasse(nouvelleMassePlanete);
-			daoSI.update(p);
+			sysIRepo.save(p);
 			chargerSysteme();	
 		} 
 		else if (choixModif.equalsIgnoreCase("diametre"))
@@ -507,7 +512,8 @@ public class AppSpring {
 		}
 	    int selectId = saisieInt("Quel satellite voulez-vous modifier (id)?");
 	    
-	    Satellite s = (Satellite) sysIRepo.findById(selectId);
+	    Optional<CorpsCeleste> opt = (Optional<CorpsCeleste>) sysIRepo.findById(selectId);
+	    Satellite s= (Satellite) opt.get();
 			    
 		String choixModif = saisieString("que voulez vous modifier ? attribut(nom/masse/diametre/positionx/positiony/vitessex/vitessey) ou (suppression)");
 		if (choixModif.equalsIgnoreCase("nom"))
