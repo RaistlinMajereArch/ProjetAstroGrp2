@@ -22,11 +22,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
 @EnableJpaRepositories("astro.repositories")
-<<<<<<< HEAD
 @ComponentScan("astro.metier")
-=======
 @ComponentScan("astro.services")
->>>>>>> main
 public class AppConfig {
 	
 	@Autowired
