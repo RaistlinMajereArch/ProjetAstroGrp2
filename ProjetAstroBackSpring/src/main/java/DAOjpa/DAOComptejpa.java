@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import DAO.IDAOCompte;
-import metier.Compte;
+import astro.metier.Compte;
 import util.Context;
 
 

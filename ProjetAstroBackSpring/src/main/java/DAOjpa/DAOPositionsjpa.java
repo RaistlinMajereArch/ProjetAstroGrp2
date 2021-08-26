@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import DAO.IDAOPositions;
-import metier.Position;
+import astro.metier.Position;
 import util.Context;
 
 public class DAOPositionsjpa implements IDAOPositions{

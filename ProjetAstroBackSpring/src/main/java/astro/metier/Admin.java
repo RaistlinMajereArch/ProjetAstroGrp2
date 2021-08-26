@@ -1,4 +1,4 @@
-package metier;
+package astro.metier;
 
 import javax.persistence.Entity;
 

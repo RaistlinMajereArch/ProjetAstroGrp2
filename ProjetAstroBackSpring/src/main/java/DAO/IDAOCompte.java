@@ -1,6 +1,6 @@
 package DAO;
 
-import metier.Compte;
+import astro.metier.Compte;
 
 public interface IDAOCompte extends IDAO<Compte,Integer>{
 	

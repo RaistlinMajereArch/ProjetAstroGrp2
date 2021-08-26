@@ -1,7 +1,8 @@
 package DAO;
 
 import java.util.List;
-import metier.Position;
+
+import astro.metier.Position;
 
 public interface IDAOPositions extends IDAO<Position,Integer> {
 	

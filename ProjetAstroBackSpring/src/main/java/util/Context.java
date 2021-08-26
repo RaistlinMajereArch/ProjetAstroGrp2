@@ -11,8 +11,8 @@ import DAOjpa.DAOComptejpa;
 import DAOjpa.DAOPositionsjpa;
 import DAOjpa.DAOSystemeInitjpa;
 import DAOjpa.DAOSystemejpa;
-import metier.Compte;
-import metier.Etoile;
+import astro.metier.Compte;
+import astro.metier.Etoile;
 
 public class Context {
 	private Compte connected=null;

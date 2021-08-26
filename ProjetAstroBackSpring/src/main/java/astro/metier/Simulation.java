@@ -1,4 +1,4 @@
-package metier;
+package astro.metier;
 
 import java.awt.Color;
 import java.util.ArrayList;

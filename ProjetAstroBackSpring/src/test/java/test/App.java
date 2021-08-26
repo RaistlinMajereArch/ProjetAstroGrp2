@@ -9,15 +9,13 @@ import DAOjpa.DAOComptejpa;
 import DAOjpa.DAOPositionsjpa;
 import DAOjpa.DAOSystemeInitjpa;
 import DAOjpa.DAOSystemejpa;
-
-import metier.Compte;
-import metier.CorpsCeleste;
-import metier.Etoile;
-import metier.Planete;
-import metier.Satellite;
-import metier.Simulation;
-import metier.Utilisateur;
-
+import astro.metier.Compte;
+import astro.metier.CorpsCeleste;
+import astro.metier.Etoile;
+import astro.metier.Planete;
+import astro.metier.Satellite;
+import astro.metier.Simulation;
+import astro.metier.Utilisateur;
 import util.Context;
 
 public class App 

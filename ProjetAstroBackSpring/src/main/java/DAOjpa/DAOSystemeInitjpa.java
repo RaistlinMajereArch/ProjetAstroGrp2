@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import DAO.IDAOSystemeInit;
-import metier.CorpsCeleste;
+import astro.metier.CorpsCeleste;
 import util.Context;
 
 public class DAOSystemeInitjpa implements IDAOSystemeInit {
