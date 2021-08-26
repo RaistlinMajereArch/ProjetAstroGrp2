@@ -10,8 +10,8 @@ import astro.metier.Position;
 
 public interface PositionsRepository extends JpaRepository<Position, Integer> {
 	
-	List<Position> findByid_corpsCeleste(Integer id);
+	List<Position> findById_corpsCeleste(Integer id);
 	
-	List<Position> findByid_timeStep(Integer t);
+	List<Position> findById_timeStep(Integer t);
 
 }
