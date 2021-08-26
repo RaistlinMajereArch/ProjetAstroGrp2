@@ -55,7 +55,7 @@
                               <td>${corpsceleste.vx}</td>
                               <td>${corpsceleste.vy}</td>
                               
-                              <td>${corpsceleste.parent}</td>
+                              <td>${corpsceleste.parent.id}</td>
                               <td>
                                 <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <%--,'${corpsceleste.type}'--%>
@@ -151,10 +151,10 @@
                                 update_nom.value=nom;
                                 update_masse.value=masse;
                                 update_diametre.value=diametre;
-                                update_x.value=x0;
-                                update_y.value=y0;
-                                update_vx.value=vx0;
-                                update_vy.value=vy0;
+                                update_x.value=x;
+                                update_y.value=y;
+                                update_vx.value=vx;
+                                update_vy.value=vy;
                                 update_id_plan.value=id;
                                 update_parent_id=parent_id;
 
