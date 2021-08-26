@@ -47,7 +47,7 @@ public abstract class CorpsCeleste {
 	protected Boolean etatInit=true;
 	@Column(name="nom")
 	protected String nomInit;
-	@ManyToOne//(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	protected CorpsCeleste parent;
 	//@OneToMany(mappedBy="parent",cascade = {CascadeType.ALL})
 	///protected List<CorpsCeleste> enfants;
@@ -304,10 +304,14 @@ public abstract class CorpsCeleste {
 		this.nomInit = nomInit;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "CorpsCeleste [G=" + G + ", id=" + id + ", masse=" + masse + ", diametre=" + diametre + ", x=" + x
-				+ ", y=" + y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat + ", nom=" + nom + ", parent=" + parent +"]";
+		return "CorpsCeleste [G=" + G + ", id=" + id + ", type=" + type + ", masseInit=" + masseInit + ", diametreInit="
+				+ diametreInit + ", xInit=" + xInit + ", yInit=" + yInit + ", vxInit=" + vxInit + ", vyInit=" + vyInit
+				+ ", etatInit=" + etatInit + ", nomInit=" + nomInit + ", parent=" + parent + ", GInit=" + GInit
+				+ ", masse=" + masse + ", diametre=" + diametre + ", x=" + x + ", y=" + y + ", vx=" + vx + ", vy=" + vy
+				+ ", etat=" + etat + ", nom=" + nom + "]";
 	}
 
 	@Override

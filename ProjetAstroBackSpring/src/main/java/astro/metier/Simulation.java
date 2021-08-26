@@ -12,26 +12,23 @@ import javax.swing.JScrollPane;
 
 import org.math.plot.Plot2DPanel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import astro.repositories.CompteRepository;
 import astro.repositories.PositionsRepository;
 import astro.repositories.SystemeInitRepository;
 import astro.repositories.SystemeRepository;
 
+@Component
 public class Simulation {
 	
 	private Integer timestep;
 	private boolean calculSimple;
 	private int ctpt=0;
 	private int cpt;
-	//DAOPositionsjpa daoP = new DAOPositionsjpa();
-    //DAOSystemeInitjpa daoSI = new DAOSystemeInitjpa();
-	//DAOSystemejpa daoS = new DAOSystemejpa();
 	
 	@Autowired
-	CompteRepository cptRepo;
-	@Autowired
-	SystemeInitRepository sysIRepo;
+	SystemeInitRepository sysIRepo2;
 	@Autowired
 	SystemeRepository sysRepo;
 	@Autowired
@@ -77,13 +74,23 @@ public class Simulation {
 	
 	public void initSimu()
 	{
-		systeme2=sysIRepo.findAll();
+		systeme2=sysIRepo2.findAll();
 		for(int i=0;i<systeme2.size();i++) {
+			systeme2.get(i).setMasse(systeme2.get(i).getMasseInit());
+			systeme2.get(i).setDiametre(systeme2.get(i).getDiametreInit());
+			systeme2.get(i).setX(systeme2.get(i).getxInit());
+			systeme2.get(i).setY(systeme2.get(i).getyInit());
+			systeme2.get(i).setVx(systeme2.get(i).getVxInit());
+			systeme2.get(i).setVy(systeme2.get(i).getVyInit());
+			systeme2.get(i).setEtat(systeme2.get(i).isEtatInit());
+			systeme2.get(i).setNom(systeme2.get(i).getNomInit());
 			sysRepo.save(systeme2.get(i));
 		}
 		setSysteme(sysRepo.findAll());
+		System.out.println(getSysteme());
 		for(int i=0;i<getSysteme().size();i++) {
-			Position p=new Position(0,getSysteme().get(i).getId(),getSysteme().get(i).getX(),getSysteme().get(i).getY());
+			System.out.println(getSysteme().get(i));
+			Position p=new Position(0,getSysteme().get(i).getId(),getSysteme().get(i).getxInit(),getSysteme().get(i).getyInit());
 			posRepo.save(p);
 		}
 	}
@@ -225,5 +232,90 @@ public class Simulation {
 	public void setSysteme(List<CorpsCeleste> systeme) {
 		this.systeme = systeme;
 	}
+
+	public Integer getTimestep() {
+		return timestep;
+	}
+
+	public boolean isCalculSimple() {
+		return calculSimple;
+	}
+
+	public int getCtpt() {
+		return ctpt;
+	}
+
+	public int getCpt() {
+		return cpt;
+	}
+
+	public SystemeInitRepository getSysIRepo2() {
+		return sysIRepo2;
+	}
+
+	public SystemeRepository getSysRepo() {
+		return sysRepo;
+	}
+
+	public PositionsRepository getPosRepo() {
+		return posRepo;
+	}
+
+	public List<CorpsCeleste> getSysteme2() {
+		return systeme2;
+	}
+
+	public JFrame getTpt() {
+		return tpt;
+	}
+
+	public JFrame getAvancement() {
+		return avancement;
+	}
+
+	public void setTimestep(Integer timestep) {
+		this.timestep = timestep;
+	}
+
+	public void setCalculSimple(boolean calculSimple) {
+		this.calculSimple = calculSimple;
+	}
+
+	public void setCtpt(int ctpt) {
+		this.ctpt = ctpt;
+	}
+
+	public void setCpt(int cpt) {
+		this.cpt = cpt;
+	}
+
+	public void setSysIRepo2(SystemeInitRepository sysIRepo2) {
+		this.sysIRepo2 = sysIRepo2;
+	}
+
+	public void setSysRepo(SystemeRepository sysRepo) {
+		this.sysRepo = sysRepo;
+	}
+
+	public void setPosRepo(PositionsRepository posRepo) {
+		this.posRepo = posRepo;
+	}
+
+	public void setSysteme2(List<CorpsCeleste> systeme2) {
+		this.systeme2 = systeme2;
+	}
+
+	public void setTpt(JFrame tpt) {
+		this.tpt = tpt;
+	}
+
+	public void setAvancement(JFrame avancement) {
+		this.avancement = avancement;
+	}
+
+	public Simulation() {
+
+	}
+	
 	
 }

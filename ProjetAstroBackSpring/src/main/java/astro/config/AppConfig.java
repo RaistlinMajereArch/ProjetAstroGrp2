@@ -8,6 +8,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
 @EnableJpaRepositories("astro.repositories")
+@ComponentScan("astro.metier")
 public class AppConfig {
 	
 	@Autowired
@@ -44,7 +46,7 @@ public class AppConfig {
 		emf.setPackagesToScan("astro.metier");
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		Properties properties=new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
 		properties.setProperty("hibernate.dialect", env.getProperty("jpaProperty.dialect"));
 		properties.setProperty("hibernate.show_sql",  env.getProperty("jpaProperty.showSql"));
 		properties.setProperty("hibernate.format_sql", "true");

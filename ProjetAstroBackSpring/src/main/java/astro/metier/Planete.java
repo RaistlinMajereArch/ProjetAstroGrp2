@@ -19,14 +19,18 @@ public class Planete extends CorpsCeleste{
 		super(masse, diametre, x, y, vx, vy, nom, parent);
 		
 	}
-		
 
 	@Override
 	public String toString() {
-		return "Planete [G=" + G + ", id=" + id + ", masse=" + masse + ", diametre=" + diametre + ", x=" + x + ", y="
-				+ y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat + ", nom=" + nom + ", parent=" + parent
-				+ "]";
+		return "Planete [G=" + G + ", id=" + id + ", masseInit=" + masseInit + ", diametreInit=" + diametreInit
+				+ ", xInit=" + xInit + ", yInit=" + yInit + ", vxInit=" + vxInit + ", vyInit=" + vyInit + ", etatInit="
+				+ etatInit + ", nomInit=" + nomInit + ", parent=" + parent + ", GInit=" + GInit + ", masse=" + masse
+				+ ", diametre=" + diametre + ", x=" + x + ", y=" + y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat
+				+ ", nom=" + nom + "]";
 	}
+		
+
+
 
 
 

@@ -19,12 +19,17 @@ public class Etoile extends CorpsCeleste{
 		// TODO Auto-generated constructor stub
 	}
 
-
 	@Override
 	public String toString() {
-		return "Etoile [G=" + G + ", id=" + id + ", masse=" + masse + ", diametre=" + diametre + ", x=" + x + ", y=" + y
-				+ ", vx=" + vx + ", vy=" + vy + ", etat=" + etat + ", nom=" + nom + "]";
+		return "Etoile [G=" + G + ", id=" + id + ", masseInit=" + masseInit + ", diametreInit=" + diametreInit
+				+ ", xInit=" + xInit + ", yInit=" + yInit + ", vxInit=" + vxInit + ", vyInit=" + vyInit + ", etatInit="
+				+ etatInit + ", nomInit=" + nomInit + ", parent=" + parent + ", GInit=" + GInit + ", masse=" + masse
+				+ ", diametre=" + diametre + ", x=" + x + ", y=" + y + ", vx=" + vx + ", vy=" + vy + ", etat=" + etat
+				+ ", nom=" + nom + "]";
 	}
+
+
+
 
 	
 
