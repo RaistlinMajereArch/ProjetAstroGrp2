@@ -33,6 +33,8 @@ public class AppSpring {
 	@Autowired
 	PositionsRepository posRepo;
 	
+	@Autowired 
+	Simulation sim;
 	
 	static List<CorpsCeleste> systeme=new ArrayList();
 	static List<CorpsCeleste> systeme2= new ArrayList();
@@ -600,7 +602,9 @@ public class AppSpring {
 		else {
 			calculSimple = true;
 		}
-		Simulation sim = new Simulation(timestep,calculSimple);
+		sim.setTimestep(timestep);
+		sim.setCalculSimple(calculSimple);
+		//Simulation sim = new Simulation(timestep,calculSimple);
 	    //System.out.println(sim.getSysteme());
 		sim.run();
 	}
@@ -632,4 +636,5 @@ public class AppSpring {
 		sysIRepo.deleteAll();
 		posRepo.deleteAll();
 	}
+	
 }
