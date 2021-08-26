@@ -175,7 +175,6 @@ public class AppSpring {
 		Etoile e = new Etoile(masseEtoile, diametreEtoile, nomEtoile);
 		systeme.add(e);
 		e = (Etoile) sysIRepo.save(e);
-		Context.getInstance().setEtoile(e);
 		boolean userHasFinished = false;
 		boolean userIsCreating = true;
 		while (userIsCreating) 
@@ -231,12 +230,12 @@ public class AppSpring {
 				diametrePlaneteOk=true;		
 			}
 		}
-		Double x0Planete=saisieDouble("Saisir la position x0 de la planete (en km par rapport � l'etoile)");
-		Double y0Planete=saisieDouble("Saisir la position y0 de la planete (en km par rapport � l'etoile)");
-		Double vitX0Planete=saisieDouble("Saisir la vitesse selon l'axe x de la planete (en km/s par rapport � l'etoile)");
-		Double vitY0Planete=saisieDouble("Saisir la vitesse selon l'axe y de la planete (en km/s par rapport � l'etoile)");
+		Double x0Planete=saisieDouble("Saisir la position x0 de la planete (en km par rapport a l'etoile)");
+		Double y0Planete=saisieDouble("Saisir la position y0 de la planete (en km par rapport a l'etoile)");
+		Double vitX0Planete=saisieDouble("Saisir la vitesse selon l'axe x de la planete (en km/s par rapport a l'etoile)");
+		Double vitY0Planete=saisieDouble("Saisir la vitesse selon l'axe y de la planete (en km/s par rapport a l'etoile)");
 
-		Planete p = new Planete(massePlanete,diametrePlanete,x0Planete,y0Planete,vitX0Planete,vitY0Planete,nomPlanete,Context.getInstance().getEtoile());
+		Planete p = new Planete(massePlanete,diametrePlanete,x0Planete,y0Planete,vitX0Planete,vitY0Planete,nomPlanete,e);
 		systeme.add(p);
 		sysIRepo.save(p);
 
