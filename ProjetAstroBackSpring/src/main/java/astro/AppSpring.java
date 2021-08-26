@@ -1,6 +1,6 @@
 package astro;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -9,10 +9,6 @@ import javax.swing.JFrame;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import DAOjpa.DAOComptejpa;
-import DAOjpa.DAOPositionsjpa;
-import DAOjpa.DAOSystemeInitjpa;
-import DAOjpa.DAOSystemejpa;
 import astro.metier.Compte;
 import astro.metier.CorpsCeleste;
 import astro.metier.Etoile;
@@ -24,7 +20,7 @@ import astro.repositories.CompteRepository;
 import astro.repositories.PositionsRepository;
 import astro.repositories.SystemeInitRepository;
 import astro.repositories.SystemeRepository;
-import util.Context;
+
 
 public class AppSpring {
 	static Compte connected;
