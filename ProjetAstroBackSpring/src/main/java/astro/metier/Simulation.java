@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -138,15 +140,17 @@ public class Simulation {
 		
 		frame.setContentPane(plot);
 		frame.setAlwaysOnTop(true);
+		frame.setSize(1800, 900);
 		frame.setVisible(true);	
 		
-		int w = frame.getWidth();
-		int h =frame.getHeight();
-		BufferedImage image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+		frame.revalidate();
+		BufferedImage image = new BufferedImage(frame.getWidth(),frame.getHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = image.createGraphics();
-		frame.print( g2d );
+		frame.paint( g2d );
 		g2d.dispose();
-		java.io.FileOutputStream fos  = new java.io.FileOutputStream("src/trajectoire/trajectoire.png");
+		Path path = Paths.get("src", "main", "resources","trajectoire","trajectoire.png");
+
+		java.io.FileOutputStream fos  = new java.io.FileOutputStream(path.toString());
 		ImageIO.write(image, "png", fos);
 	}
 	
