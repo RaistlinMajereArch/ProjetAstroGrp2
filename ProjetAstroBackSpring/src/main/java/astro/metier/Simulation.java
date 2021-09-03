@@ -1,10 +1,15 @@
 package astro.metier;
 
-import java.awt.Color; 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +19,6 @@ import org.math.plot.Plot2DPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import astro.repositories.CompteRepository;
 import astro.repositories.PositionsRepository;
 import astro.repositories.SystemeInitRepository;
 import astro.repositories.SystemeRepository;
@@ -50,7 +54,7 @@ public class Simulation {
 		run();
 	}*/
 	
-	public void run() {
+	public void run() throws IOException {
 		initSimu();
 		//System.out.println(systeme);
 		for (int t=1;t<=timestep;t++) {
@@ -95,7 +99,7 @@ public class Simulation {
 		}
 	}
 
-	public void affichageTrajectoire() 
+	public void affichageTrajectoire() throws IOException 
 	{
 		double [] x;
 		double[] y;
@@ -135,6 +139,15 @@ public class Simulation {
 		frame.setContentPane(plot);
 		frame.setAlwaysOnTop(true);
 		frame.setVisible(true);	
+		
+		int w = frame.getWidth();
+		int h =frame.getHeight();
+		BufferedImage image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = image.createGraphics();
+		frame.print( g2d );
+		g2d.dispose();
+		java.io.FileOutputStream fos  = new java.io.FileOutputStream("src/trajectoire/trajectoire.png");
+		ImageIO.write(image, "png", fos);
 	}
 	
 	public void avancerTimeStepSysteme()
