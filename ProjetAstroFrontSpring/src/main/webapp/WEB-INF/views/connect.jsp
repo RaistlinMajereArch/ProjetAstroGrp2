@@ -14,7 +14,7 @@
 
 <style>
 body {
-	background-image: url("http://localhost:8080/projetAstroGrp2/img/photofunky.gif");
+	background-image: url("../img/photofunky.gif");
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
