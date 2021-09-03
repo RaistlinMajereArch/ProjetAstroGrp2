@@ -47,7 +47,7 @@ public abstract class CorpsCeleste {
 	protected Boolean etatInit=true;
 	@Column(name="nom")
 	protected String nomInit;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	protected CorpsCeleste parent;
 	//@OneToMany(mappedBy="parent",cascade = {CascadeType.ALL})
 	///protected List<CorpsCeleste> enfants;

@@ -2,6 +2,8 @@ package astro.repositories;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +31,9 @@ public interface SystemeInitRepository extends JpaRepository<CorpsCeleste, Integ
 	@Query("select distinct c from CorpsCeleste c where c.parent=:parent")
 	public List<CorpsCeleste> selectEnfants(@Param("parent") CorpsCeleste c);
 	
-	@Query(value="DBCC CHECKIDENT ('systeminit', RESEED, 1);", nativeQuery=true)
+	@Transactional
+	@Modifying
+	@Query(value="Alter Table systeminit auto_increment=1", nativeQuery=true)
 	public void resetId();
+	
 }

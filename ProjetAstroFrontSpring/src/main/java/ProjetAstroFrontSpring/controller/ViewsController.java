@@ -78,7 +78,9 @@ public class ViewsController {
 		sysRepo.deleteAll();
 		
 		sysIRepo.deleteAll();
+		
 		sysIRepo.resetId();
+		
 		sysIRepo.save(e);
 		model.addAttribute("systeminit", sysIRepo.findAll());
 		return "redirect:Modification";
