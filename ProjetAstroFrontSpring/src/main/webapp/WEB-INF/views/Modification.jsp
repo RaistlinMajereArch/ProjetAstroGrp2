@@ -46,18 +46,18 @@
                           <c:forEach items="${systeminit}" var="corpsceleste">
                             <tr>
                               <td>${corpsceleste.id}</td>
-                              <td>${corpsceleste.nom}</td>
+                              <td>${corpsceleste.nomInit}</td>
                               <%--<td>${corpsceleste.DTYPE}</td>--%>
-                              <td>${corpsceleste.masse}</td>
-                              <td>${corpsceleste.diametre}</td>
+                              <td>${corpsceleste.masseInit}</td>
+                              <td>${corpsceleste.diametreInit}</td>
                               <td>${corpsceleste.xInit}</td>
                               <td>${corpsceleste.yInit}</td>
                               <td>${corpsceleste.vxInit}</td>
                               <td>${corpsceleste.vyInit}</td>
                               
-                              <td>${corpsceleste.parent.id} : ${corpsceleste.parent.nom}</td>
+                              <td>${corpsceleste.parent.id} : ${corpsceleste.parent.nomInit}</td>
                               <td>
-                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.xInit}','${corpsceleste.yInit}','${corpsceleste.vxInit}','${corpsceleste.vyInit}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nomInit}','${corpsceleste.masseInit}','${corpsceleste.diametreInit}','${corpsceleste.xInit}','${corpsceleste.yInit}','${corpsceleste.vxInit}','${corpsceleste.vyInit}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <%--,'${corpsceleste.type}'--%>
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
                                     <%--<c:if test = "${corpsceleste.DTYPE='planete'}">
@@ -74,14 +74,14 @@
                                <h3>Ajouter nouvelle planete</h3>
                               <form action="addPlanet" method="post">
                               <input type="hidden" name="type_form" value="POST">
-                                <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
-                                <label for="add_masse">Masse :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse (kg)"><br>
-                                <label for="add_taille">Diametre :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
+                                <label for="add_nom">Nom :</label> <input required id="add_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
+                                <label for="add_masse">Masse :</label> <input required id="add_masse" name="masseInit" type="number" placeholder="Saisir la masse (kg)"><br>
+                                <label for="add_taille">Diametre :</label> <input required id="add_diametre" name="diametreInit" type="number" placeholder="Saisir le diametre (km)"><br>
                                 <label for="add_x">x0 :</label> <input required id="add_x" name="xInit" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
                                 <label for="add_y">y0 :</label> <input required id="add_y" name="yInit" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
                                 <label for="add_vx">vx0 :</label> <input required id="add_vx" name="vxInit" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
                                 <label for="add_vy">vy0 :</label> <input required id="add_vy" name="vyInit" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
-                                <label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="Planete"><br>
+                                <label for="add_type"></label>  <input id="add_type" type="hidden" name="typeInit" value="Planete"><br>
                                 <label for="add_id_parent"></label> <input id="add_id_parent" type="hidden" name="id_parent" value="1">
                                 
 								<input class ="btn btn-success" type="submit" name="ajouter" value="Ajouter">
@@ -94,11 +94,11 @@
                                 <form action="updatePlan" method="post">
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="update_id_plan" name="id">
-									<input type="hidden" id="update_type" value="Planete" name="type">
+									<input type="hidden" id="update_type" value="Planete" name="typeInit">
 									<input type="hidden" id="update_parent_id" name="id_parent" value="1">
-                                      <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
-                                      <label for="update_masse">Masse :</label> <input required id="update_masse" name="masse" type="number" placeholder="Saisir la masse (km)"><br>
-                                      <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
+                                      <label for="update_nom">Nom :</label> <input required id="update_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
+                                      <label for="update_masse">Masse :</label> <input required id="update_masse" name="masseInit" type="number" placeholder="Saisir la masse (km)"><br>
+                                      <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametreInit" type="number" placeholder="Saisir le diametre (km)"><br>
                                       <label for="update_x">x0 :</label> <input required id="update_x" name="xInit" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
                                       <label for="update_y">y0 :</label> <input required id="update_y" name="yInit" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
                                       <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vxInit" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
