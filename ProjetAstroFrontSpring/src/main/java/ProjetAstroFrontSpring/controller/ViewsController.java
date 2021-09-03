@@ -67,7 +67,7 @@ public class ViewsController {
 	}
 	
 	@GetMapping("/views/initialisation")
-	public String wait(Model model) {
+	public String initialisation(Model model) {
 		
 		return "views/initialisation";
 		//return "redirect:/produit
@@ -112,12 +112,16 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
+	@PostMapping("/views/wait")
+	public String wait(Model model) {
+		return "views/wait";
+		//return "redirect:/produit
+	}
 	@PostMapping("/views/lancerSimu")
-	public String updatePlan(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
-		
+	public String lancerSimu(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
 		sim.lancerSimu(timestep, calc);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
-		return "redirect:menu";
+		return "views/result";
 		//return "redirect:/produit
 	}
 }
