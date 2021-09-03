@@ -125,7 +125,7 @@ public class Simulation {
 		}
 		
 		JFrame frame = new JFrame("Draw a line");
-		frame.setBackground(Color.BLACK);
+		//frame.setBackground(Color.BLACK);
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		/*Courbe panel = new Courbe(lx,ly);
@@ -146,7 +146,7 @@ public class Simulation {
 		frame.revalidate();
 		BufferedImage image = new BufferedImage(frame.getWidth(),frame.getHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = image.createGraphics();
-		frame.paint( g2d );
+		frame.paint(g2d);
 		g2d.dispose();
 		Path path = Paths.get("src", "main", "resources","trajectoire","trajectoire.png");
 
