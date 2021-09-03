@@ -1,7 +1,8 @@
 package ProjetAstroFrontSpring.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -91,7 +92,16 @@ public class ViewsController {
 	public String addPlanete(Planete p,Model model) {
 		p.setParent(sysIRepo.findById(1).get());
 		sysIRepo.save(p);
-		model.addAttribute("systeminit", sysIRepo.findAll());
+		//model.addAttribute("systeminit", sysIRepo.findAll());
+		return "redirect:Modification";
+		//return "redirect:/produit
+	}
+	
+	@PostMapping("/views/updatePlan")
+	public String updatePlan(Planete p, @RequestParam int id_parent,Model model) {
+		p.setParent(sysIRepo.findById(id_parent).get());
+		sysIRepo.save(p);
+		//model.addAttribute("systeminit", sysIRepo.findAll());
 		return "redirect:Modification";
 		//return "redirect:/produit
 	}
