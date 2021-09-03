@@ -50,10 +50,10 @@
                               <%--<td>${corpsceleste.DTYPE}</td>--%>
                               <td>${corpsceleste.masse}</td>
                               <td>${corpsceleste.diametre}</td>
-                              <td>${corpsceleste.x}</td>
-                              <td>${corpsceleste.y}</td>
-                              <td>${corpsceleste.vx}</td>
-                              <td>${corpsceleste.vy}</td>
+                              <td>${corpsceleste.xInit}</td>
+                              <td>${corpsceleste.yInit}</td>
+                              <td>${corpsceleste.vxInit}</td>
+                              <td>${corpsceleste.vyInit}</td>
                               
                               <td>${corpsceleste.parent.id}</td>
                               <td>
@@ -72,42 +72,26 @@
 
                             <div id="addFormPlan">
                                <h3>Ajouter nouvelle planete</h3>
-                              <form action="systeminit" method="post">
+                              <form action="addPlanet" method="post">
                               <input type="hidden" name="type_form" value="POST">
                                 <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
                                 <label for="add_masse">Masse :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse (kg)"><br>
                                 <label for="add_taille">Diametre :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
-                                <label for="add_x">x0 :</label> <input required id="add_x" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
-                                <label for="add_y">y0 :</label> <input required id="add_y" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
-                                <label for="add_vx">vx0 :</label> <input required id="add_vx" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
-                                <label for="add_vy">vy0 :</label> <input required id="add_vy" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                <label for="add_x">x0 :</label> <input required id="add_x" name="xInit" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                <label for="add_y">y0 :</label> <input required id="add_y" name="yInit" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                <label for="add_vx">vx0 :</label> <input required id="add_vx" name="vxInit" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                <label for="add_vy">vy0 :</label> <input required id="add_vy" name="vyInit" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
                                 <label for="add_type"></label>  <input id="add_type" type="hidden" name="type" value="Planete"><br>
                                 <label for="add_id_parent"></label> <input id="add_id_parent" type="hidden" name="id_parent" value="1">
-
-<%--<h3>Creez votre etoile</h3>
-        <form action="systeminit" method="post">
-        <input type="hidden" name="type_form" value="POST">
-        <label for="add_nom">Nom :</label> <input required id="add_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
-        <label for="add_type"></label> <input type="hidden" name="type" value="etoile">
-        <label for="add_masse">Masse (en kg) :</label> <input required id="add_masse" name="masse" type="number" placeholder="Saisir la masse"><br>
-        <label for="add_diametre">Diametre (en km) :</label> <input required id="add_diametre" name="diametre" type="number" placeholder="Saisir le diametre"><br>
-        <label for="add_x0"></label> <input type="hidden" name="x0" value="0">
-        <label for="add_y0"></label> <input type="hidden" name="y0" value="0">
-        <label for="add_vx0"></label> <input type="hidden" name="vx0" value="0">
-        <label for="add_vy0"></label> <input type="hidden" name="vy0" value="0">
-        <label for="add_id_parent"></label> <input type="hidden" name="id_parent" value="0">
-
---%>
-
-                                <input class ="btn btn-success" type="submit" name="ajouter" value="Ajouter">
+                                
+								<input class ="btn btn-success" type="submit" name="ajouter" value="Ajouter">
                                 </form>
                               </div>
-
-
+                      
                               <div id="updateFormPlan">
                                 <h3>Modifier la planete</h3>
 
-                                <form action="systeminit" method="put">              
+                                <form action="updatePlan" method="put">              
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="update_id_plan" name="id">
 									<input type="hidden" id="update_type" value="Planete" name="type">

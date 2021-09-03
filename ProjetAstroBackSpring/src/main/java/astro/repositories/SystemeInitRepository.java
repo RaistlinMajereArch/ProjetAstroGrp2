@@ -28,4 +28,7 @@ public interface SystemeInitRepository extends JpaRepository<CorpsCeleste, Integ
 	
 	@Query("select distinct c from CorpsCeleste c where c.parent=:parent")
 	public List<CorpsCeleste> selectEnfants(@Param("parent") CorpsCeleste c);
+	
+	@Query(value="DBCC CHECKIDENT ('systeminit', RESEED, 1);", nativeQuery=true)
+	public void resetId();
 }
