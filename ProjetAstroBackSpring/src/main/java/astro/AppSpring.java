@@ -1,5 +1,6 @@
 package astro;
 
+import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.List;
 import java.util.Optional;
@@ -66,14 +67,14 @@ public class AppSpring {
 		return sc.nextLine();
 	}
 
-	public void run(String[] args) 
+	public void run(String[] args) throws IOException 
 	{
 
 		menuPrincipal();
 		String miseAJour = saisieString("\nSouhaitezvous modifier votre systeme ?");
 	}
 
-	public void menuPrincipal() 
+	public void menuPrincipal() throws IOException 
 	{// genere le menu principal et propose les options
 		System.out.println("\nCree ton systeme solaire!");
 		System.out.println("1- Se connecter");
@@ -97,7 +98,7 @@ public class AppSpring {
 		}
 	}
 	
-	public void menuUtilisateur() 
+	public void menuUtilisateur() throws IOException 
 	{// genere le menu de l'utilisateur et propose les options
 		System.out.println("\nMenu");
 		System.out.println("1- Creer un systeme");
@@ -116,7 +117,7 @@ public class AppSpring {
 		menuUtilisateur();
 	}
 
-	public void menuModifier() 
+	public void menuModifier() throws IOException 
 	{
 		System.out.println("\nModifier un corps");
 		System.out.println("1- Modifier une etoile");
@@ -353,7 +354,7 @@ public class AppSpring {
 		//daoSI.insert(s);
 	}
 
-	public void modifEtoile(CorpsCeleste e) 
+	public void modifEtoile(CorpsCeleste e) throws IOException 
 	{
 		
 		System.out.println(e);
@@ -406,7 +407,7 @@ public class AppSpring {
 		}
 	}
 	
-	public void modifPlanete() 
+	public void modifPlanete() throws IOException 
 	{		
 		for (int i=0;i<systeme.size();i++)
 		{
@@ -498,7 +499,7 @@ public class AppSpring {
 		}
 	}
 	
-	public void modifSatellite() 
+	public void modifSatellite() throws IOException 
 	{
 		for (int i=0;i<systeme.size();i++)
 		{
@@ -591,7 +592,7 @@ public class AppSpring {
 		}
 	}
 	
-	public void simulation2() 
+	public void simulation2() throws IOException 
 	{
 		timestep=saisieInt("Saisissez le nombre de timestep pour votre simulation (1 timestep=1jour) :");
 		String Calcul=saisieString("Voulez vous des calculs simplifies ? (y/n)");
@@ -608,6 +609,8 @@ public class AppSpring {
 	    //System.out.println(sim.getSysteme());
 		sim.run();
 	}
+	
+	public void chargerSysteme() throws IOException
 	public static void lancerSimu(int t, boolean calc) 
 	{
 		try {
