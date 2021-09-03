@@ -92,18 +92,18 @@ a {
 					<div class="row ">
 						<div class="col-3 align-self-center d-flex justify-content-center">
 							<a id="link" class="nav-link" aria-current="page"
-								href="result.jsp">Simulation</a>
+								href="result">Simulation</a>
 						</div>
 						<div class="col-3 align-self-center d-flex justify-content-center">
-							<a id="link" class="nav-link" href="create.jsp">Création
+							<a id="link" class="nav-link" href="create">Création
 								d'un système</a>
 						</div>
 						<div class="col-3 align-self-center d-flex justify-content-center">
-							<a id="link" class="nav-link" href="Modification.jsp">Modification
+							<a id="link" class="nav-link" href="Modification">Modification
 								d'un système</a>
 						</div>
 						<div class="col-3 align-self-center d-flex justify-content-center">
-							<a id="link" class="nav-link" href="connect.html">Déconnexion</a>
+							<a id="link" class="nav-link" href="connect">Déconnexion</a>
 						</div>
 					</div>
 				</nav>
