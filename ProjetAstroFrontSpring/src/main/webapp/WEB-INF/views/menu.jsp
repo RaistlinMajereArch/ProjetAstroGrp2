@@ -24,7 +24,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	height: 15%;
-	background-image: url("img/ciel.jpeg");
+	background-image: url("http://localhost:8080/projetAstroGrp2/img/ciel.jpeg");
 	background-size: 25%;
 }
 
@@ -46,7 +46,7 @@ footer {
 	flex-wrap: wrap;
 	height: 10%;
 	width: 100%;
-	background-image: url("img/ciel.jpeg");
+	background-image: url("http://localhost:8080/projetAstroGrp2/img/ciel.jpeg");
 }
 
 #text {
@@ -125,7 +125,7 @@ a {
 				montrer comment chaque planete evolue autour de votre etoile!</p>
 			<p>Choisissez un menu en tete de page pour commencer ou continuer
 				votre aventure spatiale</p>
-			<br> <img alt="photo systeme solaire" src="img/photofunky.gif" />
+			<br> <img alt="photo systeme solaire" src="http://localhost:8080/projetAstroGrp2/img/photofunky.gif" />
 
 		</div>
 	</div>
