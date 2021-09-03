@@ -611,6 +611,28 @@ public class AppSpring {
 	}
 	
 	public void chargerSysteme() throws IOException
+	public static void lancerSimu(int t, boolean calc) 
+	{
+		try {
+			sim.setTimestep(t);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			sim.setCalculSimple(calc);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			sim.run();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void chargerSysteme()
 	{
 		retourT0();
 		systeme=sysIRepo.findAll();

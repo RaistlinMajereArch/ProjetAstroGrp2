@@ -57,7 +57,7 @@
                               
                               <td>${corpsceleste.parent.id} : ${corpsceleste.parent.nom}</td>
                               <td>
-                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
+                                <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.xInit}','${corpsceleste.yInit}','${corpsceleste.vxInit}','${corpsceleste.vyInit}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <%--,'${corpsceleste.type}'--%>
                                   <input onclick="deletePlan(${corpsceleste.id})" type="button" class ="btn btn-danger" value="Supprimer">
                                     <%--<c:if test = "${corpsceleste.DTYPE='planete'}">

@@ -105,7 +105,7 @@ a {
 		</div>
 	</div>
 	<div id="center">
-		<canvas id="orbite"></canvas>
+		<img alt="" src="">
 	</div>
 </body>
 <footer>
@@ -118,42 +118,3 @@ a {
 	</div>
 </footer>
 
-<script>
-  var couleurs = ['black','red','blue','green','gray','blueviolet','aqua','brown', 'chartreuse', 'chocolate', 'coral','crimson','cyan'];
-  var cpt=0;
-  //DAOPositionjpa daoP = new DAOPositionjpa();
-var positions = [
-                  [{"x":0,"y":0},{"x":2000,"y":2000}],
-                  [{"x":0,"y":20},{"x":0,"y":19},{"x":0,"y":18},{"x":0,"y":17},{"x":0,"y":16},{"x":0,"y":15},{"x":0,"y":14},{"x":0,"y":13},{"x":0,"y":12},{"x":0,"y":11}]
-                ];
-
- //for (var corps in systeme ="${Systeme}"){
-//   positions.add(daoP.findByIdCorps(corps.id));
-//  }
-
-  for (var pos in positions){
-    traj(positions[pos],couleurs[cpt]);
-    console.log(couleurs[cpt]);
-    cpt++;
-  }
-	//orbite.style.transform="scale(0.1)"
-	orbite.style.width=window.innerWidth;
-	orbite.style.height=window.innerHeight*0.7;
-	orbite.style.display="block";
-
-  function traj(pos,couleur){
-    var objet = document.getElementById('orbite');
-    var dessin = objet.getContext('2d');
-    dessin.beginPath();
-    dessin.moveTo(pos[0].x, pos[0].y);
-    console.log(pos[0]);
-    for (var p in pos){
-      dessin.lineTo(pos[p].x, pos[p].y);
-    }
-    dessin.strokeStyle =couleur;
-    dessin.lineWidth = 1;
-    dessin.stroke();
-    dessin.closePath();
-  }
-
-</script>
