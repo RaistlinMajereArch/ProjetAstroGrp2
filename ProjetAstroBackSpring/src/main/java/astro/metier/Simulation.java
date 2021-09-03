@@ -330,5 +330,14 @@ public class Simulation {
 
 	}
 	
-	
+	public void lancerSimu(int t, boolean calc) throws IOException 
+	{
+		
+			this.setTimestep(t);
+		
+			this.setCalculSimple(calc);
+		
+			this.run();
+		
+	}
 }

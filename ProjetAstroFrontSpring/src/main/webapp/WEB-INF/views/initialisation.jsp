@@ -24,8 +24,8 @@
                               <input type="hidden" name="type_form" value="POST">
                                 <label for="add_timestep">Nombre de timestep (1 timestep = 1 jour) :</label> <input required id="add_timestep" name="timestep" type="text" placeholder="Nombre de timestep"><br>
                                 <label for="add_calc">Voulez-vous des calculs simplifiés :</label> 
-                                <input id="Oui" name="add_calc" type="radio"> <label for="True">Oui</label>
-                                <input id="Non" name="add_calc" type="radio"> <label for="False">Non</label>
+                                <input id="Oui" name="calc" type="radio"> <label for="True">Oui</label>
+                                <input id="Non" name="calc" type="radio"> <label for="False">Non</label>
             					<br>
                                              
 								<input class ="btn btn-success" type="submit" name="ajouter" value="Demarrer la simulation">

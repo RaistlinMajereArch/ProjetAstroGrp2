@@ -1,6 +1,8 @@
 package ProjetAstroFrontSpring.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import astro.metier.Etoile;
 import astro.metier.Planete;
+import astro.metier.Simulation;
 import astro.repositories.PositionsRepository;
 import astro.repositories.SystemeInitRepository;
 import astro.repositories.SystemeRepository;
@@ -28,6 +31,8 @@ public class ViewsController {
 	SystemeRepository sysRepo;
 	@Autowired
 	PositionsRepository posRepo;
+	@Autowired
+	Simulation sim;
 	
 //	@GetMapping("/produit")
 //	public String produit(@RequestParam(name = "id", required = true) int id, Model model) {
@@ -108,10 +113,11 @@ public class ViewsController {
 	}
 	
 	@PostMapping("/views/lancerSimu")
-	public String updatePlan(@RequestParam int timestep, @RequestParam boolean calc,Model model) {
-		lancerSimu(timestep, calc);
+	public String updatePlan(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
+		
+		sim.lancerSimu(timestep, calc);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
-		return "redirect:Modification";
+		return "redirect:menu";
 		//return "redirect:/produit
 	}
 }
