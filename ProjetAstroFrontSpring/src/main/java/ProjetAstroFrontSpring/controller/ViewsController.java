@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
-
-
 @Controller
 @RequestMapping("")
 public class ViewsController {
@@ -27,10 +23,9 @@ public class ViewsController {
 //		return "produit";
 //	}
 
-	@GetMapping("")
+	@GetMapping("/views/connect")
 	public String connect(Model model) {
-		System.out.println("entree");
-		return "";
+		return "views/connect";
 		//return "redirect:/produit
 	}
 	
@@ -40,25 +35,25 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("modification")
+	@GetMapping("/views/modification")
 	public String modification(Model model) {
 		return "views/Modification";
 		//return "redirect:/produit
 	} 
 	
-	@GetMapping("create")
+	@GetMapping("/views/create")
 	public String create(Model model) {
 		return "views/create";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("wait")
+	@GetMapping("/views/wait")
 	public String wait(Model model) {
 		return "views/wait";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("result")
+	@GetMapping("/views/result")
 	public String result(Model model) {
 		return "views/result";
 		//return "redirect:/produit
