@@ -12,7 +12,7 @@
 
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>exoSprinMvc.config.WebConfig</param-value>
+			<param-value>ProjetAstroFrontSpring.config.WebConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 

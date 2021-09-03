@@ -143,7 +143,7 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="Boutons">
-						<a id="Envoyer" class="btn btn-success" href="menu.html">Envoyer</a>
+						<a id="Envoyer" class="btn btn-success" href="menu">Envoyer</a>
 						<input class="btn btn-warning" type="reset" value="Effacer">
 					</div>
 				</div>
