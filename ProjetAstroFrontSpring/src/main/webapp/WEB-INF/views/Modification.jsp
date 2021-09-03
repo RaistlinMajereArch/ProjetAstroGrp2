@@ -39,7 +39,7 @@
                             <th>Position y</th>
                             <th>Vitesse x</th>
                             <th>Vitesse y</th>
-                            <th>Id parent</th>
+                            <th>Parent</th>
                           </tr>
                         </thead>
                         <tbody id="contentTable">
@@ -55,7 +55,7 @@
                               <td>${corpsceleste.vxInit}</td>
                               <td>${corpsceleste.vyInit}</td>
                               
-                              <td>${corpsceleste.parent.id}</td>
+                              <td>${corpsceleste.parent.id} : ${corpsceleste.parent.nom}</td>
                               <td>
                                 <input onclick="updatePlan(${corpsceleste.id},'${corpsceleste.nom}','${corpsceleste.masse}','${corpsceleste.diametre}','${corpsceleste.x}','${corpsceleste.y}','${corpsceleste.vx}','${corpsceleste.vy}','${corpsceleste.parent}')" type="button" class ="btn btn-warning" value="Modifier">
                                   <%--,'${corpsceleste.type}'--%>
@@ -91,23 +91,23 @@
                               <div id="updateFormPlan">
                                 <h3>Modifier la planete</h3>
 
-                                <form action="updatePlan" method="put">              
+                                <form action="updatePlan" method="post">
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="update_id_plan" name="id">
 									<input type="hidden" id="update_type" value="Planete" name="type">
-									<input type="hidden" id="update_parent_id" name="parent_id" value="1">
-                                      <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" value="nom" type="text" placeholder="Saisir le nom"><br>
+									<input type="hidden" id="update_parent_id" name="id_parent" value="1">
+                                      <label for="update_nom">Nom :</label> <input required id="update_nom" name="nom" type="text" placeholder="Saisir le nom"><br>
                                       <label for="update_masse">Masse :</label> <input required id="update_masse" name="masse" type="number" placeholder="Saisir la masse (km)"><br>
                                       <label for="update_taille">Diametre :</label> <input required id="update_diametre" name="diametre" type="number" placeholder="Saisir le diametre (km)"><br>
-                                      <label for="update_x">x0 :</label> <input required id="update_x" name="x0" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
-                                      <label for="update_y">y0 :</label> <input required id="update_y" name="y0" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
-                                      <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vx0" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
-                                      <label for="update_vy">vy0 :</label> <input required id="update_vy" name="vy0" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
+                                      <label for="update_x">x0 :</label> <input required id="update_x" name="xInit" type="number" placeholder="Saisir la coordonnee x0 (km)"><br>
+                                      <label for="update_y">y0 :</label> <input required id="update_y" name="yInit" type="number" placeholder="Saisir la coordonnee y0 (km)"><br>
+                                      <label for="update_vx">vx0 :</label> <input required id="update_vx" name="vxInit" type="number" placeholder="Saisir la vitesse vx0 (km/s)"><br>
+                                      <label for="update_vy">vy0 :</label> <input required id="update_vy" name="vyInit" type="number" placeholder="Saisir la vitesse vy0 (km/s)"><br>
                                       
                                       <input class ="btn btn-warning" type="submit" name="modifier" value="Modifier">
                                       </form>
                                     </div>
-                                    <a href="menu.html">Retour</a>
+                                    <a href="menu">Retour</a>
                                   </div>
                                 </div>
                               </div>
