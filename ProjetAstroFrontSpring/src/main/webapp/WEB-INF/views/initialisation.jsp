@@ -15,7 +15,13 @@
           <meta charset="utf-8">
 <title>Initialisation</title>
 </head>
+<style>
+	#attente {
+	display: none;
+}
+</style>
 <body>
+<div id="init">
 <h1>Initialisation</h1>
 
 			<div id="addFormPlan">
@@ -28,8 +34,37 @@
                                 <input id="Non" name="calc" type="radio"> <label for="False">Non</label>
             					<br>
                                              
-								<input class ="btn btn-success" type="submit" name="ajouter" value="Demarrer la simulation">
+								<input id="btnLanceSim" class ="btn btn-success" type="submit" name="ajouter" value="Demarrer la simulation">
                                 </form>
                               </div>
+                              
+                              </div>
+   <div id="attente" display="none">
+   <h1>Veuillez patienter...</h1><br>
+   <img id="image" width="1600" height="1000" src="http://localhost:8080/projetAstroGrp2/img/TPT1.png"/>
+   
+   </div>                           
 </body>
 </html>
+
+<script>
+var interval;
+var cptImage=1;
+
+btnLanceSim.onclick=function()
+{
+	init.style.display="none";
+    attente.style.display="block";
+  	interval=setInterval(changerImage, 2000);
+}
+function changerImage(){
+	cptImage++;
+    if(cptImage==11){
+    	cptImage=1;
+    }
+
+
+    document.getElementById("image").src="http://localhost:8080/projetAstroGrp2/img/TPT"+cptImage+".png";
+
+}
+</script>
