@@ -92,7 +92,7 @@ a {
 					<div class="row ">
 						<div class="col-3 align-self-center d-flex justify-content-center">
 							<a id="link" class="nav-link" aria-current="page"
-								href="result">Simulation</a>
+								href="initialisation">Simulation</a>
 						</div>
 						<div class="col-3 align-self-center d-flex justify-content-center">
 							<a id="link" class="nav-link" href="create">Création

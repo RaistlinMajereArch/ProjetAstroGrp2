@@ -61,9 +61,10 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/wait")
+	@GetMapping("/views/initialisation")
 	public String wait(Model model) {
-		return "views/wait";
+		
+		return "views/initialisation";
 		//return "redirect:/produit
 	}
 	
@@ -101,6 +102,14 @@ public class ViewsController {
 	public String updatePlan(Planete p, @RequestParam int id_parent,Model model) {
 		p.setParent(sysIRepo.findById(id_parent).get());
 		sysIRepo.save(p);
+		//model.addAttribute("systeminit", sysIRepo.findAll());
+		return "redirect:Modification";
+		//return "redirect:/produit
+	}
+	
+	@PostMapping("/views/lancerSimu")
+	public String updatePlan(@RequestParam int timestep, @RequestParam boolean calc,Model model) {
+		lancerSimu(timestep, calc);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
 		return "redirect:Modification";
 		//return "redirect:/produit

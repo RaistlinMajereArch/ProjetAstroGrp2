@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("astro.repositories")
 @ComponentScan("astro.metier")
 @ComponentScan("astro.services")
+@ComponentScan("astro")
 public class AppConfig {
 	
 	@Autowired
