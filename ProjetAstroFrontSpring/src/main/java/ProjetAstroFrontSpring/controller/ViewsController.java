@@ -1,7 +1,7 @@
 package ProjetAstroFrontSpring.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,10 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import astro.metier.Etoile;
+import astro.metier.Planete;
+import astro.repositories.PositionsRepository;
+import astro.repositories.SystemeInitRepository;
+import astro.repositories.SystemeRepository;
+
 @Controller
 @RequestMapping("")
 public class ViewsController {
 	
+	@Autowired
+	SystemeInitRepository sysIRepo;
+	@Autowired
+	SystemeRepository sysRepo;
+	@Autowired
+	PositionsRepository posRepo;
 	
 //	@GetMapping("/produit")
 //	public String produit(@RequestParam(name = "id", required = true) int id, Model model) {
@@ -35,8 +47,9 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/modification")
+	@GetMapping("/views/Modification")
 	public String modification(Model model) {
+		model.addAttribute("systeminit", sysIRepo.findAll());
 		return "views/Modification";
 		//return "redirect:/produit
 	} 
@@ -59,5 +72,25 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
+	@PostMapping("/views/createSystem")
+	public String createSystem(Etoile e,Model model) {
+		posRepo.deleteAll();
+		sysRepo.deleteAll();
+		
+		sysIRepo.deleteAll();
+		sysIRepo.resetId();
+		sysIRepo.save(e);
+		model.addAttribute("systeminit", sysIRepo.findAll());
+		return "redirect:Modification";
+		//return "redirect:/produit
+	}
 	
+	@PostMapping("/views/addPlanet")
+	public String addPlanete(Planete p,Model model) {
+		p.setParent(sysIRepo.findById(1).get());
+		sysIRepo.save(p);
+		model.addAttribute("systeminit", sysIRepo.findAll());
+		return "redirect:Modification";
+		//return "redirect:/produit
+	}
 }
