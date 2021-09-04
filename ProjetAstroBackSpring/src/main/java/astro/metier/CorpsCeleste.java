@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type")
 @SecondaryTable(name="system")
-public abstract class CorpsCeleste {
+public class CorpsCeleste {
 	
 	
 	protected Double G=6.6743E-20;

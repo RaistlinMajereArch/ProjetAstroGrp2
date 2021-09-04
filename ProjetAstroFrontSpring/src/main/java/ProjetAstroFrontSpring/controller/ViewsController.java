@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import astro.metier.CorpsCeleste;
 import astro.metier.Etoile;
 import astro.metier.Planete;
 import astro.metier.Simulation;
+import astro.metier.Satellite;
 import astro.repositories.PositionsRepository;
 import astro.repositories.SystemeInitRepository;
 import astro.repositories.SystemeRepository;
 
 @Controller
-@RequestMapping("")
 public class ViewsController {
 	
 	@Autowired
@@ -102,11 +104,11 @@ public class ViewsController {
 		return "redirect:Modification";
 		//return "redirect:/produit
 	}
-	
-	@PostMapping("/views/updatePlan")
-	public String updatePlan(Planete p, @RequestParam int id_parent,Model model) {
-		p.setParent(sysIRepo.findById(id_parent).get());
-		sysIRepo.save(p);
+	@PostMapping("/views/addSat")
+	public String addSatellite(Satellite s,@RequestParam int id_parent, Model model) {
+		s.setParent(sysIRepo.findById(id_parent).get());
+		sysIRepo.save(s);
+		//sysIRepo.save(s);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
 		return "redirect:Modification";
 		//return "redirect:/produit
@@ -117,6 +119,43 @@ public class ViewsController {
 		return "views/wait";
 		//return "redirect:/produit
 	}
+	@PostMapping("/views/updateCorps")
+	@Transactional
+	public String updateCorps(CorpsCeleste s) {
+		CorpsCeleste c = sysIRepo.getById(s.getId());
+		c.setNomInit(s.getNomInit());
+		c.setDiametreInit(s.getDiametreInit());
+		c.setMasseInit(s.getMasseInit());
+		c.setxInit(s.getxInit());
+		c.setyInit(s.getyInit());
+		c.setVxInit(s.getVxInit());
+		c.setVyInit(s.getVyInit());
+		sysIRepo.save(c);
+		return "redirect:Modification";
+	}
+	
+	@PostMapping("/views/updateEtoile")
+	public String updateEtoile(CorpsCeleste s) {
+		CorpsCeleste c = sysIRepo.getById(s.getId());
+		c.setNomInit(s.getNomInit());
+		c.setDiametreInit(s.getDiametreInit());
+		c.setMasseInit(s.getMasseInit());
+		sysIRepo.save(c);
+		return "redirect:Modification";
+	}
+	
+	@PostMapping("/views/deleteCorps")
+	public String deleteCorps(@RequestParam int id) {
+		if (id==1) {
+			throw new RuntimeException("Vous ne pouvez pas supprimer une etoile");
+		}
+		sysIRepo.deleteById(id);
+		return "redirect:Modification";
+		}
+	
+	
+	
+	
 	@PostMapping("/views/lancerSimu")
 	public String lancerSimu(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
 		sim.lancerSimu(timestep, calc);
