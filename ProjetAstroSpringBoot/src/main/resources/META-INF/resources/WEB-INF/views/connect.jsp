@@ -112,14 +112,14 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="col-12 align-self-center d-flex justify-content-left ">
-						<p id="Login">Nom d'utilisateur</p>
+						<label for="username">Nom d'utilisateur</label>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left ">
-						<input autofocus id="EnterLogin" required placeholder="Login" type="text">
+						<input autofocus id="username" name="username" required="required" placeholder="Login" type="text">
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
@@ -128,14 +128,14 @@ body {
 				<div class="col-4 align-self-center middle">
 					<div
 						class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<p id="Password">Mot de passe</p>
+						<label for="password">Mot de passe</label>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<input id="EnterPassword" required placeholder="Password" type="password"><br>
+						<input id="password" name="password" required="required" placeholder="Password" type="password"><br>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
