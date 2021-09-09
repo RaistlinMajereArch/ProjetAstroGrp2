@@ -1,4 +1,4 @@
-package SoprAjc.ProjetAstroSpringBoot;
+package SoprAjc.ProjetAstroSpringBoot.config;
 
 import java.lang.reflect.Method; 
 
@@ -25,26 +25,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
-		http.antMatcher("/api/**")
-			.csrf().ignoringAntMatchers("/api/**")
-			.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.authorizeRequests()
-				.antMatchers("/api/produit/**").authenticated()
-				.antMatchers("/api/fournisseur/**").hasAnyRole("ADMIN")
-				.antMatchers("/api/achat").hasAnyRole("USER")
-			.and()
-			.httpBasic()
-			.and()
-			.antMatcher("/**")
-				.authorizeRequests()
-					.antMatchers("/achat/**").permitAll()
-					.antMatchers(HttpMethod.POST,"/client/save").permitAll()
-					.antMatchers("/client/inscription").anonymous()
-					.anyRequest().authenticated()
-				.and()
-				.formLogin();
+		http.antMatcher("/**").authorizeRequests().anyRequest().permitAll().and().csrf().ignoringAntMatchers("/api/**");
+//		http.antMatcher("/api/**")
+//			.csrf().ignoringAntMatchers("/api/**")
+//			.and()
+//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//			.and()
+//			.authorizeRequests()
+//				.antMatchers("/api/produit/**").authenticated()
+//				.antMatchers("/api/fournisseur/**").hasAnyRole("ADMIN")
+//				.antMatchers("/api/achat").hasAnyRole("USER")
+//			.and()
+//			.httpBasic()
+//			.and()
+//			.antMatcher("/**")
+//				.authorizeRequests()
+//					.antMatchers("/achat/**").permitAll()
+//					.antMatchers(HttpMethod.POST,"/client/save").permitAll()
+//					.antMatchers("/client/inscription").anonymous()
+//					.anyRequest().authenticated()
+//				.and()
+//				.formLogin();
 		// @formatter:on
 
 	}

@@ -41,9 +41,9 @@ public class Simulation {
 	PositionsRepository posRepo;
 	
 	private List<CorpsCeleste> systeme=new ArrayList();
-	List<CorpsCeleste> systeme2= new ArrayList();
-	JFrame tpt = new JFrame("Canard TPT");
-	JFrame avancement = new JFrame("Avancement");
+	private List<CorpsCeleste> systeme2= new ArrayList();
+	//private JFrame tpt = new JFrame("Canard TPT");
+	//private JFrame avancement = new JFrame("Avancement");
 	
 	public Simulation(int timestep, boolean calculSimple) {
 		this.timestep = timestep;
