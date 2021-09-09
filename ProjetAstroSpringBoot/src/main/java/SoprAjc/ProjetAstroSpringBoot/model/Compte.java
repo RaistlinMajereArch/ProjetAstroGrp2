@@ -31,7 +31,7 @@ public class Compte {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", length = 15, nullable = false)
-	private Role role;	
+	private Role role=Role.ROLE_USER;	
 
 	
 	public Compte() {

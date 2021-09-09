@@ -225,7 +225,7 @@ public class Simulation {
 		
 		avancement.getContentPane().removeAll();
 		String[] TPT = {"TPT1.png","TPT2.png","TPT3.png","TPT4.png","TPT5.png","TPT6.png","TPT7.png","TPT8.png","TPT9.jpeg","TPT10.jpeg","TPT11.jpg"};
-		//tpt.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		tpt.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		tpt.setSize(1600,1000);
 		tpt.setLocationRelativeTo(null);
 		tpt.setVisible(true);
