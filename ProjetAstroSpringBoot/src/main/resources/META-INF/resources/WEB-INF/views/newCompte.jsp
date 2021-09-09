@@ -9,9 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap"
 	rel="stylesheet">
-
-
-
+	
 <style>
 body {
 	background-image: url("../img/photofunky.gif");
@@ -32,21 +30,21 @@ body {
 	border-bottom: double 1px;
 	border-color: grey;
 	background-color: white;
-}t
+}
 
 #Password {
-  text-align : center;
+	text-align: center;
 	margin-top: 20px;
 	margin-bottom: -2px;
 }
 
 #EnterPassword {
-	text-align : center;
+	text-align: center;
 	margin-bottom: 10px;
 }
 
 #Login {
-  text-align : center;
+	text-align: center;
 	margin-bottom: -2px;
 }
 
@@ -54,7 +52,7 @@ body {
 	margin-top: -20px;
 	margin-bottom: 10px;
 	color: blueviolet;
-  text-decoration: underline;
+	text-decoration: underline;
 	cursor: pointer
 }
 
@@ -70,9 +68,10 @@ body {
 	margin-top: -20px;
 	margin-bottom: 10px;
 	color: blueviolet;
-  text-decoration: underline;
+	text-decoration: underline;
 	cursor: pointer
 }
+
 .Boutons {
 	justify-content: space-evenly;
 	display: flex;
@@ -85,26 +84,29 @@ body {
 #Sub {
 	display: none;
 }
-#EnterLogin{
-  width : 100%;
+
+#EnterLogin {
+	width: 100%;
 }
-#EnterPassword{
-  width : 100%;
+
+#EnterPassword {
+	width: 100%;
 }
+
 ::-webkit-input-placeholder {
-   text-align: center;
+	text-align: center;
 }
 </style>
 
 <body>
-	<header class="container"></header>
-
 	<main class="container ">
-		<form id="Connect" action="" method="post">
-			<div class="row">
+		<form id="Sub">
+			<div class="row ">
 				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center d-flex justify-content-center border border-secondary rounded-top" id="ligne">
-					<h1 id="titre">Connexion</h1>
+				<div
+					class="col-4 align-self-center d-flex justify-content-center border border-secondary rounded-top"
+					id="ligne">
+					<h1 id="titre">Inscription</h1>
 				</div>
 				<div class="col-4 align-self-center"></div>
 			</div>
@@ -112,14 +114,16 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="col-12 align-self-center d-flex justify-content-left ">
-						<label for="username">Nom d'utilisateur</label>
+						<p id="Login">Nom d'utilisateur</p>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
-					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left ">
-						<input autofocus id="username" name="username" required="required" placeholder="Login" type="text">
+					<div
+						class="col-12 align-self-center d-flex justify-content-left border-right border-left ">
+						<input autofocus id="EnterLogin" required placeholder="Login"
+							input type="text">
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
@@ -128,14 +132,16 @@ body {
 				<div class="col-4 align-self-center middle">
 					<div
 						class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<label for="password">Mot de passe</label>
+						<p id="Password">Mot de passe</p>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
-					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<input id="password" name="password" required="required" placeholder="Password" type="password"><br>
+					<div
+						class="col-12 align-self-center d-flex justify-content-left border-right border-left">
+						<input id="EnterPassword" required placeholder="Password" input
+							type="password"><br>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
@@ -143,7 +149,8 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center middle">
 					<div class="Boutons">
-						<button id="Envoyer" type="submit" class="btn btn-success" href="menu">Envoyer</button>
+						<button id="Envoyer" type="submit" class="btn btn-success"
+							href="menu">Envoyer</button>
 						<input class="btn btn-warning" type="reset" value="Effacer">
 					</div>
 				</div>
@@ -152,14 +159,14 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center border-left middle">
 					<div class="col-12 align-self-center d-flex justify-content-left ">
-						<p id="Compte">Pas de compte ?</p>
+						<p id="Compte1">Vous avez deja un compte ?</p>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center bottom rounded-bottom">
 					<div class="col-12 align-self-center d-flex justify-content-left">
-						<p id="Subscribe">Inscrivez-vous</p>
+						<p id="Con">Connectez vous</p>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
@@ -167,19 +174,4 @@ body {
 		</form>
 	</main>
 </body>
-
-
-
-<script>
-	Subscribe.onclick = sub;
-	Con.onclick = con;
-
-	function sub() {
-		Connect.style.display = "none";
-		Sub.style.display = "inline-block";
-	}
-	function con() {
-		Connect.style.display = "block";
-		Sub.style.display = "none";
-	}
-</script>
+</html>

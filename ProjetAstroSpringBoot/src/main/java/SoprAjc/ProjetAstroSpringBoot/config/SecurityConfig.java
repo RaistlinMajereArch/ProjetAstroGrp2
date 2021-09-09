@@ -13,26 +13,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//http.antMatcher("/**").authorizeRequests().anyRequest().permitAll().and().csrf().ignoringAntMatchers("/**");
 		// @formatter:off
 		http.antMatcher("/**")
-			.authorizeRequests()
-			.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.loginPage("/connect")
-		.defaultSuccessUrl("/menu")
-		.failureUrl("/connect?error")
-		.permitAll();
+			.authorizeRequests().anyRequest().authenticated()
+			.and()
+			.formLogin()
+				.loginPage("/connect")
+				.defaultSuccessUrl("/menu")
+				.failureUrl("/connect?error")
+				.permitAll();
 		// @formatter:on
 	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
