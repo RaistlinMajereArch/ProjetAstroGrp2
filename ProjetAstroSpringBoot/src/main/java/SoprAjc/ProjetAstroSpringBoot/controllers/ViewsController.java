@@ -112,7 +112,7 @@ public class ViewsController {
 	
 	@PostMapping("/wait")
 	public String wait(Model model) {
-		return "views/wait";
+		return "wait";
 		//return "redirect:/produit
 	}
 	@PostMapping("/updateCorps")

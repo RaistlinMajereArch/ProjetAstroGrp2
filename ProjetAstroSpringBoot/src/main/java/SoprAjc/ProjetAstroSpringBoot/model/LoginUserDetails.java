@@ -1,8 +1,10 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class LoginUserDetails implements UserDetails {
@@ -19,7 +21,7 @@ public class LoginUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {		
-		return null;
+		return Arrays.asList(new SimpleGrantedAuthority(compte.getRole().toString()));
 	}
 
 	@Override

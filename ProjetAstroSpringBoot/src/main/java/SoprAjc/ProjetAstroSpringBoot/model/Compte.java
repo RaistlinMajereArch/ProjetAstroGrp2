@@ -1,9 +1,11 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
-import java.util.Objects; 
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,9 +29,9 @@ public class Compte {
 	@NotEmpty
     @JsonView(JsonViews.Common.class)
 	private String password;
-	//@Enumerated(EnumType.STRING)
-	//@Column(name = "role", length = 15, nullable = false)
-	//private Role role;	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role", length = 15, nullable = false)
+	private Role role;	
 
 	
 	public Compte() {
@@ -43,6 +45,14 @@ public class Compte {
 	
 
 	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -8,6 +8,6 @@ public class CompteController {
 
 	@GetMapping("/login")
 	public String login() {
-		return "login";
+		return "connect";
 	}
 }
