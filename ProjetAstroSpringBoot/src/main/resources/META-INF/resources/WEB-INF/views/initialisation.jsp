@@ -47,8 +47,8 @@
 				<br> <input id="btnLanceSim" class="btn btn-success"
 					type="submit" name="ajouter" value="Demarrer la simulation">
 			</form>
-			<audio id="musiqueAttente" loop="true" autoplay="false"
-src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
+			<audio id="musiqueAttente" loop autoplay
+			src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
 		</div>
 
 	</div>
@@ -70,7 +70,7 @@ src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
 	var cptImage = 1;
 
 	btnLanceSim.onclick = function() {
-// 		musiqueAttente.play();
+		musiqueAttente.play();
 		init.style.display = "none";
 		attente.style.display = "block";
 		interval = setInterval(changerImage, 2000);
