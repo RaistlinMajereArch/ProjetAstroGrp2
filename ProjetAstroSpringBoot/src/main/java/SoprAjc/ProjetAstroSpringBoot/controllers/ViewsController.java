@@ -41,43 +41,43 @@ public class ViewsController {
 
 	@GetMapping("/connect")
 	public String connect(Model model) {
-		return "views/connect";
+		return "connect";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/menu")
+	@GetMapping("/menu")
 	public String menu(Model model) {
-		return "views/menu";
+		return "menu";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/Modification")
+	@GetMapping("/Modification")
 	public String modification(Model model) {
 		model.addAttribute("systeminit", sysIRepo.findAll());
-		return "views/Modification";
+		return "Modification";
 		//return "redirect:/produit
 	} 
 	
-	@GetMapping("/views/create")
+	@GetMapping("/create")
 	public String create(Model model) {
-		return "views/create";
+		return "create";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/initialisation")
+	@GetMapping("/initialisation")
 	public String initialisation(Model model) {
 		
-		return "views/initialisation";
+		return "initialisation";
 		//return "redirect:/produit
 	}
 	
-	@GetMapping("/views/result")
+	@GetMapping("/result")
 	public String result(Model model) {
-		return "views/result";
+		return "result";
 		//return "redirect:/produit
 	}
 	
-	@PostMapping("/views/createSystem")
+	@PostMapping("/createSystem")
 	public String createSystem(Etoile e,Model model) {
 		posRepo.deleteAll();
 		sysRepo.deleteAll();
@@ -92,7 +92,7 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
-	@PostMapping("/views/addPlanet")
+	@PostMapping("/addPlanet")
 	public String addPlanete(Planete p,Model model) {
 		p.setParent(sysIRepo.findById(1).get());
 		sysIRepo.save(p);
@@ -100,7 +100,7 @@ public class ViewsController {
 		return "redirect:Modification";
 		//return "redirect:/produit
 	}
-	@PostMapping("/views/addSat")
+	@PostMapping("/addSat")
 	public String addSatellite(Satellite s,@RequestParam int id_parent, Model model) {
 		s.setParent(sysIRepo.findById(id_parent).get());
 		sysIRepo.save(s);
@@ -110,12 +110,12 @@ public class ViewsController {
 		//return "redirect:/produit
 	}
 	
-	@PostMapping("/views/wait")
+	@PostMapping("/wait")
 	public String wait(Model model) {
 		return "views/wait";
 		//return "redirect:/produit
 	}
-	@PostMapping("/views/updateCorps")
+	@PostMapping("/updateCorps")
 	@Transactional
 	public String updateCorps(CorpsCeleste s) {
 		CorpsCeleste c = sysIRepo.getById(s.getId());
@@ -130,7 +130,7 @@ public class ViewsController {
 		return "redirect:Modification";
 	}
 	
-	@PostMapping("/views/updateEtoile")
+	@PostMapping("/updateEtoile")
 	public String updateEtoile(CorpsCeleste s) {
 		CorpsCeleste c = sysIRepo.getById(s.getId());
 		c.setNomInit(s.getNomInit());
@@ -140,7 +140,7 @@ public class ViewsController {
 		return "redirect:Modification";
 	}
 	
-	@PostMapping("/views/deleteCorps")
+	@PostMapping("/deleteCorps")
 	public String deleteCorps(@RequestParam int id) {
 		if (id==1) {
 			throw new RuntimeException("Vous ne pouvez pas supprimer une etoile");
@@ -152,11 +152,11 @@ public class ViewsController {
 	
 	
 	
-	@PostMapping("/views/lancerSimu")
+	@PostMapping("/lancerSimu")
 	public String lancerSimu(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
 		sim.lancerSimu(timestep, calc);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
-		return "views/result";
+		return "result";
 		//return "redirect:/produit
 	}
 }
