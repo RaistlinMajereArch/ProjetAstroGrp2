@@ -39,7 +39,7 @@ public class ViewsController {
 //		return "produit";
 //	}
 
-	@GetMapping("/views/connect")
+	@GetMapping("/connect")
 	public String connect(Model model) {
 		return "views/connect";
 		//return "redirect:/produit

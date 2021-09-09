@@ -9,8 +9,11 @@ import org.springframework.data.repository.query.Param;
 
 import SoprAjc.ProjetAstroSpringBoot.model.Compte;
 
+
 public interface CompteRepository extends JpaRepository<Compte, Integer> {
 
+	Optional<Compte> findByLogin(String login);
+	
 	public Optional<Compte> findByLoginAndPassword(String login, String password);
 	
 	@Query("from Compte c where c.login like :lib or c.password like :lib")
