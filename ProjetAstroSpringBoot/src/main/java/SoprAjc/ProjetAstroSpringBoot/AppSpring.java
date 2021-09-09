@@ -16,7 +16,7 @@ import SoprAjc.ProjetAstroSpringBoot.model.Etoile;
 import SoprAjc.ProjetAstroSpringBoot.model.Planete;
 import SoprAjc.ProjetAstroSpringBoot.model.Satellite;
 import SoprAjc.ProjetAstroSpringBoot.model.Simulation;
-import SoprAjc.ProjetAstroSpringBoot.model.Utilisateur;
+import SoprAjc.ProjetAstroSpringBoot.model.Compte;
 import SoprAjc.ProjetAstroSpringBoot.repositories.CompteRepository;
 import SoprAjc.ProjetAstroSpringBoot.repositories.PositionsRepository;
 import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeInitRepository;
@@ -86,10 +86,10 @@ public class AppSpring {
 		switch(choix) 
 		{
 		case 1 : String login = saisieString("\nSaisir login"); String password = saisieString("Saisir password"); Optional<Compte> compteConnex = cptRepo.findByLoginAndPassword(login, password);connected=compteConnex.get();break;
-		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Utilisateur user = new Utilisateur(loginNewAccount,passwordNewAccount);cptRepo.save(user);System.out.println("Compte cree");menuPrincipal();break;
+		case 2 : String loginNewAccount = saisieString("\nSaisir login"); String passwordNewAccount = saisieString("Saisir password"); Compte user = new Compte(loginNewAccount,passwordNewAccount);cptRepo.save(user);System.out.println("Compte cree");menuPrincipal();break;
 		case 3 : System.exit(0);break;
 		}		
-		if(connected instanceof Utilisateur)
+		if(connected instanceof Compte)
 		{
 			menuUtilisateur();
 		}
