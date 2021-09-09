@@ -42,12 +42,14 @@ public class Simulation {
 	
 	private List<CorpsCeleste> systeme=new ArrayList();
 	private List<CorpsCeleste> systeme2= new ArrayList();
-	//private JFrame tpt = new JFrame("Canard TPT");
-	//private JFrame avancement = new JFrame("Avancement");
+	private JFrame tpt;
+	private JFrame avancement;
 	
 	public Simulation(int timestep, boolean calculSimple) {
 		this.timestep = timestep;
 		this.calculSimple = calculSimple;
+		tpt = new JFrame("Canard TPT");
+		avancement = new JFrame("Avancement");
 	}
 	
 	/*public void start(int timestep, boolean calculSimple) {
