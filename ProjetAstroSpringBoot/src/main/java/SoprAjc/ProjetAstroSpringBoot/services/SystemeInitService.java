@@ -1,15 +1,12 @@
 package SoprAjc.ProjetAstroSpringBoot.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import astro.metier.CorpsCeleste;
-import astro.metier.Etoile;
-import astro.metier.Planete;
-import astro.repositories.SystemeInitRepository;
+import SoprAjc.ProjetAstroSpringBoot.model.CorpsCeleste;
+import SoprAjc.ProjetAstroSpringBoot.model.Etoile;
+import SoprAjc.ProjetAstroSpringBoot.model.Planete;
+import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeInitRepository;
 
 @Service
 public class SystemeInitService {
