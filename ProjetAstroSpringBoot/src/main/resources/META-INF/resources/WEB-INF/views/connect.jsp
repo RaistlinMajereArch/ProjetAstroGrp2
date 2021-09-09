@@ -159,7 +159,7 @@ body {
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center bottom rounded-bottom">
 					<div class="col-12 align-self-center d-flex justify-content-left">
-						<p id="Subscribe">Inscrivez-vous</p>
+						<p href="/inscription" id="Subscribe">Inscrivez-vous</p>
 					</div>
 				</div>
 				<div class="col-4 align-self-center"></div>
@@ -167,19 +167,3 @@ body {
 		</form>
 	</main>
 </body>
-
-
-
-<script>
-	Subscribe.onclick = sub;
-	Con.onclick = con;
-
-	function sub() {
-		Connect.style.display = "none";
-		Sub.style.display = "inline-block";
-	}
-	function con() {
-		Connect.style.display = "block";
-		Sub.style.display = "none";
-	}
-</script>

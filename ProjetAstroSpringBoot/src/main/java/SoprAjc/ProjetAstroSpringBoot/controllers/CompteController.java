@@ -43,6 +43,7 @@ public class CompteController {
 	
 	@PostMapping("/save")
 	public ModelAndView save(@Valid @ModelAttribute Compte compte, BindingResult br) {
+		System.out.println(compte.toString());
 		if (br.hasErrors()) {
 			return goEdit(compte);
 		}

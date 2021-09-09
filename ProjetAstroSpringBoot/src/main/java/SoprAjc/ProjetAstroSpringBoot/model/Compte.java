@@ -95,6 +95,11 @@ public class Compte {
 				&& Objects.equals(password, other.password);
 	}
 
+	@Override
+	public String toString() {
+		return "Compte [id=" + id + ", login=" + login + ", password=" + password + ", role=" + role + "]";
+	}
+
 	
 }
 
