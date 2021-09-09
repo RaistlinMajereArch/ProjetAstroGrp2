@@ -100,7 +100,7 @@ body {
 	<header class="container"></header>
 
 	<main class="container ">
-		<form id="Connect">
+		<form id="Connect" action="" method="post">
 			<div class="row">
 				<div class="col-4 align-self-center"></div>
 				<div class="col-4 align-self-center d-flex justify-content-center border border-secondary rounded-top" id="ligne">
