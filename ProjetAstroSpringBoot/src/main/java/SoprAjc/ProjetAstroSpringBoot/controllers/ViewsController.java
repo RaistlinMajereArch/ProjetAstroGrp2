@@ -154,6 +154,7 @@ public class ViewsController {
 	
 	@PostMapping("/lancerSimu")
 	public String lancerSimu(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
+		System.out.println("entree dans simu");
 		sim.lancerSimu(timestep, calc);
 		//model.addAttribute("systeminit", sysIRepo.findAll());
 		return "result";

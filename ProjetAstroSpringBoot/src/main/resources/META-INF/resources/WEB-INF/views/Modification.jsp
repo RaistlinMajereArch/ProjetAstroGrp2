@@ -115,6 +115,8 @@ color: white;}
                                <h3>Ajouter nouvelle planete</h3>
                                <br>
                               <form action="addPlanet" method="post">
+                              <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
                               <input type="hidden" name="type_form" value="POST">
                                 <label for="add_nom">Nom :</label> <input required id="add_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
                                 <label for="add_masse">Masse :</label> <input required id="add_masse" name="masseInit" type="number" placeholder="Saisir la masse (kg)"><br>
@@ -134,6 +136,8 @@ color: white;}
                                <h3>Ajouter nouveau satellite</h3>
                                <br>
                               <form action="addSat" method="post">
+                              <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
                               <input type="hidden" name="type_form" value="POST">
                                 <label for="add_nom">Nom :</label> <input required id="sat_add_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
                                 <label for="add_masse">Masse :</label> <input required id="sat_add_masse" name="masseInit" type="number" placeholder="Saisir la masse (kg)"><br>
@@ -153,6 +157,8 @@ color: white;}
                               <div id="updateFormEtoile">
                                 <h3>Modifier l'etoile</h3>
                                 <form action="updateEtoile" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="update_id_etoile" name="id">
                                       <label for="update_nom">Nom :</label> <input required id="etoile_update_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
@@ -165,6 +171,8 @@ color: white;}
                               <div id="updateFormPlan">
                                 <h3>Modifier la planete</h3>
                                 <form action="updateCorps" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="update_id_plan" name="id">
                                       <label for="update_nom">Nom :</label> <input required id="update_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
@@ -183,6 +191,8 @@ color: white;}
                                 <div id="updateFormSat">
                                 <h3>Modifier le satellite</h3>
                                 <form action="updateCorps" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
                                     <input type="hidden" name="type_form" value="PUT">
 									<input type="hidden" id="sat_update_id_plan" name="id">
                                       <label for="update_nom">Nom :</label> <input required id="sat_update_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>

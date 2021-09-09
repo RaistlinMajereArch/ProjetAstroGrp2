@@ -54,6 +54,8 @@ color: white;}
       <div id="addEtoile">
         <h3>Creez votre etoile</h3>
         <form action="createSystem" method="post">
+        <input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
         <input type="hidden" name="type_form" value="POST">
         <label for="add_nom">Nom :</label> <input required id="add_nom" name="nomInit" type="text" placeholder="Saisir le nom"><br>
         <label for="add_type"></label> <input type="hidden" name="typeInit" value="Etoile">

@@ -35,9 +35,11 @@
 		<div id="addFormPlan">
 			<h3>Entrez les conditions de la simulation</h3>
 			<form action="lancerSimu" method="post">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
 				<input type="hidden" name="type_form" value="POST"> <label
 					for="add_timestep">Nombre de timestep (1 timestep = 1 jour)
-					:</label> <input required id="add_timestep" name="timestep" type="text"
+					:</label> <input required id="add_timestep" name="timestep" type="number"
 					placeholder="Nombre de timestep"><br> <label
 					for="add_calc">Voulez-vous des calculs simplifiés :</label> <input
 					id="Oui" name="calc" type="radio"> <label for="True">Oui</label>
@@ -46,14 +48,14 @@
 					type="submit" name="ajouter" value="Demarrer la simulation">
 			</form>
 			<audio id="musiqueAttente" loop="true" autoplay="false"
-src="http://localhost:8080/projetAstroGrp2/musiques/marmelade.mp3"></audio>
+src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
 		</div>
 
 	</div>
 	<div id="attente" display="none">
 		<h1>Veuillez patienter...</h1>
-		<br> <img id="image" width="1600" height="900"
-			src="http://localhost:8080/projetAstroGrp2/img/TPT1.png" />
+		<br> <img id="image" width="1500" height="800"
+			src="http://localhost:8080/projetAstro/img/TPT1.png" />
 
 	</div>
 	
@@ -68,18 +70,18 @@ src="http://localhost:8080/projetAstroGrp2/musiques/marmelade.mp3"></audio>
 	var cptImage = 1;
 
 	btnLanceSim.onclick = function() {
-		musiqueAttente.play();
+// 		musiqueAttente.play();
 		init.style.display = "none";
 		attente.style.display = "block";
 		interval = setInterval(changerImage, 2000);
 	}
 	function changerImage() {
 		cptImage++;
-		if (cptImage == 11) {
+		if (cptImage == 12) {
 			cptImage = 1;
 		}
 
-		document.getElementById("image").src = "http://localhost:8080/projetAstroGrp2/img/TPT"
+		document.getElementById("image").src = "http://localhost:8080/projetAstro/img/TPT"
 				+ cptImage + ".png";
 
 	}

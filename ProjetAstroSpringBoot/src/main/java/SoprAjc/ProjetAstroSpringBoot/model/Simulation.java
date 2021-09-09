@@ -42,14 +42,10 @@ public class Simulation {
 	
 	private List<CorpsCeleste> systeme=new ArrayList();
 	private List<CorpsCeleste> systeme2= new ArrayList();
-	private JFrame tpt;
-	private JFrame avancement;
 	
 	public Simulation(int timestep, boolean calculSimple) {
 		this.timestep = timestep;
 		this.calculSimple = calculSimple;
-		tpt = new JFrame("Canard TPT");
-		avancement = new JFrame("Avancement");
 	}
 	
 	/*public void start(int timestep, boolean calculSimple) {
@@ -65,7 +61,6 @@ public class Simulation {
 			if (ctpt==11) {
 				ctpt =0;
 			}
-			affichageTPT(ctpt);
 			ctpt++;
 			cpt++;
 			avancerTimeStepSysteme();
@@ -218,31 +213,6 @@ public class Simulation {
 		
 	}
 	
-	public void affichageTPT(int i) {
-		avancement.setAlwaysOnTop(true);
-		tpt.setAlwaysOnTop(true);
-		tpt.getContentPane().removeAll();
-		
-		avancement.getContentPane().removeAll();
-		String[] TPT = {"TPT1.png","TPT2.png","TPT3.png","TPT4.png","TPT5.png","TPT6.png","TPT7.png","TPT8.png","TPT9.jpeg","TPT10.jpeg","TPT11.jpg"};
-		tpt.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		tpt.setSize(1600,1000);
-		tpt.setLocationRelativeTo(null);
-		tpt.setVisible(true);
-		avancement.setSize(timestep+100, 150);
-		avancement.setLocation(0, 0);
-		avancement.setVisible(true);
-		String imgUrl = TPT[i];
-		ImageIcon icone = new ImageIcon(imgUrl);
-		JLabel jlabel = new JLabel(icone, JLabel.CENTER);
-		Rectangle loading = new Rectangle(cpt,timestep);
-		JScrollPane jsp = new JScrollPane(loading,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		avancement.getContentPane().add(jsp);
-		avancement.validate();
-		tpt.getContentPane().add(jlabel);
-		tpt.validate();
-		avancement.setVisible(true);
-	}
 
 	public List<CorpsCeleste> getSysteme() {
 		return systeme;
@@ -284,13 +254,6 @@ public class Simulation {
 		return systeme2;
 	}
 
-	public JFrame getTpt() {
-		return tpt;
-	}
-
-	public JFrame getAvancement() {
-		return avancement;
-	}
 
 	public void setTimestep(Integer timestep) {
 		this.timestep = timestep;
@@ -324,13 +287,6 @@ public class Simulation {
 		this.systeme2 = systeme2;
 	}
 
-	public void setTpt(JFrame tpt) {
-		this.tpt = tpt;
-	}
-
-	public void setAvancement(JFrame avancement) {
-		this.avancement = avancement;
-	}
 
 	public Simulation() {
 
