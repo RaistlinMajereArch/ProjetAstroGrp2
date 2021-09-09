@@ -1,9 +1,7 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,9 +19,9 @@ import org.math.plot.Plot2DPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import astro.repositories.PositionsRepository;
-import astro.repositories.SystemeInitRepository;
-import astro.repositories.SystemeRepository;
+import SoprAjc.ProjetAstroSpringBoot.repositories.PositionsRepository;
+import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeInitRepository;
+import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeRepository;
 
 @Component
 public class Simulation {
