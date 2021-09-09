@@ -1,6 +1,6 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
-import java.util.Objects;
+import java.util.Objects; 
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -11,13 +11,18 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name="Compte")
-public abstract class Compte {
+public class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	protected int id;
+	@JsonView(JsonViews.Common.class)
 	protected String login;
+	@JsonView(JsonViews.Common.class)
 	protected String password;
 	
 	

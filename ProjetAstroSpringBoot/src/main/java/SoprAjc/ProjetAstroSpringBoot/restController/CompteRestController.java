@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import SoprAjc.ProjetAstroSpringBoot.exceptions.CompteException;
 import SoprAjc.ProjetAstroSpringBoot.model.Compte;
+import SoprAjc.ProjetAstroSpringBoot.model.JsonViews;
 import SoprAjc.ProjetAstroSpringBoot.repositories.CompteRepository;
 
 @RestController
@@ -39,19 +40,19 @@ public class CompteRestController {
 	private CompteRepository compteRepo;
 
 	@GetMapping("")
-	//@JsonView(JsonViews.AchatWithClientAndProduit.class)
+	@JsonView(JsonViews.Common.class)
 	public List<Compte> getAll() {
 		return compteRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(JsonViews.AchatWithClientAndProduit.class)
+	@JsonView(JsonViews.Common.class)
 	public Compte get(@PathVariable Integer id) {
 		return compteRepo.findById(id).get();
 	}
 
 	@PostMapping("")
-	//@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Compte create(@Valid @RequestBody Compte compte, BindingResult br) {
 		if (br.hasErrors()) {
@@ -62,13 +63,21 @@ public class CompteRestController {
 
 
 	@PutMapping("/{id}")
-	//@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Common.class)
 	public Compte put(@Valid @RequestBody Compte compte, BindingResult br, @PathVariable Integer id) {
-		return compteRepo.save(compte);
+		if (br.hasErrors()) {
+			throw new CompteException();
+		}
+		Optional<Compte> opt = compteRepo.findById(id);
+		if (opt.isPresent()) {
+			compte.setId(id);
+			return compteRepo.save(compte);
+		}
+		throw new CompteException();
 	}
 
 	@PatchMapping("/{id}")
-	//@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Common.class)
 	public Compte patch(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Optional<Compte> opt = compteRepo.findById(id);
 		if (opt.isPresent()) {
