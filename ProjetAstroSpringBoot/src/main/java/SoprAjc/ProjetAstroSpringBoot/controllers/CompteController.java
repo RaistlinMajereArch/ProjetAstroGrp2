@@ -24,11 +24,6 @@ public class CompteController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/login")
-	public String login() {
-		return "connect";
-	}
-	
 	@GetMapping({ "/inscription" })
 	public ModelAndView add() {
 		Compte c = new Compte();
@@ -50,6 +45,6 @@ public class CompteController {
 		compte.setRole(Role.ROLE_USER);
 		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
 		compteRepo.save(compte);
-		return new ModelAndView("redirect:/login");
+		return new ModelAndView("redirect:/connect");
 	}
 }
