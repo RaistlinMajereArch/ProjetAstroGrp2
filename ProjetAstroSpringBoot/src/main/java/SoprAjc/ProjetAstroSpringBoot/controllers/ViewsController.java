@@ -4,25 +4,21 @@ package SoprAjc.ProjetAstroSpringBoot.controllers;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import astro.metier.CorpsCeleste;
-import astro.metier.Etoile;
-import astro.metier.Planete;
-import astro.metier.Simulation;
-import astro.metier.Satellite;
-import astro.repositories.PositionsRepository;
-import astro.repositories.SystemeInitRepository;
-import astro.repositories.SystemeRepository;
+import SoprAjc.ProjetAstroSpringBoot.model.CorpsCeleste;
+import SoprAjc.ProjetAstroSpringBoot.model.Etoile;
+import SoprAjc.ProjetAstroSpringBoot.model.Planete;
+import SoprAjc.ProjetAstroSpringBoot.model.Satellite;
+import SoprAjc.ProjetAstroSpringBoot.model.Simulation;
+import SoprAjc.ProjetAstroSpringBoot.repositories.PositionsRepository;
+import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeInitRepository;
+import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeRepository;
 
 @Controller
 public class ViewsController {
