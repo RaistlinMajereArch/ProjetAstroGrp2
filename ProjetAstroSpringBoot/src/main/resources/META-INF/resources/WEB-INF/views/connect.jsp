@@ -101,69 +101,86 @@ body {
 
 	<main class="container ">
 		<form id="Connect" action="" method="post">
-			<div class="row">
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center d-flex justify-content-center border border-secondary rounded-top" id="ligne">
-					<h1 id="titre">Connexion</h1>
-				</div>
-				<div class="col-4 align-self-center"></div>
+		
+		<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
+			<div class="form-group">
+				<label for="username">login:</label> <input id="username"
+					class="form-control" name="username" required="required"
+					placeholder="saisir votre login">
 			</div>
-			<div class="row ">
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center middle">
-					<div class="col-12 align-self-center d-flex justify-content-left ">
-						<label for="username">Nom d'utilisateur</label>
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center middle">
-					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left ">
-						<input autofocus id="username" name="username" required="required" placeholder="Login" type="text">
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center middle">
-					<div
-						class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<label for="password">Mot de passe</label>
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center middle">
-					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left">
-						<input id="password" name="password" required="required" placeholder="Password" type="password"><br>
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center middle">
-					<div class="Boutons">
-						<button id="Envoyer" type="submit" class="btn btn-success" href="menu">Envoyer</button>
-						<input class="btn btn-warning" type="reset" value="Effacer">
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center border-left middle">
-					<div class="col-12 align-self-center d-flex justify-content-left ">
-						<p id="Compte">Pas de compte ?</p>
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center"></div>
-				<div class="col-4 align-self-center bottom rounded-bottom">
-					<div class="col-12 align-self-center d-flex justify-content-left">
-						<p href="/inscription" id="Subscribe">Inscrivez-vous</p>
-					</div>
-				</div>
-				<div class="col-4 align-self-center"></div>
+			<div class="form-group">
+				<label for="password">mot de passe:</label> <input type="password"
+					class="form-control" id="password" name="password"
+					required="required" placeholder="saisir votre mot de passe">
 			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-outline-primary">envoyer</button>
+				<a href="${ctx}" class="btn btn-outline-warning">annuler</a>
+			</div>
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center d-flex justify-content-center border border-secondary rounded-top" id="ligne"> -->
+<!-- 					<h1 id="titre">Connexion</h1> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row "> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center middle"> -->
+<!-- 					<div class="col-12 align-self-center d-flex justify-content-left "> -->
+<!-- 						<label for="username">Nom d'utilisateur</label> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center middle"> -->
+<!-- 					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left "> -->
+<!-- 						<input autofocus id="username" name="username" required="required" placeholder="Login" type="text"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center middle"> -->
+<!-- 					<div -->
+<!-- 						class="col-12 align-self-center d-flex justify-content-left border-right border-left"> -->
+<!-- 						<label for="password">Mot de passe</label> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center middle"> -->
+<!-- 					<div class="col-12 align-self-center d-flex justify-content-left border-right border-left"> -->
+<!-- 						<input id="password" name="password" required="required" placeholder="Password" type="password"><br> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center middle"> -->
+<!-- 					<div class="Boutons"> -->
+<!-- 						<button id="Envoyer" type="submit" class="btn btn-success" href="menu">Envoyer</button> -->
+<!-- 						<input class="btn btn-warning" type="reset" value="Effacer"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center border-left middle"> -->
+<!-- 					<div class="col-12 align-self-center d-flex justify-content-left "> -->
+<!-- 						<p id="Compte">Pas de compte ?</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 				<div class="col-4 align-self-center bottom rounded-bottom"> -->
+<!-- 					<div class="col-12 align-self-center d-flex justify-content-left"> -->
+<!-- 						<p href="/inscription" id="Subscribe">Inscrivez-vous</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4 align-self-center"></div> -->
+<!-- 			</div> -->
 		</form>
 	</main>
 </body>

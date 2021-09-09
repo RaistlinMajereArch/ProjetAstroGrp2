@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		http.antMatcher("/**")
 			.authorizeRequests()
-				.antMatchers("/inscription").anonymous()
+				.antMatchers("/inscription", "/save").anonymous()
 			.and()
 			.authorizeRequests().anyRequest().authenticated()
 			.and()
