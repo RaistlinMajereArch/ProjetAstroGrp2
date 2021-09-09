@@ -47,7 +47,7 @@
 				<br> <input id="btnLanceSim" class="btn btn-success"
 					type="submit" name="ajouter" value="Demarrer la simulation">
 			</form>
-			<audio id="musiqueAttente" loop autoplay
+			<audio id="musiqueAttente" loop
 			src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
 		</div>
 
