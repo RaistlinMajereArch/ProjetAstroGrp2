@@ -40,8 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.OPTIONS,"/api/**").anonymous()
 				.antMatchers(HttpMethod.POST, "/api/compte").anonymous()
 				.antMatchers(HttpMethod.POST, "/api/compte/inscription").anonymous()
+				.antMatchers(HttpMethod.POST, "/api/CorpsCeleste").hasRole("USER")
 			.and()
-			.httpBasic();		
+			.httpBasic();
+//			.and()
+//			.authorizeRequests().anyRequest().authenticated();
 		// @formatter:on
 	}
 
