@@ -12,6 +12,7 @@ public class LoginUserDetails implements UserDetails {
 	private Compte compte;
 	
 	public LoginUserDetails(Compte compte) {
+		super();
 		this.compte = compte;
 	}
 	
@@ -53,5 +54,4 @@ public class LoginUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

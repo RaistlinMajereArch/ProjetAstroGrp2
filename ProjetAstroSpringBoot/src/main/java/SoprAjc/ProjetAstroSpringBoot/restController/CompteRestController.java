@@ -1,7 +1,6 @@
 package SoprAjc.ProjetAstroSpringBoot.restController;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
@@ -28,7 +28,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import SoprAjc.ProjetAstroSpringBoot.exceptions.CompteException;
 import SoprAjc.ProjetAstroSpringBoot.model.Compte;
 import SoprAjc.ProjetAstroSpringBoot.model.JsonViews;
+import SoprAjc.ProjetAstroSpringBoot.model.LoginUserDetails;
 import SoprAjc.ProjetAstroSpringBoot.repositories.CompteRepository;
+
 
 @RestController
 @RequestMapping("/api/compte")
@@ -41,10 +43,16 @@ public class CompteRestController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+//	@GetMapping("")
+//	@JsonView(JsonViews.Common.class)
+//	public List<Compte> getAll() {
+//		return compteRepo.findAll();
+//	}
+	
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
-	public List<Compte> getAll() {
-		return compteRepo.findAll();
+	public Compte auth(@AuthenticationPrincipal LoginUserDetails lUD) {
+		return lUD.getCompte();
 	}
 
 	@GetMapping("/{id}")
