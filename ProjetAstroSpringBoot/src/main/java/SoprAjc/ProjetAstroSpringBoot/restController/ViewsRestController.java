@@ -101,7 +101,7 @@ public class ViewsRestController {
 	
 	
 	@PostMapping("/lancerSimu")
-	public void lancerSimu(@RequestParam int timestep, @RequestParam boolean calc,Model model) throws IOException {
+	public void lancerSimu(@RequestParam int timestep, @RequestParam boolean calc) throws IOException {
 		System.out.println("entree dans simu");
 		sim.lancerSimu(timestep, calc);
 	}
