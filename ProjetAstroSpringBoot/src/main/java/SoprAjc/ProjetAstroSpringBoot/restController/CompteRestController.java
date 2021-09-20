@@ -1,7 +1,6 @@
 package SoprAjc.ProjetAstroSpringBoot.restController;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,6 +37,9 @@ public class CompteRestController {
 	
 	@Autowired
 	private CompteRepository compteRepo;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -50,15 +52,23 @@ public class CompteRestController {
 	public Compte get(@PathVariable Integer id) {
 		return compteRepo.findById(id).get();
 	}
+	
+	@GetMapping("/isPresent/{login}")
+	public boolean isPresent(@PathVariable String login) {
+		return compteRepo.findByLogin(login).isPresent();
+	}
 
-	@PostMapping("")
+	@PostMapping("/inscription")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Compte create(@Valid @RequestBody Compte compte, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new CompteException();
 		}
-		return compteRepo.save(compte);
+		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
+		compteRepo.save(compte);
+		
+		return compte;
 	}
 
 
