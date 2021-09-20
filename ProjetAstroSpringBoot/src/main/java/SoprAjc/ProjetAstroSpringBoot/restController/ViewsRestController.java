@@ -4,17 +4,22 @@ package SoprAjc.ProjetAstroSpringBoot.restController;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import SoprAjc.ProjetAstroSpringBoot.exceptions.CorpsCelesteException;
 import SoprAjc.ProjetAstroSpringBoot.model.CorpsCeleste;
 import SoprAjc.ProjetAstroSpringBoot.model.Etoile;
 import SoprAjc.ProjetAstroSpringBoot.model.Planete;
@@ -39,24 +44,27 @@ public class ViewsRestController {
 	Simulation sim;
 	
 	@PostMapping("/createSystem")
-	public void createSystem(Etoile e) {
+	public void createSystem(@Valid @RequestBody Etoile e,BindingResult br) {
+		if (br.hasErrors()) {
+			throw new CorpsCelesteException();
+		}
 		posRepo.deleteAll();
 		sysRepo.deleteAll();
 		
 		sysIRepo.deleteAll();
 		
 		sysIRepo.resetId();
-		
+		System.out.println(e);
 		sysIRepo.save(e);
 	}
 	
 	@PostMapping("/addPlanet")
-	public void addPlanete(Planete p) {
+	public void addPlanete(@RequestBody Planete p) {
 		p.setParent(sysIRepo.findById(1).get());
 		sysIRepo.save(p);
 	}
 	@PostMapping("/addSat")
-	public void addSatellite(Satellite s,@RequestParam int id_parent) {
+	public void addSatellite(@RequestBody Satellite s,@RequestParam int id_parent) {
 		s.setParent(sysIRepo.findById(id_parent).get());
 		sysIRepo.save(s);
 	}
@@ -68,7 +76,7 @@ public class ViewsRestController {
 	
 	@PostMapping("/updateCorps")
 	@Transactional
-	public void updateCorps(CorpsCeleste s) {
+	public void updateCorps(@RequestBody CorpsCeleste s) {
 		CorpsCeleste c = sysIRepo.getById(s.getId());
 		c.setNomInit(s.getNomInit());
 		c.setDiametreInit(s.getDiametreInit());
@@ -81,7 +89,7 @@ public class ViewsRestController {
 	}
 	
 	@PostMapping("/updateEtoile")
-	public void updateEtoile(CorpsCeleste s) {
+	public void updateEtoile(@RequestBody CorpsCeleste s) {
 		CorpsCeleste c = sysIRepo.getById(s.getId());
 		c.setNomInit(s.getNomInit());
 		c.setDiametreInit(s.getDiametreInit());
