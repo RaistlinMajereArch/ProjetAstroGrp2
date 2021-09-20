@@ -18,7 +18,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import formation.sopra.springBoot.model.JsonViews;
 
 @Entity
 
