@@ -31,6 +31,7 @@ public class Compte {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", length = 15, nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private Role role=Role.ROLE_USER;	
 
 	
@@ -42,9 +43,7 @@ public class Compte {
 		this.login = login;
 		this.password = password;
 	}
-	
-
-	
+		
 	public Role getRole() {
 		return role;
 	}

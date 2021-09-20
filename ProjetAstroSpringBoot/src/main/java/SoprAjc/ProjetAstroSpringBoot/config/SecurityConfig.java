@@ -40,15 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.OPTIONS,"/api/**").anonymous()
 				.antMatchers(HttpMethod.POST, "/api/compte").anonymous()
 				.antMatchers(HttpMethod.POST, "/api/compte/inscription").anonymous()
-				.antMatchers("/api/compte").authenticated()
 			.and()
-			.httpBasic()
-			.and()
-			.formLogin()
-				.loginPage("/connect")
-				.defaultSuccessUrl("/menu")
-				.failureUrl("/connect?error")
-				.permitAll();
+			.httpBasic();		
 		// @formatter:on
 	}
 
