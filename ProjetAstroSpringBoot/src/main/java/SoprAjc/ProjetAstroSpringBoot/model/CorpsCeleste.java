@@ -16,6 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import formation.sopra.springBoot.model.JsonViews;
+
 @Entity
 
 @Table(name="systeminit")
@@ -28,47 +32,67 @@ public class CorpsCeleste {
 	protected Double G=6.6743E-20;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	protected int id;
 	@Column(insertable = false, updatable = false) 
+	@JsonView(JsonViews.Common.class)
 	private String type; 
 	@Column(name="masse")
+	@JsonView(JsonViews.Common.class)
 	protected Double masseInit;
 	@Column(name="diametre")
+	@JsonView(JsonViews.Common.class)
 	protected Double diametreInit;
 	@Column(name="x")
+	@JsonView(JsonViews.Common.class)
 	protected Double xInit;
 	@Column(name="y")
+	@JsonView(JsonViews.Common.class)
 	protected Double yInit;
 	@Column(name="vx")
+	@JsonView(JsonViews.Common.class)
 	protected Double vxInit;
 	@Column(name="vy")
+	@JsonView(JsonViews.Common.class)
 	protected Double vyInit;
 	@Column(name="etat")
+	@JsonView(JsonViews.Common.class)
 	protected Boolean etatInit=true;
 	@Column(name="nom")
+	@JsonView(JsonViews.Common.class)
 	protected String nomInit;
 	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JsonView(JsonViews.Common.class)
 	protected CorpsCeleste parent;
 	//@OneToMany(mappedBy="parent",cascade = {CascadeType.ALL})
 	///protected List<CorpsCeleste> enfants;
 	
 	@Column(table="system",name="G")
+	@JsonView(JsonViews.Common.class)
 	protected Double GInit=6.6743E-20;
 	@Column(table="system",name="masse")
+	@JsonView(JsonViews.Common.class)
 	protected Double masse;
 	@Column(table="system",name="diametre")
+	@JsonView(JsonViews.Common.class)
 	protected Double diametre;
 	@Column(table="system",name="x")
+	@JsonView(JsonViews.Common.class)
 	protected Double x;
 	@Column(table="system",name="y")
+	@JsonView(JsonViews.Common.class)
 	protected Double y;
 	@Column(table="system",name="vx")
+	@JsonView(JsonViews.Common.class)
 	protected Double vx;
 	@Column(table="system",name="vy")
+	@JsonView(JsonViews.Common.class)
 	protected Double vy;
 	@Column(table="system",name="etat")
+	@JsonView(JsonViews.Common.class)
 	protected Boolean etat=true;
 	@Column(table="system",name="nom")
+	@JsonView(JsonViews.Common.class)
 	protected String nom;
 	
 	public CorpsCeleste() {}
