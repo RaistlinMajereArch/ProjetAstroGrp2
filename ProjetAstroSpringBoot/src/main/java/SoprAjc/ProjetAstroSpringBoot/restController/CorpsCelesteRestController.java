@@ -62,6 +62,7 @@ public class CorpsCelesteRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public CorpsCeleste create(@Valid @RequestBody CorpsCeleste corpsCeleste,BindingResult br) {
+		System.out.println(corpsCeleste);
 		if (br.hasErrors()) {
 			throw new CorpsCelesteException();
 		}
@@ -73,16 +74,21 @@ public class CorpsCelesteRestController {
 			corpsCeleste.setParent(opt.get());
 		}
 		
-		if(corpsCeleste.getType()=="Planete") {
-			return sysIRepo.save((Planete) corpsCeleste);
+		if(corpsCeleste.getType().equals("Planete")) {
+			Planete plan=new Planete(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+					corpsCeleste.getNomInit(), corpsCeleste.getParent());
+			return sysIRepo.save(plan);
+		}else if(corpsCeleste.getType().equals("Etoile")) {
+			Etoile etoile=new Etoile(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getNomInit());
+			return sysIRepo.save(etoile);
+		}else if(corpsCeleste.getType().equals("Satellite")) {
+			Satellite sat=new Satellite(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+					corpsCeleste.getNomInit(), corpsCeleste.getParent());
+			return sysIRepo.save(sat);
+		}else {
+			
+			return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
 		}
-		if(corpsCeleste.getType()=="Etoile") {
-			return sysIRepo.save((Etoile) corpsCeleste);
-		}
-		if(corpsCeleste.getType()=="Satellite") {
-			return sysIRepo.save((Satellite) corpsCeleste);
-		}
-		return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
 	}
 	
 	@DeleteMapping("/{id}")
