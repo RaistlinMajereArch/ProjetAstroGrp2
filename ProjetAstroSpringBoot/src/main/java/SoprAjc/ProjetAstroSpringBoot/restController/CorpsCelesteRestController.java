@@ -27,7 +27,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import SoprAjc.ProjetAstroSpringBoot.exceptions.CorpsCelesteException;
 import SoprAjc.ProjetAstroSpringBoot.model.CorpsCeleste;
+import SoprAjc.ProjetAstroSpringBoot.model.Etoile;
 import SoprAjc.ProjetAstroSpringBoot.model.JsonViews;
+import SoprAjc.ProjetAstroSpringBoot.model.Planete;
+import SoprAjc.ProjetAstroSpringBoot.model.Satellite;
 import SoprAjc.ProjetAstroSpringBoot.repositories.SystemeInitRepository;
 
 
@@ -69,7 +72,17 @@ public class CorpsCelesteRestController {
 			}
 			corpsCeleste.setParent(opt.get());
 		}
-		return sysIRepo.save(corpsCeleste);
+		
+		if(corpsCeleste.getType()=="Planete") {
+			return sysIRepo.save((Planete) corpsCeleste);
+		}
+		if(corpsCeleste.getType()=="Etoile") {
+			return sysIRepo.save((Etoile) corpsCeleste);
+		}
+		if(corpsCeleste.getType()=="Satellite") {
+			return sysIRepo.save((Satellite) corpsCeleste);
+		}
+		return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
 	}
 	
 	@DeleteMapping("/{id}")
