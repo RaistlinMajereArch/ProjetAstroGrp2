@@ -16,8 +16,11 @@ public class Position {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	Integer id;
+	@JsonView(JsonViews.Common.class)
 	Integer idTimeStep;
+	@JsonView(JsonViews.Common.class)
 	Integer idCorpsCeleste;
 	@JsonView(JsonViews.Common.class)
 	double x;
