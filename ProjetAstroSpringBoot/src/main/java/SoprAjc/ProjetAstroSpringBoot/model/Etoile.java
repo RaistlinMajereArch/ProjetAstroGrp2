@@ -1,8 +1,10 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+//@DiscriminatorValue("Etoile")
 public class Etoile extends CorpsCeleste{
 
 	public Etoile() {}

@@ -1,10 +1,12 @@
 package SoprAjc.ProjetAstroSpringBoot.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+//@DiscriminatorValue("Planete")
 public class Planete extends CorpsCeleste{
-
+ 
 	public Planete() {}
 	
 	public Planete(int id, double masse, double diametre, double x, double y, double vx, double vy, boolean etat,

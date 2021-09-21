@@ -32,7 +32,7 @@ public class CorpsCeleste {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(JsonViews.Common.class)
-	protected int id;
+	protected Integer id;
 	@Column(insertable = false, updatable = false) 
 	@JsonView(JsonViews.Common.class)
 	private String type; 
@@ -188,8 +188,28 @@ public class CorpsCeleste {
 		this.type = type;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
+	}
+
+	public Boolean getEtatInit() {
+		return etatInit;
+	}
+
+	public Double getGInit() {
+		return GInit;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setG(Double g) {
+		G = g;
+	}
+
+	public void setGInit(Double gInit) {
+		GInit = gInit;
 	}
 
 	public String getNom() {
@@ -338,7 +358,7 @@ public class CorpsCeleste {
 	
 	@Override
 	public String toString() {
-		return "CorpsCeleste [G=" + G + ", id=" + id + ", type=" + type + ", masseInit=" + masseInit + ", diametreInit="
+		return "CorpsCeleste [G=" + G + ", id=" + id + ", masseInit=" + masseInit + ", diametreInit="
 				+ diametreInit + ", xInit=" + xInit + ", yInit=" + yInit + ", vxInit=" + vxInit + ", vyInit=" + vyInit
 				+ ", etatInit=" + etatInit + ", nomInit=" + nomInit + ", parent=" + parent + ", GInit=" + GInit
 				+ ", masse=" + masse + ", diametre=" + diametre + ", x=" + x + ", y=" + y + ", vx=" + vx + ", vy=" + vy

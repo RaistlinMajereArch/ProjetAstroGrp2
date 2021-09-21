@@ -36,10 +36,10 @@ public class CorpsCelesteController {
 		return new ModelAndView("redirect:/systeme");
 	}
 
-	@GetMapping("/add")
-	public ModelAndView add() {
-		return goEdit(new CorpsCeleste());
-	}
+//	@GetMapping("/add")
+//	public ModelAndView add() {
+//		return goEdit(new CorpsCeleste());
+//	}
 		
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable Integer id) {

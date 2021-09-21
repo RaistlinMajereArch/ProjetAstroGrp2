@@ -1,5 +1,6 @@
 package SoprAjc.ProjetAstroSpringBoot.restController;
 
+import java.awt.AWTException;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class CorpsCelesteRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public CorpsCeleste create(@Valid @RequestBody CorpsCeleste corpsCeleste,BindingResult br) {
-		System.out.println(corpsCeleste);
+		
 		if (br.hasErrors()) {
 			throw new CorpsCelesteException();
 		}
@@ -90,6 +91,60 @@ public class CorpsCelesteRestController {
 			return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
 		}
 	}
+	
+//	@PostMapping("/Planete")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste createPlanete(@Valid @RequestBody Planete plan,BindingResult br) {
+//		
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		if (plan.getParent() !=null) {
+//			Optional<CorpsCeleste> opt = sysIRepo.findById(plan.getParent().getId());
+//			if (!opt.isPresent()) {
+//				throw new CorpsCelesteException();
+//			}
+//			plan.setParent(opt.get());		
+//		}
+//		return sysIRepo.save(plan);
+//	}
+//	
+//	@PostMapping("/Satellite")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste createSatellite(@Valid @RequestBody Satellite sat,BindingResult br) {
+//		
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		if (sat.getParent() !=null) {
+//			Optional<CorpsCeleste> opt = sysIRepo.findById(sat.getParent().getId());
+//			if (!opt.isPresent()) {
+//				throw new CorpsCelesteException();
+//			}
+//			sat.setParent(opt.get());		
+//		}
+//		return sysIRepo.save(sat);
+//	}
+//	
+//	@PostMapping("/Etoile")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste createEtoile(@Valid @RequestBody Etoile etoile,BindingResult br) {
+//		
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		if (etoile.getParent() !=null) {
+//			Optional<CorpsCeleste> opt = sysIRepo.findById(etoile.getParent().getId());
+//			if (!opt.isPresent()) {
+//				throw new CorpsCelesteException();
+//			}
+//			etoile.setParent(opt.get());		
+//		}
+//		return sysIRepo.save(etoile);
+//	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -123,14 +178,127 @@ public class CorpsCelesteRestController {
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public CorpsCeleste replace(@Valid @RequestBody CorpsCeleste corpsCeleste, BindingResult br, @PathVariable Integer id) {
+		
 		if (br.hasErrors()) {
-			corpsCeleste.setId(id);
-			return sysIRepo.save(corpsCeleste);
+			throw new CorpsCelesteException();
 		}
-		throw new CorpsCelesteException();
+		if (corpsCeleste.getParent() !=null) {
+			Optional<CorpsCeleste> opt = sysIRepo.findById(corpsCeleste.getParent().getId());
+			if (!opt.isPresent()) {
+				throw new CorpsCelesteException();
+			}
+			corpsCeleste.setParent(opt.get());
+		}
+		sysIRepo.deleteById(id);
+		if(corpsCeleste.getType().equals("Planete")) {
+			Planete plan=new Planete(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+					corpsCeleste.getNomInit(), corpsCeleste.getParent());
+			plan.setId(id);
+			System.out.println(plan);
+			return sysIRepo.save(plan);
+		}else if(corpsCeleste.getType().equals("Etoile")) {
+			Etoile etoile=new Etoile(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getNomInit());
+			etoile.setId(id);
+			return sysIRepo.save(etoile);
+		}else if(corpsCeleste.getType().equals("Satellite")) {
+			Satellite sat=new Satellite(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+					corpsCeleste.getNomInit(), corpsCeleste.getParent());
+			sat.setId(id);
+			return sysIRepo.save(sat);
+		}else {
+			
+			return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
+		}
 	}
 	
+//	@PutMapping("/{id}/Planete")
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste replacePlanete(@Valid @RequestBody Planete planete, BindingResult br, @PathVariable Integer id) {
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		Optional<CorpsCeleste> opt = sysIRepo.findById(id);
+//		System.out.println(opt);
+//		if (opt.isPresent()) {
+//				planete.setId(id);
+//				return sysIRepo.save(planete);
+//		}
+//		throw new CorpsCelesteException();
+//	}
+//	
+//	@PutMapping("/{id}/Satellite")
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste replaceSatellite(@Valid @RequestBody Satellite sat, BindingResult br, @PathVariable Integer id) {
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		Optional<CorpsCeleste> opt = sysIRepo.findById(id);
+//		System.out.println(opt);
+//		if (opt.isPresent()) {
+//				sat.setId(id);
+//				return sysIRepo.save(sat);
+//		}
+//		throw new CorpsCelesteException();
+//	}
+//	
+//	@PutMapping("/{id}/Etoile")
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste replaceEtoile(@Valid @RequestBody Etoile etoile, BindingResult br, @PathVariable Integer id) {
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		Optional<CorpsCeleste> opt = sysIRepo.findById(id);
+//		System.out.println(opt);
+//		if (opt.isPresent()) {
+//				etoile.setId(id);
+//				return sysIRepo.save(etoile);
+//		}
+//		throw new CorpsCelesteException();
+//	}
+	
+	
+//	@PutMapping("/{id}")
+//	@JsonView(JsonViews.Common.class)
+//	public CorpsCeleste replace(@Valid @RequestBody CorpsCeleste corpsCeleste, BindingResult br, @PathVariable Integer id) {
+//		System.out.println(corpsCeleste);
+//		if (br.hasErrors()) {
+//			throw new CorpsCelesteException();
+//		}
+//		Optional<CorpsCeleste> opt = sysIRepo.findById(id);
+//		System.out.println(opt);
+//		
+//		if (opt.isPresent()) {
+//			sysIRepo.deleteById(id);
+//			if(corpsCeleste.getType().equals("Planete")) {
+//				Planete plan=new Planete(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+//						corpsCeleste.getNomInit(), corpsCeleste.getParent());
+//				plan.setId(id);
+//				return sysIRepo.save(plan);
+//			}else if(corpsCeleste.getType().equals("Etoile")) {
+//				Etoile etoile=new Etoile(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getNomInit());
+//				etoile.setId(id);
+//				return sysIRepo.save(etoile);
+//			}else if(corpsCeleste.getType().equals("Satellite")) {
+//				Satellite sat=new Satellite(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
+//						corpsCeleste.getNomInit(), corpsCeleste.getParent());
+//				sat.setId(id);
+//				return sysIRepo.save(sat);
+//			}else {
+//				
+//				return sysIRepo.save(corpsCeleste);//a faire pour planete, etoile et satellite !!!!!!!!!!!!!!!!!!!!!!!!!a
+//			}
+//				
+//		}
+//		throw new CorpsCelesteException();
+		
+		
+//		System.out.println(corpsCeleste);
+//		if (!br.hasErrors()) {
+//			System.out.println("dans if");
+//			corpsCeleste.setId(id);
+//			return sysIRepo.save(corpsCeleste);
+//		}
+//		throw new CorpsCelesteException();
+//	}
+	
 }
-	
-	
-	
