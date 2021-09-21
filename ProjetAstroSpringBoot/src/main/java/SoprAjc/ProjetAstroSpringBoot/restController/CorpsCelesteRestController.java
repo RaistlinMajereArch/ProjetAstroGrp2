@@ -189,7 +189,7 @@ public class CorpsCelesteRestController {
 			}
 			corpsCeleste.setParent(opt.get());
 		}
-		sysIRepo.deleteById(id);
+		//sysIRepo.deleteById(id);
 		if(corpsCeleste.getType().equals("Planete")) {
 			Planete plan=new Planete(corpsCeleste.getMasseInit(), corpsCeleste.getDiametreInit(), corpsCeleste.getxInit(), corpsCeleste.getyInit(), corpsCeleste.getVxInit(), corpsCeleste.getVyInit(),
 					corpsCeleste.getNomInit(), corpsCeleste.getParent());
