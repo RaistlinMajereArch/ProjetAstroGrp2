@@ -8,16 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name="positions")
 public class Position {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	Integer id;
+	@JsonView(JsonViews.Common.class)
 	Integer idTimeStep;
+	@JsonView(JsonViews.Common.class)
 	Integer idCorpsCeleste;
+	@JsonView(JsonViews.Common.class)
 	double x;
+	@JsonView(JsonViews.Common.class)
 	double y;
 	
 	public Position() {}
