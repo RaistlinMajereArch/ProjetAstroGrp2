@@ -72,7 +72,7 @@ public class Simulation {
 				posRepo.save(p);
 			}
 		}
-		affichageTrajectoire();
+		//affichageTrajectoire();
 	}
 	
 	public void initSimu()
@@ -91,6 +91,7 @@ public class Simulation {
 		}
 		setSysteme(sysRepo.findAll());
 		System.out.println(getSysteme());
+		posRepo.deleteAll();
 		for(int i=0;i<getSysteme().size();i++) {
 			System.out.println(getSysteme().get(i));
 			Position p=new Position(0,getSysteme().get(i).getId(),getSysteme().get(i).getxInit(),getSysteme().get(i).getyInit());
